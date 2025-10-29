@@ -50,6 +50,7 @@ group :development do
   gem "web-console"
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
+  gem 'slim_lint', require: false
 end
 
 group :test do
