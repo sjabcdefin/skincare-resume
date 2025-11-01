@@ -3,7 +3,10 @@
   .flex.justify-between.items-center
     h1.font-bold.text-4xl
       | Treatments
-    = link_to 'New treatment', new_treatment_path, class: 'rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium'
+    = link_to 'New treatment', new_treatment_path,
+              class: 'rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium',
+              data: { turbo_frame: dom_id(Treatment.new) }
+  = turbo_frame_tag Treatment.new
   #treatments.min-w-full.divide-y.divide-gray-200.space-y-5
     - if @treatments.any?
       - @treatments.each do |treatment|

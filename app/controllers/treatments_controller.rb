@@ -18,14 +18,10 @@ class TreatmentsController < ApplicationController
   def create
     @treatment = Treatment.new(treatment_params)
 
-    respond_to do |format|
-      if @treatment.save
-        format.html { redirect_to @treatment, notice: 'Treatment was successfully created.' }
-        format.json { render :show, status: :created, location: @treatment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @treatment.errors, status: :unprocessable_entity }
-      end
+    if @treatment.save
+      flash.now.notice = 'Treatment was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
