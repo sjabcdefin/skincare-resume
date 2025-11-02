@@ -19,7 +19,7 @@ class TreatmentsController < ApplicationController
     @treatment = Treatment.new(treatment_params)
 
     if @treatment.save
-      flash.now.notice = 'Treatment was successfully created.'
+      flash.now.notice = t('.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class TreatmentsController < ApplicationController
 
   def update
     if @treatment.update(treatment_params)
-      flash.now.notice = 'Treatment was successfully updated.'
+      flash.now.notice = t('.success')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class TreatmentsController < ApplicationController
 
   def destroy
     @treatment.destroy!
-    flash.now.notice = 'Treatment was successfully destroyed.'
+    flash.now.notice = t('.success')
   end
 
   private

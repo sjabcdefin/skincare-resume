@@ -1,9 +1,0 @@
-ja:
-  activerecord:
-    models:
-      treatment: 処理  #g
-
-    attributes:
-      treatment:
-        description: 説明  #g
-        treated_on: 治療対象  #g
