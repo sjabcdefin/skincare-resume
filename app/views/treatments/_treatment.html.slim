@@ -1,11 +1,11 @@
 = turbo_frame_tag treatment do
   div id=dom_id(treatment) class='w-full sm:w-auto my-5 space-y-5'
-    div
-      strong.block.font-medium.mb-1 = Treatment.human_attribute_name :treated_on
-      = l treatment.treated_on, format: :default
-    div
-      strong.block.font-medium.mb-1 = Treatment.human_attribute_name :description
-      = treatment.description
+    .my-5
+      label.block.mb-1 = Treatment.human_attribute_name :treated_on
+      div class='block shadow-sm rounded-md border px-3 py-2 mt-2 w-full sm:max-w-md border-gray-400' = l treatment.treated_on, format: :default
+    .my-5
+      label.block.mb-1 = Treatment.human_attribute_name :description
+      div class='block shadow-sm rounded-md border px-3 py-2 mt-2 w-full sm:max-w-md border-gray-400' = treatment.description
   .w-full.sm:w-auto.flex.flex-col.sm:flex-row.space-x-2.space-y-2
-    = link_to t('views.common.edit'), edit_treatment_path(treatment), class: 'w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium'
-    = button_to t('views.common.delete'), treatment, method: :delete, class: 'w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer', data: { turbo_confirm: 'Are you sure?' }
+    = link_to t('views.common.edit'), edit_treatment_path(treatment), class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2.5 text-white bg-blue-600 hover:bg-blue-500 font-medium cursor-pointer'
+    = button_to t('views.common.delete'), treatment, method: :delete, class: 'w-full sm:w-24 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer', data: { turbo_confirm: 'Are you sure?' }
