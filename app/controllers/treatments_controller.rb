@@ -31,6 +31,7 @@ class TreatmentsController < ApplicationController
 
   def update
     if @treatment.update(treatment_params)
+      flash.now.notice = 'Treatment was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
