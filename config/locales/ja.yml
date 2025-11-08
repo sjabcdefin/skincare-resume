@@ -194,7 +194,7 @@ ja:
     common:
       edit: 編集
       delete: ✕
-      new: 新規作成
+      new: ＋
       cancel: キャンセル
   treatments:
     create:
