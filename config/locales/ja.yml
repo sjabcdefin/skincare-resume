@@ -193,7 +193,7 @@ ja:
   views:
     common:
       edit: 編集
-      delete: 削除
+      delete: ✕
       new: 新規作成
       cancel: キャンセル
   treatments:
