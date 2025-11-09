@@ -1,6 +1,10 @@
 - content_for :title, 'Treatments'
 
 .w-full.sm:w-auto.sm:min-w-md.mx-auto.text-center.space-y-8
+  // プログレスバー
+  .my-5
+    = render 'shared/progress_bar'
+
   // 一覧
   #treatments.divide-gray-200.space-y-5
     - if @treatments.any?
