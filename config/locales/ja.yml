@@ -196,6 +196,8 @@ ja:
       delete: ✕
       new: ＋
       cancel: キャンセル
+    treatments:
+      form_example: 例. ミラノリピール
   treatments:
     create:
       success: "治療内容を登録しました。"
