@@ -18,5 +18,11 @@ html
   body.bg-base.text-text
     #flash
       = render 'flash'
-    main.container.mx-auto.mt-28.px-5
+
+    // ロゴとタイトル
+    .flex.mx-auto.max-w-4xl.items-center.mt-10.space-x-2.px-2
+      = image_tag '/logo.png', alt: 'Logo', class: 'w-14 h-14 mb-3'
+      h1.text-2xl.font-bold スキンケアの履歴書
+
+    main.container.mx-auto.mt-10.px-5
       = yield
