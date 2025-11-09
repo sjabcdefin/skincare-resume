@@ -203,3 +203,6 @@ ja:
       success: "治療内容を更新しました。"
     destroy:
       success: "治療内容を削除しました。"
+  messages:
+    confirm:
+      destroy: "本当に削除しますか？"

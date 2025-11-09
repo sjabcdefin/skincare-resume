@@ -18,7 +18,7 @@
                                    'border-red-400 focus:outline-red-600': treatment.errors[:description].any? }]
     // ボタン
     .sm:flex.sm:flex-col.sm:justify-between.sm:items-end
-      = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: 'Are you sure?' },
+      = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
                   class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
                   onclick: 'event.stopPropagation();'
       .flex.flex-col.flex-row.space-x-2
