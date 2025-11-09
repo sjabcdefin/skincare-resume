@@ -15,7 +15,7 @@ html
     = stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
-  body
+  body.bg-base.text-text
     #flash
       = render 'flash'
     main.container.mx-auto.mt-28.px-5
