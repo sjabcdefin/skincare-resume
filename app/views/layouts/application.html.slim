@@ -16,7 +16,7 @@ html
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
   body.bg-base.text-text
-    #flash
+    #flash.fixed.top-4.right-4.z-50
       = render 'flash'
 
     // ロゴとタイトル
