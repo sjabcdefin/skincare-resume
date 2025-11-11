@@ -1,6 +1,6 @@
 - content_for :title, 'Treatments'
 
-.w-full.sm:w-auto.sm:min-w-md.mx-auto.text-center.space-y-8
+.w-full.max-w-4xl.mx-auto
   // プログレスバー
   .my-5
     = render 'shared/progress_bar'
@@ -9,14 +9,14 @@
   .my-8.max-w-4xl.mx-auto.px-4
     h3.font-medium.text-center.text-xl
       = '治療履歴の入力'
-    .my-3.text-sm.text-left
+    .my-3.text-sm
       p
         = '💡 ご利用方法'
         br
         = '施術日を入力しなくても保存できます。'
 
   // 一覧
-  #treatments.divide-gray-200.space-y-5
+  #treatments
     - @treatments.each do |treatment|
       = render treatment
 

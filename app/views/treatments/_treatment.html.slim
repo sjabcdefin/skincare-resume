@@ -2,12 +2,12 @@
   = link_to edit_treatment_path(treatment), class: 'cursor-pointer' do
     .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
       .my-3
-        .text-left.sm:w-md
-          label.block.mb-1.font-semibold = Treatment.human_attribute_name :treated_on
+        .max-w-md
+          label.block.font-semibold = Treatment.human_attribute_name :treated_on
           .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
             = l treatment.treated_on, format: :default
       .my-3
-        .text-left.sm:w-md
-          label.block.mb-1.font-semibold = Treatment.human_attribute_name :description
+        .max-w-md
+          label.block.font-semibold = Treatment.human_attribute_name :description
           .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
             = treatment.description

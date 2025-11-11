@@ -1,26 +1,25 @@
 = turbo_frame_tag treatment do
   = form_with(model: treatment, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
     .my-3
-      .text-left.sm:w-md
+      .max-w-md
         = form.label :treated_on, Treatment.human_attribute_name(:treated_on),
-                     class: 'block mb-1 font-semibold'
+                     class: 'block font-semibold'
         = form.date_field :treated_on,
                           class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
                                  { 'border-gray-400 focus:outline-blue-600': treatment.errors[:treated_on].none?,
                                    'border-red-400 focus:outline-red-600': treatment.errors[:treated_on].any? }]
     .my-3
-      .text-left.sm:w-md
+      .max-w-md
         = form.label :description, Treatment.human_attribute_name(:description),
-                     class: 'block mb-1 font-semibold'
+                     class: 'block font-semibold'
         = form.text_field :description, placeholder: t('views.treatments.form_example'),
                           class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
                                  { 'border-gray-400 focus:outline-blue-600': treatment.errors[:description].none?,
                                    'border-red-400 focus:outline-red-600': treatment.errors[:description].any? }]
     // ボタン
-    .sm:flex.sm:flex-col.sm:justify-between.sm:items-end
-      = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
-                  class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
-                  onclick: 'event.stopPropagation();'
-      .flex.flex-col.flex-row.space-x-2
-        = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-accent hover:bg-[#4A6652] text-white font-medium'
-        = link_to t('views.common.cancel'), treatments_path, class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'
+    = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
+                class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
+                onclick: 'event.stopPropagation();'
+    .flex.sm:justify-end.space-x-2
+      = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-accent hover:bg-[#4A6652] text-white font-medium'
+      = link_to t('views.common.cancel'), treatments_path, class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'

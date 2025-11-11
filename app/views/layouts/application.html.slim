@@ -16,12 +16,12 @@ html
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
   body.bg-base.text-text
-    #flash.fixed.top-4.right-4.z-50
+    #flash.fixed.top-5.right-5.z-50
       = render 'flash'
 
     // ロゴとタイトル
     .flex.mx-auto.max-w-4xl.items-center.mt-10.space-x-2.px-2
-      = image_tag '/logo.png', alt: 'Logo', class: 'w-14 h-14 mb-3'
+      = image_tag '/logo.png', alt: 'Logo', class: 'w-14 h-14'
       h1.text-2xl.font-bold スキンケアの履歴書
 
     main.container.mx-auto.mt-10.px-5
