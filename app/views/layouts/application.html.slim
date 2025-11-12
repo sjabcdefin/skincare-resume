@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title
+      = content_for(:title) || 'Skincare Resume'
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    meta[name="apple-mobile-web-app-capable" content="yes"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    link[rel="manifest" href="/manifest.json"]
+    link[rel="icon" href="/icon.png" type="image/png"]
+    link[rel="icon" href="/icon.svg" type="image/svg+xml"]
+    link[rel="apple-touch-icon" href="/icon.png"]
+    = stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_importmap_tags
+  body class='bg-[#FDFDFD] text-[#2C4242]'
+    #flash.fixed.top-5.right-5.z-50
+      = render 'flash'
+
+    / ロゴとタイトル
+    .flex.mx-auto.max-w-4xl.items-center.mt-10.space-x-2.px-2
+      = image_tag '/logo.png', alt: 'Logo', class: 'w-14 h-14'
+      h1.text-2xl.font-bold スキンケアの履歴書
+
+    main.container.mx-auto.mt-10.px-5
+      = yield

@@ -1,0 +1,13 @@
+= turbo_frame_tag treatment do
+  = link_to edit_treatment_path(treatment), class: 'cursor-pointer' do
+    .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
+      .my-3
+        .max-w-md
+          label.block.font-semibold = Treatment.human_attribute_name :treated_on
+          .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+            = treatment.treated_on.present? ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
+      .my-3
+        .max-w-md
+          label.block.font-semibold = Treatment.human_attribute_name :description
+          .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+            = treatment.description

@@ -1,0 +1,33 @@
+- content_for :title, 'Treatments'
+
+.w-full.max-w-4xl.mx-auto
+  / プログレスバー
+  .my-5
+    = render 'shared/progress_bar'
+
+  / ページ説明
+  .my-8.max-w-4xl.mx-auto.px-4
+    h3.font-medium.text-center.text-xl
+      | 治療履歴の入力
+    .my-3.text-sm
+      p
+        | 💡 ご利用方法
+        br
+        | 施術日を入力しなくても保存できます。治療内容は入力する必要があります。
+
+  / 一覧
+  #treatments
+    - @treatments.each do |treatment|
+      = render treatment
+
+  / 新規作成フォーム
+  = turbo_frame_tag 'first_treatment' do
+    - if @treatments.empty?
+      = render 'form', treatment: Treatment.new
+
+  = turbo_frame_tag Treatment.new
+
+  / 新規作成ボタン
+  = link_to t('views.common.new'), new_treatment_path,
+            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
+            data: { turbo_frame: dom_id(Treatment.new) }
