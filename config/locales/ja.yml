@@ -92,7 +92,7 @@ ja:
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
-      blank: を入力してください
+      blank: を入力してください。
       confirmation: と%{attribute}の入力が一致しません
       empty: を入力してください
       equal_to: は%{count}にしてください
@@ -198,6 +198,7 @@ ja:
       cancel: キャンセル
     treatments:
       form_example: 例. ミラノリピール
+      form_blank: －
   treatments:
     create:
       success: "治療内容を登録しました。"
