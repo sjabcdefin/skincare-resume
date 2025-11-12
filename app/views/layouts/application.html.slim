@@ -15,11 +15,11 @@ html
     = stylesheet_link_tag 'tailwind', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
-  body.bg-base.text-text
+  body class='bg-[#FDFDFD] text-[#2C4242]'
     #flash.fixed.top-5.right-5.z-50
       = render 'flash'
 
-    // ロゴとタイトル
+    / ロゴとタイトル
     .flex.mx-auto.max-w-4xl.items-center.mt-10.space-x-2.px-2
       = image_tag '/logo.png', alt: 'Logo', class: 'w-14 h-14'
       h1.text-2xl.font-bold スキンケアの履歴書
