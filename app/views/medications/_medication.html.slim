@@ -1,0 +1,13 @@
+= turbo_frame_tag medication do
+  = link_to edit_medication_path(medication), class: 'cursor-pointer' do
+    .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
+      .my-3
+        .max-w-md
+          label.block.font-semibold = Medication.human_attribute_name :started_on
+          .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+            = medication.started_on.present? ? l(medication.started_on, format: :default) : t('views.medications.form_blank')
+      .my-3
+        .max-w-md
+          label.block.font-semibold = Medication.human_attribute_name :name
+          .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+            = medication.name
