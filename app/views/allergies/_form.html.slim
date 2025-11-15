@@ -1,15 +1,20 @@
-= form_with(model: allergy, class: 'contents') do |form|
-  - if allergy.errors.any?
-    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-md.mt-3
-      h2
-        = pluralize(allergy.errors.count, 'error')
-        |  prohibited this allergy from being saved:
-      ul.list-disc.ml-6
-        - allergy.errors.each do |error|
-          li
-            = error.full_message
-  .my-5
-    = form.label :name
-    = form.text_field :name, class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full', { 'border-gray-400 focus:outline-blue-600': allergy.errors[:name].none?, 'border-red-400 focus:outline-red-600': allergy.errors[:name].any? }]
-  .inline
-    = form.submit class: 'w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer'
+= turbo_frame_tag allergy do
+  = form_with(model: allergy, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
+    .my-3
+      .max-w-md
+        = form.label :name, Allergy.human_attribute_name(:name),
+                     class: 'block font-semibold'
+        = form.text_field :name, placeholder: t('views.allergies.form_example'),
+                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
+                                 { 'border-gray-400 focus:outline-blue-600': allergy.errors[:name].none?,
+                                   'border-red-400 focus:outline-red-600': allergy.errors[:name].any? }]
+        - if allergy.errors[:name].any?
+          p class='text-[12px] text-red-600 mt-1'
+            = Allergy.human_attribute_name(:name) + allergy.errors[:name].first
+    / ボタン
+    = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
+                class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
+                onclick: 'event.stopPropagation();'
+    .flex.sm:justify-end.space-x-2
+      = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+      = link_to t('views.common.cancel'), allergies_path, class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'
