@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_15_091913) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_15_121705) do
+  create_table "allergies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "medications", force: :cascade do |t|
     t.date "started_on"
     t.string "name"

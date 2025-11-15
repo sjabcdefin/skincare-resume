@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :allergies
   resources :medications
   resources :products
   resources :treatments
