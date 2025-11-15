@@ -2,8 +2,12 @@
 ja:
   activerecord:
     models:
+      product: 使用しているスキンケア
       treatment: 治療履歴
     attributes:
+      product:
+        name: スキンケア
+        started_on: 使用開始日
       treatment:
         description: 治療内容
         treated_on: 施術日
@@ -196,9 +200,19 @@ ja:
       delete: ✕
       new: ＋
       cancel: キャンセル
+    products:
+      form_example: 例. 化粧水
+      form_blank: －
     treatments:
       form_example: 例. ミラノリピール
       form_blank: －
+  products:
+    create:
+      success: "スキンケアを登録しました。"
+    update:
+      success: "スキンケアを更新しました。"
+    destroy:
+      success: "スキンケアを削除しました。"
   treatments:
     create:
       success: "治療内容を登録しました。"
