@@ -11,5 +11,11 @@ export default class extends Controller {
     if (this.element.dataset.error === "true") {
       wrapper.classList.add("error");
     }
+
+    const selectedValue = this.element.dataset.value;
+    if (selectedValue) {
+      this.ts.addOption({ value: selectedValue, text: selectedValue });
+      this.ts.setValue(selectedValue, true);
+    }
   }
 }

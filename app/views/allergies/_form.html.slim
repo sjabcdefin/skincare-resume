@@ -7,7 +7,7 @@
                      class: 'block font-semibold'
         = form.select :name, options_for_select(allergies), { prompt: t('views.allergies.form_prompt') },
                              class: ['mt-2 w-full'],
-                             data: { controller: 'select', error: allergy.errors[:name].any? }
+                             data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
         - if allergy.errors[:name].any?
           p class='text-[12px] text-red-600 mt-1'
             = Allergy.human_attribute_name(:name) + allergy.errors[:name].first
