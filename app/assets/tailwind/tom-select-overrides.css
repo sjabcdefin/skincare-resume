@@ -1,0 +1,31 @@
+.ts-control {
+  border: 1px solid oklch(0.707 0.022 261.325);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  border-radius: 0.375rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+}
+
+.ts-control:focus-within {
+  border-color: oklch(54.6% 0.245 262.881);
+  border-width: 2px;
+}
+
+.ts-wrapper.error .ts-control {
+  border-color: oklch(57.7% 0.245 27.325);
+}
+
+.ts-dropdown,
+.ts-control,
+.ts-control input {
+  color: #303030;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+}
