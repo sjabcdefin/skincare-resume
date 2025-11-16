@@ -214,8 +214,7 @@ ja:
       form_example: 例. ベピオゲル
       form_blank: －
     allergies:
-      form_example: 例. 金属アレルギー(酸化亜鉛)
-      form_blank: －
+      form_prompt: アレルギー名を選択または入力してください。
     treatments:
       form_example: 例. ミラノリピール
       form_blank: －
