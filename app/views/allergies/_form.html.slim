@@ -2,10 +2,9 @@
   = form_with(model: allergy, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
     .my-3
       .max-w-md
-        - allergies = %w[金属(ニッケル) 金属(コバルト) 金属(クロム) 金属(パラジウム) 金属(金) 金属(銀) 金属(亜鉛) 花粉(スギ) 花粉(ヒノキ) 花粉(ブタクサ) 花粉(ブタクサ) 花粉(ヨモギ) 花粉(イネ)]
         = form.label :name, Allergy.human_attribute_name(:name),
                      class: 'block font-semibold'
-        = form.select :name, options_for_select(allergies), { prompt: t('views.allergies.form_prompt') },
+        = form.select :name, [], {},
                              class: ['mt-2 w-full'],
                              data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
         - if allergy.errors[:name].any?
