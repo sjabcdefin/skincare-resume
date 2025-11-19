@@ -4,6 +4,7 @@ ja:
     models:
       product: 使用しているスキンケア
       medication: 使用している薬
+      allergy: アレルギー歴
       treatment: 治療履歴
     attributes:
       medication:
@@ -12,6 +13,8 @@ ja:
       product:
         name: スキンケア
         started_on: 使用開始日
+      allergy:
+        name: アレルギー
       treatment:
         description: 治療内容
         treated_on: 施術日
@@ -227,6 +230,13 @@ ja:
       success: "薬を更新しました。"
     destroy:
       success: "薬を削除しました。"
+  allergies:
+    create:
+      success: "アレルギーを登録しました。"
+    update:
+      success: "アレルギーを更新しました。"
+    destroy:
+      success: "アレルギーを削除しました。"
   treatments:
     create:
       success: "治療内容を登録しました。"
