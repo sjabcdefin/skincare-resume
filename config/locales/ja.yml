@@ -213,8 +213,6 @@ ja:
     medications:
       form_example: 例. ベピオゲル
       form_blank: －
-    allergies:
-      form_prompt: アレルギー名を選択または入力してください。
     treatments:
       form_example: 例. ミラノリピール
       form_blank: －
