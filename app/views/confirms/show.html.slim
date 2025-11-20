@@ -1,5 +1,61 @@
-.
-  h1.font-bold.text-4xl
-    | Confirms#show
-  p
-    | Find me in app/views/confirms/show.html.erb
+.w-full.max-w-4xl.mx-auto
+  / プログレスバー
+  .my-5
+    = render 'shared/progress_bar'
+
+  / ページ説明
+  .my-8.max-w-4xl.mx-auto.px-4
+    h3.font-medium.text-center.text-xl
+      | 作成したスキンケアの履歴書の確認
+
+  / スキンケア一覧
+  table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
+    thead
+      tr
+        th class='w-1/5 border px-4 py-2 text-center' 使用開始日
+        th class='w-4/5 border px-4 py-2 text-left' 使用しているスキンケア
+    tbody
+      - @products.each do |product|
+        tr
+          td class='w-1/5 border px-4 py-2 text-center'
+            = product.started_on.present? ? l(product.started_on, format: :default) : t('views.products.form_blank')
+          td class='w-4/5 border px-4 py-2 text-left'
+            = product.name
+
+  / 薬一覧
+  table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
+    thead
+      tr
+        th class='w-1/5 border px-4 py-2 text-center' 使用開始日
+        th class='w-4/5 border px-4 py-2 text-left' 使用している薬
+    tbody
+      - @medications.each do |medication|
+        tr
+          td class='w-1/5 border px-4 py-2 text-center'
+            = medication.started_on.present? ? l(medication.started_on) : t('views.medications.form_blank')
+          td class='w-4/5 border px-4 py-2 text-left'
+            = medication.name
+
+  / アレルギー一覧
+  table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
+    thead
+      tr
+        th class='w-full border px-4 py-2 text-left' アレルギー歴
+    tbody
+      - @allergies.each do |allergy|
+        tr
+          td class='w-full border px-4 py-2 text-left'
+            = allergy.name
+
+  / 治療履歴一覧
+  table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
+    thead
+      tr
+        th class='w-1/5 border px-4 py-2 text-center' 日付
+        th class='w-4/5 border px-4 py-2 text-left' 治療履歴
+    tbody
+      - @treatments.each do |treatment|
+        tr
+          td class='w-1/5 border px-4 py-2 text-center'
+            = treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
+          td class='w-4/5 border px-4 py-2 text-left' = treatment.description
