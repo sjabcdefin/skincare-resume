@@ -18,9 +18,12 @@
       - @products.each do |product|
         tr
           td class='w-1/5 border px-4 py-2 text-center'
-            = product.started_on.present? ? l(product.started_on, format: :default) : t('views.products.form_blank')
+            = product.name ? product.started_on ? l(product.started_on, format: :default) : t('views.products.form_blank') : ''
           td class='w-4/5 border px-4 py-2 text-left'
-            = product.name
+            - if product.name.present?
+              = product.name
+            - else
+              | &nbsp;
 
   / 薬一覧
   table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
@@ -32,9 +35,12 @@
       - @medications.each do |medication|
         tr
           td class='w-1/5 border px-4 py-2 text-center'
-            = medication.started_on.present? ? l(medication.started_on) : t('views.medications.form_blank')
+            = medication.name ? medication.started_on ? l(medication.started_on) : t('views.medications.form_blank') : ''
           td class='w-4/5 border px-4 py-2 text-left'
-            = medication.name
+            - if medication.name.present?
+              = medication.name
+            - else
+              | &nbsp;
 
   / アレルギー一覧
   table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
@@ -45,10 +51,13 @@
       - @allergies.each do |allergy|
         tr
           td class='w-full border px-4 py-2 text-left'
-            = allergy.name
+            - if allergy.name.present?
+              = allergy.name
+            - else
+              | &nbsp;
 
   / 治療履歴一覧
-  table.table-auto.w-full.max-w-2xl.mx-auto.my-4.border.text-sm
+  table.table-auto.w-full.max-w-2xl.mx-auto.my-4.mt-50.border.text-sm
     thead
       tr
         th class='w-1/5 border px-4 py-2 text-center' 日付
@@ -57,5 +66,9 @@
       - @treatments.each do |treatment|
         tr
           td class='w-1/5 border px-4 py-2 text-center'
-            = treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
-          td class='w-4/5 border px-4 py-2 text-left' = treatment.description
+            = treatment.description ? treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank') : ''
+          td class='w-4/5 border px-4 py-2 text-left'
+            - if treatment.description.present?
+              = treatment.description
+            - else
+              | &nbsp;
