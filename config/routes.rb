@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "confirms/show"
   resources :allergies
   resources :medications
   resources :products
