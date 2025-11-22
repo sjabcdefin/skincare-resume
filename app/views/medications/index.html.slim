@@ -33,8 +33,4 @@
             data: { turbo_frame: dom_id(Medication.new) }
 
   / 前へ次へボタン
-  .my-2.flex.justify-between
-    = link_to '前へ', products_path,
-              class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-    = link_to '次へ', allergies_path,
-              class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  = render 'shared/navigation', previous_path: products_path, next_path: allergies_path

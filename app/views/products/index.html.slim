@@ -33,7 +33,4 @@
             data: { turbo_frame: dom_id(Product.new) }
 
   / 前へ次へボタン
-  .my-2.flex.justify-between
-    span.w-24
-    = link_to '次へ', medications_path,
-              class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  = render 'shared/navigation', previous_path: nil, next_path: medications_path
