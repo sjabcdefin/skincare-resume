@@ -4,75 +4,72 @@
     = render 'shared/progress_bar'
 
   / ページ説明
-  .my-8.max-w-4xl.mx-auto.px-4
+  .my-8.mx-auto.px-4
     h3.font-medium.text-center.text-xl
       | 作成したスキンケアの履歴書の確認
 
   .my-4.w-full.max-w-2xl.mx-auto
-    .h3.text-md.sm:text-xl
+    h3.text-md.sm:text-xl
       = "スキンケアの履歴書 (最終更新日: #{l(Date.today, format: :default)})"
 
     / スキンケア一覧
-    table.table-auto.w-full.max-w-2xl.my-4.border.text-sm
+    table.table-fixed.w-full.my-4.border.text-sm
       thead
         tr
-          th class='w-1/5 border px-4 py-2 text-center' 使用開始日
-          th class='w-4/5 border px-4 py-2 text-left' 使用しているスキンケア
+          th.w-32.border.px-4.py-2.text-center 使用開始日
+          th.border.px-4.py-2.text-left 使用しているスキンケア
       tbody
         - @products.each do |product|
-          tr
-            td class='w-1/5 border px-4 py-2 text-center'
-              = product.name ? product.started_on ? l(product.started_on, format: :default) : t('views.products.form_blank') : ''
-            td class='w-4/5 border px-4 py-2 text-left'
-              - if product.name.present?
-                = product.name
+          tr.h-8
+            td.border.px-4.py-2.text-center
+              - if product.name
+                = product.started_on ? l(product.started_on, format: :default) : t('views.products.form_blank')
               - else
-                | &nbsp;
+                = ''
+            td.border.px-4.py-2.text-left
+              = product.name
 
     / 薬一覧
-    table.table-auto.w-full.max-w-2xl.my-4.border.text-sm
+    table.table-fixed.w-full.my-4.border.text-sm
       thead
         tr
-          th class='w-1/5 border px-4 py-2 text-center' 使用開始日
-          th class='w-4/5 border px-4 py-2 text-left' 使用している薬
+          th.w-32.border.px-4.py-2.text-center 使用開始日
+          th.border.px-4.py-2.text-left 使用している薬
       tbody
         - @medications.each do |medication|
-          tr
-            td class='w-1/5 border px-4 py-2 text-center'
-              = medication.name ? medication.started_on ? l(medication.started_on) : t('views.medications.form_blank') : ''
-            td class='w-4/5 border px-4 py-2 text-left'
-              - if medication.name.present?
-                = medication.name
+          tr.h-8
+            td.border.px-4.py-2.text-center
+              - if medication.name
+                = medication.started_on ? l(medication.started_on) : t('views.medications.form_blank')
               - else
-                | &nbsp;
+                = ''
+            td.border.px-4.py-2.text-left
+              = medication.name
 
     / アレルギー一覧
-    table.table-auto.w-full.max-w-2xl.my-4.border.text-sm
+    table.table-fixed.w-full.my-4.border.text-sm
       thead
         tr
-          th class='w-full border px-4 py-2 text-left' アレルギー歴
+          th.border.px-4.py-2.text-left アレルギー歴
       tbody
         - @allergies.each do |allergy|
-          tr
-            td class='w-full border px-4 py-2 text-left'
-              - if allergy.name.present?
-                = allergy.name
-              - else
-                | &nbsp;
+          tr.h-8
+            td.border.px-4.py-2.text-left
+              = allergy.name
 
     / 治療履歴一覧
-    table.table-auto.w-full.max-w-2xl.my-4.mt-50.border.text-sm
+    table.table-fixed.w-full.my-4.mt-48.border.text-sm
       thead
         tr
-          th class='w-1/5 border px-4 py-2 text-center' 日付
-          th class='w-4/5 border px-4 py-2 text-left' 治療履歴
+          th.w-32.border.px-4.py-2.text-center 日付
+          th.border.px-4.py-2.text-left 治療履歴
       tbody
         - @treatments.each do |treatment|
-          tr
-            td class='w-1/5 border px-4 py-2 text-center'
-              = treatment.description ? treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank') : ''
-            td class='w-4/5 border px-4 py-2 text-left'
-              - if treatment.description.present?
-                = treatment.description
+          tr.h-8
+            td.border.px-4.py-2.text-center
+              - if treatment.description
+                = treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
               - else
-                | &nbsp;
+                = ''
+            td.border.px-4.py-2.text-left
+              = treatment.description
