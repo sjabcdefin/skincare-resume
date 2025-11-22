@@ -1,0 +1,12 @@
+.my-2.flex.justify-between
+  - if previous_path.present?
+    = link_to '前へ', previous_path,
+              class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  - else
+    span.w-24
+  
+  - if next_path.present?
+    = link_to '次へ', next_path,
+              class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  - else
+    span.w-24

@@ -31,3 +31,6 @@
   = link_to t('views.common.new'), new_medication_path,
             class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
             data: { turbo_frame: dom_id(Medication.new) }
+
+  / 前へ次へボタン
+  = render 'shared/navigation', previous_path: products_path, next_path: allergies_path
