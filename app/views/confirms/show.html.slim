@@ -16,8 +16,8 @@
     table.table-fixed.w-full.my-4.border.text-sm
       thead
         tr
-          th.w-32.border.px-4.py-2.text-center 使用開始日
-          th.border.px-4.py-2.text-left 使用しているスキンケア
+          th.w-32.border.px-4.py-2.text-center = Product.human_attribute_name :started_on
+          th.border.px-4.py-2.text-left = Product.model_name.human
       tbody
         - @products.each do |product|
           tr.h-8
@@ -33,8 +33,8 @@
     table.table-fixed.w-full.my-4.border.text-sm
       thead
         tr
-          th.w-32.border.px-4.py-2.text-center 使用開始日
-          th.border.px-4.py-2.text-left 使用している薬
+          th.w-32.border.px-4.py-2.text-center = Medication.human_attribute_name :started_on
+          th.border.px-4.py-2.text-left = Medication.model_name.human
       tbody
         - @medications.each do |medication|
           tr.h-8
@@ -50,7 +50,7 @@
     table.table-fixed.w-full.my-4.border.text-sm
       thead
         tr
-          th.border.px-4.py-2.text-left アレルギー歴
+          th.border.px-4.py-2.text-left = Allergy.model_name.human
       tbody
         - @allergies.each do |allergy|
           tr.h-8
@@ -61,8 +61,8 @@
     table.table-fixed.w-full.my-4.mt-48.border.text-sm
       thead
         tr
-          th.w-32.border.px-4.py-2.text-center 日付
-          th.border.px-4.py-2.text-left 治療履歴
+          th.w-32.border.px-4.py-2.text-center = Treatment.human_attribute_name :treated_on
+          th.border.px-4.py-2.text-left = Treatment.model_name.human
       tbody
         - @treatments.each do |treatment|
           tr.h-8
