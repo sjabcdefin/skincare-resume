@@ -21,11 +21,9 @@
       = render medication
 
   / 新規作成フォーム
-  = turbo_frame_tag 'first_medication' do
+  = turbo_frame_tag dom_id(Medication.new) do
     - if @medications.empty?
       = render 'form', medication: Medication.new
-
-  = turbo_frame_tag Medication.new
 
   / 新規作成ボタン
   = link_to t('views.common.new'), new_medication_path,

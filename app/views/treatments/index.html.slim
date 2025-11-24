@@ -21,11 +21,9 @@
       = render treatment
 
   / 新規作成フォーム
-  = turbo_frame_tag 'first_treatment' do
+  = turbo_frame_tag dom_id(Treatment.new) do
     - if @treatments.empty?
       = render 'form', treatment: Treatment.new
-
-  = turbo_frame_tag Treatment.new
 
   / 新規作成ボタン
   = link_to t('views.common.new'), new_treatment_path,

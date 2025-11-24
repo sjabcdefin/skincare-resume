@@ -21,11 +21,9 @@
       = render product
 
   / 新規作成フォーム
-  = turbo_frame_tag 'first_product' do
+  = turbo_frame_tag dom_id(Product.new) do
     - if @products.empty?
       = render 'form', product: Product.new
-
-  = turbo_frame_tag Product.new
 
   / 新規作成ボタン
   = link_to t('views.common.new'), new_product_path,

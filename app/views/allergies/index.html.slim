@@ -21,11 +21,9 @@
       = render allergy
 
   / 新規作成フォーム
-  = turbo_frame_tag 'first_allergy' do
+  = turbo_frame_tag dom_id(Allergy.new) do
     - if @allergies.empty?
       = render 'form', allergy: Allergy.new
-
-  = turbo_frame_tag Allergy.new
 
   / 新規作成ボタン
   = link_to t('views.common.new'), new_allergy_path,
