@@ -11,9 +11,10 @@
           p class='text-[12px] text-red-600 mt-1'
             = Allergy.human_attribute_name(:name) + allergy.errors[:name].first
     / ボタン
-    = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
-                class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
-                onclick: 'event.stopPropagation();'
+    - unless allergy.new_record?
+      = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
+                  class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
+                  onclick: 'event.stopPropagation();'
     .flex.sm:justify-end.space-x-2
       = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
       = link_to t('views.common.cancel'), allergies_path, class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'
