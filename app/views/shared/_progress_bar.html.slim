@@ -1,7 +1,7 @@
 .relative.w-full.max-w-2xl.mx-auto.mt-8
   div class='absolute top-1/4 left-7 right-3.5 h-1 bg-[#5F7F67] -translate-y-1/2'
   .flex.justify-between.items-center
-    - steps = %w[products medications allergies treatments confirms]
+    - steps = %w[products medications allergies treatments confirm]
     - steps.each do |name|
       - circle = name == controller_name ? 'w-5 h-5 rounded-full bg-[#5F7F67] border-2 border-[#5F7F67] z-10' : 'w-5 h-5 rounded-full bg-white border-2 border-[#5F7F67] z-10'
       .flex.flex-col.items-center
