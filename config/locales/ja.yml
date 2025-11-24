@@ -212,7 +212,7 @@ ja:
       medications: "薬"
       allergies: "アレルギー"
       treatments: "治療履歴"
-      confirms: "確認"
+      confirm: "確認"
     products:
       form_example: 例. 化粧水
       form_blank: －
