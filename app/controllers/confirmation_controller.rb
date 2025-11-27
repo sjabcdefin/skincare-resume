@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ConfirmController < ApplicationController
+class ConfirmationController < ApplicationController
   PRODUCTS_MAX_SIZE = 10
   MEDICATIONS_MAX_SIZE = 5
   ALLERGIES_MAX_SIZE = 5
