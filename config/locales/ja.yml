@@ -206,6 +206,8 @@ ja:
       edit: 編集
       delete: ✕
       new: ＋
+      create: 登録する
+      update: 更新する
       cancel: キャンセル
     steps:
       products: "スキンケア"
