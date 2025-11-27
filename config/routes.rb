@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get "home/index" 
   get "confirmation", to: "confirmation#show"
+
   resources :allergies
   resources :medications
   resources :products
