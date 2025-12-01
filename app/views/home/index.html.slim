@@ -1,0 +1,7 @@
+- content_for :title, 'トップページ'
+
+.w-full.max-w-2xl.mx-auto
+  - if current_user
+    = render 'no_resume'
+  - else
+    = render 'before_login'
