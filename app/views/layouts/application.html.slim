@@ -29,3 +29,10 @@ html
       = yield
 
     script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js" defer
+
+    footer class='fixed bottom-0 left-0 right-0 bg-[#5F7F67] py-4 text-center shadow space-x-8'
+      = link_to '利用規約', nil, class: 'text-white text-sm'
+      = link_to 'プライバシーポリシー', nil, class: 'text-white text-sm'
+      - if current_user
+        = link_to 'ログアウト', logout_path, data: { turbo_method: :post, turbo_confirm: t('messages.confirm.logout') }, class: 'text-white text-sm'
+        = link_to '会員削除', nil, class: 'text-white text-sm'
