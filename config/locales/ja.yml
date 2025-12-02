@@ -255,3 +255,4 @@ ja:
   messages:
     confirm:
       destroy: "本当に削除しますか？"
+      logout: "ログアウトしますか？"
