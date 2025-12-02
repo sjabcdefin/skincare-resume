@@ -20,8 +20,6 @@ class SessionsController < ApplicationController
 
   def find_or_create_from_auth_hash(auth_hash)
     email = auth_hash['info']['email']
-    User.find_or_create_by(email: email) do |user|
-      user.update(email: email)
-    end
+    User.find_or_create_by(email: email)
   end
 end
