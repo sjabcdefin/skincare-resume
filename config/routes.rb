@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :skincare_resumes
   root "home#index"
 
   get 'auth/:provider/callback', to: 'sessions#create'
