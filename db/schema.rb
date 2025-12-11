@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_09_133548) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_11_084108) do
   create_table "allergies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "skincare_resume_id", null: false
+    t.index ["skincare_resume_id"], name: "index_allergies_on_skincare_resume_id"
   end
 
   create_table "medications", force: :cascade do |t|
@@ -22,6 +24,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_133548) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "skincare_resume_id", null: false
+    t.index ["skincare_resume_id"], name: "index_medications_on_skincare_resume_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -29,6 +33,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_133548) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "skincare_resume_id", null: false
+    t.index ["skincare_resume_id"], name: "index_products_on_skincare_resume_id"
   end
 
   create_table "skincare_resumes", force: :cascade do |t|
@@ -44,6 +50,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_133548) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "skincare_resume_id", null: false
+    t.index ["skincare_resume_id"], name: "index_treatments_on_skincare_resume_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,5 +61,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_133548) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "allergies", "skincare_resumes"
+  add_foreign_key "medications", "skincare_resumes"
+  add_foreign_key "products", "skincare_resumes"
   add_foreign_key "skincare_resumes", "users"
+  add_foreign_key "treatments", "skincare_resumes"
 end
