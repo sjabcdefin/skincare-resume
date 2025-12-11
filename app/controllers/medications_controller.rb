@@ -16,7 +16,7 @@ class MedicationsController < ApplicationController
   def edit; end
 
   def create
-    @medication = Medication.new(medication_params)
+    @medication = resume.medications.new(medication_params)
 
     if @medication.save
       flash.now.notice = t('.success')
@@ -46,5 +46,9 @@ class MedicationsController < ApplicationController
 
   def medication_params
     params.require(:medication).permit(:started_on, :name)
+  end
+
+  def resume
+    @resume = current_user.skincare_resume || current_user.create_skincare_resume(status: :draft)
   end
 end

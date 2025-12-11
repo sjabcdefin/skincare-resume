@@ -252,6 +252,9 @@ ja:
       success: "治療内容を更新しました。"
     destroy:
       success: "治療内容を削除しました。"
+  skincare_resumes:
+    update:
+      success: "スキンケアの履歴書を保存しました。"
   messages:
     confirm:
       destroy: "本当に削除しますか？"

@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   def edit; end
 
   def create
-    @product = Product.new(product_params)
+    @product = resume.products.new(product_params)
 
     if @product.save
       flash.now.notice = t('.success')
@@ -46,5 +46,9 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:started_on, :name)
+  end
+
+  def resume
+    @resume = current_user.skincare_resume || current_user.create_skincare_resume(status: :draft)
   end
 end

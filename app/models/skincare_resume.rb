@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
 class SkincareResume < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, inverse_of: :skincare_resume
+  has_many :products, dependent: :destroy
+  has_many :allergies, dependent: :destroy
+  has_many :medications, dependent: :destroy
+  has_many :treatments, dependent: :destroy
 end

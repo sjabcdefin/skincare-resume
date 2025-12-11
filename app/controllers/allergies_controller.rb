@@ -16,7 +16,7 @@ class AllergiesController < ApplicationController
   def edit; end
 
   def create
-    @allergy = Allergy.new(allergy_params)
+    @allergy = resume.allergies.new(allergy_params)
 
     if @allergy.save
       flash.now.notice = t('.success')
@@ -46,5 +46,9 @@ class AllergiesController < ApplicationController
 
   def allergy_params
     params.require(:allergy).permit(:name)
+  end
+
+  def resume
+    @resume = current_user.skincare_resume || current_user.create_skincare_resume(status: :draft)
   end
 end
