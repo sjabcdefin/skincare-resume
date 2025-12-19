@@ -21,14 +21,15 @@
       = render 'products/product', product: product
 
   / 新規作成フォーム
-  = turbo_frame_tag 'new_product' do
+  = turbo_frame_tag 'new_form' do
     - if @products.empty?
       = render 'form', product: Product.new
 
   / 新規作成ボタン
-  = link_to t('views.common.new'), new_product_path,
-            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
-            data: { turbo_frame: 'new_product' }
+  = link_to t('views.common.new'),
+            new_product_path,
+            data: { turbo_frame: 'new_form' },
+            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
 
   / 前へ次へボタン
   = render 'shared/navigation', previous_path: nil, next_path: medications_path

@@ -1,4 +1,4 @@
-= turbo_frame_tag "product_#{product.id}" do
+= turbo_frame_tag dom_id(product) do
   = link_to edit_product_path(product.id), class: 'cursor-pointer' do
     .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
       .my-3

@@ -1,6 +1,6 @@
 = turbo_stream.append 'products' do
-  = render partial: 'products/product', locals: { product: @product }
+  = render 'products/product', product: @product
 
-= turbo_stream.update 'new_product'
+= turbo_stream.update 'new_form'
 
 = turbo_stream_flash

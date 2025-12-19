@@ -1,3 +1,4 @@
-= turbo_stream.replace "product_#{@product.id}" do
-  = render partial: 'products/product', locals: { product: @product }
+= turbo_stream.replace dom_id(@product) do
+  = render 'products/product', product: @product
+
 = turbo_stream_flash
