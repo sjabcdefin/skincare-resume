@@ -16,12 +16,18 @@ class ProductsController < ApplicationController
   def edit; end
 
   def create
-    @product = create_product
+    @product = build_product
+    return unless @product.valid?
+
+    save_product
     flash.now.notice = t('.success')
   end
 
   def update
-    update_product
+    assign_product_params
+    return unless @product.valid?
+
+    save_updated_product
     flash.now.notice = t('.success')
   end
 
@@ -67,38 +73,64 @@ class ProductsController < ApplicationController
       .sort_by { |p| [p.started_on.nil? ? 0 : 1, p.started_on] }
   end
 
-  def create_product
-    current_user ? create_product_for_login : create_product_for_guest
+  def build_product
+    current_user ? build_product_for_login : build_product_for_guest
   end
 
-  def create_product_for_login
+  def build_product_for_login
     resume = find_or_create_resume
-    resume.products.create!(product_params)
+    resume.products.build(product_params)
   end
 
-  def create_product_for_guest
-    session['resume_data'] ||= {}
-    session['resume_data']['products'] ||= []
-
-    product = SessionProduct.new(product_params.to_h)
-    session['resume_data']['products'] << product.attributes
-
-    product
+  def build_product_for_guest
+    SessionProduct.new(product_params.to_h)
   end
 
   def find_or_create_resume
     current_user.skincare_resume || current_user.create_skincare_resume!(status: :draft)
   end
 
-  def update_product
-    current_user ? @product.update!(product_params) : update_product_for_guest
+  def save_product
+    current_user ? save_product_for_login : save_product_for_guest
   end
 
-  def update_product_for_guest
-    attrs = session_products.find { |product| product['id'] == params[:id] }
-    attrs.merge!(product_params.to_h)
+  def save_product_for_login
+    @product.save!
+  end
 
-    @product = SessionProduct.new(attrs)
+  def save_product_for_guest
+    @product.persisted = true
+    session['resume_data'] ||= {}
+    session['resume_data']['products'] ||= []
+    session['resume_data']['products'] << @product.attributes
+  end
+
+  def assign_product_params
+    current_user ? assign_product_params_for_login : assign_product_params_for_guest
+  end
+
+  def assign_product_params_for_login
+    @product.assign_attributes(product_params)
+  end
+
+  def assign_product_params_for_guest
+    attrs = find_session_product
+    new_attrs = attrs.merge(product_params.to_h)
+
+    @product = SessionProduct.new(new_attrs)
+  end
+
+  def save_updated_product
+    current_user ? save_product_for_login : save_updated_product_for_guest
+  end
+
+  def save_updated_product_for_guest
+    attrs = find_session_product
+    attrs.merge!(product_params.to_h)
+  end
+
+  def find_session_product
+    session_products.find { |product| product['id'] == params[:id] }
   end
 
   def destroy_product

@@ -1,4 +1,8 @@
-= turbo_stream.replace dom_id(@product) do
-  = render 'products/product', product: @product
+- if @product.valid?
+  = turbo_stream.replace dom_id(@product) do
+    = render 'products/product', product: @product
+- else
+  = turbo_stream.replace dom_id(@product) do
+    = render 'products/form', product: @product, status: :unprocessable_entity
 
 = turbo_stream_flash

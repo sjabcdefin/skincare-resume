@@ -7,6 +7,7 @@ class SessionProduct
   attribute :id, :string
   attribute :name, :string
   attribute :started_on, :date
+  attribute :persisted, :boolean, default: false
 
   validates :name, presence: true
 
@@ -20,6 +21,6 @@ class SessionProduct
   end
 
   def persisted?
-    id.present?
+    persisted
   end
 end
