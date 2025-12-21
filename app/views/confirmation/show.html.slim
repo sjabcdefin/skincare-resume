@@ -80,8 +80,13 @@
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
   / 保存ボタン
-  - if current_user
-    .flex.justify-center.mt-10
+  .flex.justify-center.mt-10
+    - if current_user
       = form_with model: @resume, url: skincare_resume_path(@resume), method: :patch do |form|
         = form.hidden_field :status, value: :completed
         = form.submit '保存する', class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+    - else
+      = link_to '保存する',
+                '/auth/google_oauth2',
+                class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+
