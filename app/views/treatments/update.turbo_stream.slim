@@ -1,2 +1,8 @@
-= turbo_stream.replace @treatment
+- if @treatment.valid?
+  = turbo_stream.replace dom_id(@treatment) do
+    = render 'treatments/treatment', treatment: @treatment
+- else
+  = turbo_stream.replace dom_id(@treatment) do
+    = render 'treatments/form', treatment: @treatment, status: :unprocessable_entity
+
 = turbo_stream_flash
