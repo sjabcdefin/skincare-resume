@@ -31,7 +31,7 @@ class SkincareResumesController < ApplicationController
 
   def update
     if @skincare_resume.update(skincare_resume_params)
-      redirect_to '/confirmation', notice: t('.success')
+      redirect_to root_path, notice: t('.success')
     else
       render '/confirmation', status: :unprocessable_entity
     end
