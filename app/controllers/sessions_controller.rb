@@ -25,14 +25,14 @@ class SessionsController < ApplicationController
   end
 
   def save_resume
-    resume = current_user.create_skincare_resume!(status: :completed)
+    resume = current_user.create_skincare_resume!(status: status)
 
     save_products(resume)
     save_medications(resume)
     save_allergies(resume)
     save_treatments(resume)
 
-    session['resume_data'].clear
+    session.delete('resume_data')
   end
 
   def save_products(resume)
@@ -57,6 +57,10 @@ class SessionsController < ApplicationController
     treatments.each do |attrs|
       resume.treatments.create!(attrs.except('id', 'persisted'))
     end
+  end
+
+  def status
+    session.dig('resume_data', 'status')
   end
 
   def products

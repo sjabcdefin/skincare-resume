@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  resources :skincare_resumes
-  root "home#index"
+  root 'home#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get "home/index"
-  get "confirmation", to: "confirmation#show"
+  get 'home/index'
+  get 'confirmation', to: 'confirmation#show'
+  patch 'guest_skincare_resume', to: 'guest_skincare_resumes#save'
   resources :allergies
   resources :medications
   resources :products
+  resources :skincare_resumes
   resources :treatments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

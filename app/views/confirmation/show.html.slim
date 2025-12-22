@@ -84,9 +84,8 @@
     - if current_user
       = form_with model: @resume, url: skincare_resume_path(@resume), method: :patch do |form|
         = form.hidden_field :status, value: :completed
-        = form.submit '保存する', class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+        = form.submit '保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
     - else
-      = link_to '保存する',
-                '/auth/google_oauth2',
-                class: 'w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-
+      = form_with url: guest_skincare_resume_path, method: :patch, data: { turbo: false } do |form|
+        = form.hidden_field :status, value: :completed
+        = form.submit '保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'

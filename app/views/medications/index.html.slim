@@ -33,3 +33,10 @@
 
   / 前へ次へボタン
   = render 'shared/navigation', previous_path: products_path, next_path: allergies_path
+
+  / 一時保存ボタン(未ログイン時のみ)
+  .flex.justify-center.mt-10
+    - if !current_user
+      = form_with url: guest_skincare_resume_path, method: :patch, data: { turbo: false } do |form|
+        = form.hidden_field :status, value: :draft
+        = form.submit '一時保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
