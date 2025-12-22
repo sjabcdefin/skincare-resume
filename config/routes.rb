@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'confirmation', to: 'confirmation#show'
   patch 'guest_skincare_resume', to: 'guest_skincare_resumes#save'
+  delete 'guest_resume_exit', to: 'guest_resume_exits#destroy'
   resources :allergies
   resources :medications
   resources :products
