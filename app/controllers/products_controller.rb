@@ -102,7 +102,7 @@ class ProductsController < ApplicationController
     @product.persisted = true
     session['resume_data'] ||= {}
     session['resume_data']['products'] ||= []
-    session['resume_data']['products'] << @product.attributes
+    session['resume_data']['products'] << @product.attributes.except('persisted')
   end
 
   def assign_product_params

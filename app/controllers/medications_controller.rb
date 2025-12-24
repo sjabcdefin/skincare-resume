@@ -102,7 +102,7 @@ class MedicationsController < ApplicationController
     @medication.persisted = true
     session['resume_data'] ||= {}
     session['resume_data']['medications'] ||= []
-    session['resume_data']['medications'] << @medication.attributes
+    session['resume_data']['medications'] << @medication.attributes.except('persisted')
   end
 
   def assign_medication_params

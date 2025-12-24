@@ -101,7 +101,7 @@ class AllergiesController < ApplicationController
     @allergy.persisted = true
     session['resume_data'] ||= {}
     session['resume_data']['allergies'] ||= []
-    session['resume_data']['allergies'] << @allergy.attributes
+    session['resume_data']['allergies'] << @allergy.attributes.except('persisted')
   end
 
   def assign_allergy_params
