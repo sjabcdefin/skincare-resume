@@ -1,4 +1,4 @@
-= turbo_frame_tag allergy do
+= turbo_frame_tag dom_id(allergy) do
   = form_with(model: allergy, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
     .my-3
       .max-w-md
@@ -11,11 +11,18 @@
           p class='text-[12px] text-red-600 mt-1'
             = Allergy.human_attribute_name(:name) + allergy.errors[:name].first
     / ボタン
-    - unless allergy.new_record?
-      = form.submit t('views.common.delete'), formmethod: :delete, data: { turbo_confirm: t('messages.confirm.destroy') },
-                  class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
-                  onclick: 'event.stopPropagation();'
+    - if allergy.persisted?
+      = form.submit t('views.common.delete'),
+                    formmethod: :delete,
+                    data: { turbo_confirm: t('messages.confirm.destroy') },
+                    class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
+                    onclick: 'event.stopPropagation();'
     - button_text = allergy.persisted? ? t('views.common.update') : t('views.common.create')
+    - form_frame = allergy.persisted? ? dom_id(allergy) : 'new_form'
     .flex.sm:justify-end.space-x-2
-      = form.submit button_text, class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-      = link_to t('views.common.cancel'), allergies_path, class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'
+      = form.submit button_text,
+                    class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+      = link_to t('views.common.cancel'),
+                allergies_path,
+                data: { turbo_frame: form_frame },
+                class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'

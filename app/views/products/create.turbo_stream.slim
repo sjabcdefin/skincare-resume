@@ -1,3 +1,9 @@
-= turbo_stream.append 'products', @product
-= turbo_stream.update Product.new, ''
+- if @product.valid?
+  = turbo_stream.append 'products' do
+    = render 'products/product', product: @product
+  = turbo_stream.update 'new_form'
+- else
+  = turbo_stream.replace 'new_form' do
+    = render template: 'products/new', product: @product, status: :unprocessable_entity
+
 = turbo_stream_flash

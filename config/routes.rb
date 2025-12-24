@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root 'home#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get "home/index"
-  get "confirmation", to: "confirmation#show"
+  get 'home/index'
+  get 'confirmation', to: 'confirmation#show'
+
   resources :allergies
   resources :medications
   resources :products
+  resources :skincare_resumes
   resources :treatments
+
+  namespace :guest do
+    resource :skincare_resume, only: %i[update destroy]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

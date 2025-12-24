@@ -1,2 +1,8 @@
-= turbo_stream.replace @allergy
+- if @allergy.valid?
+  = turbo_stream.replace dom_id(@allergy) do
+    = render 'allergies/allergy', allergy: @allergy
+- else
+  = turbo_stream.replace dom_id(@allergy) do
+    = render 'allergies/form', allergy: @allergy, status: :unprocessable_entity
+
 = turbo_stream_flash

@@ -1,3 +1,9 @@
-= turbo_stream.append 'medications', @medication
-= turbo_stream.update Medication.new, ''
+- if @medication.valid?
+  = turbo_stream.append 'medications' do
+    = render 'medications/medication', medication: @medication
+  = turbo_stream.update 'new_form'
+- else
+  = turbo_stream.replace 'new_form' do
+    = render template: 'medications/new', medication: @medication, status: :unprocessable_entity
+
 = turbo_stream_flash

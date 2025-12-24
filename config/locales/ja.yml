@@ -214,7 +214,7 @@ ja:
       medications: "薬"
       allergies: "アレルギー"
       treatments: "治療履歴"
-      confirm: "確認"
+      confirmation: "確認"
     products:
       form_example: 例. 化粧水
       form_blank: －
@@ -252,6 +252,9 @@ ja:
       success: "治療内容を更新しました。"
     destroy:
       success: "治療内容を削除しました。"
+  skincare_resumes:
+    update:
+      success: "スキンケアの履歴書を保存しました。"
   messages:
     confirm:
       destroy: "本当に削除しますか？"

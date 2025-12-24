@@ -1,0 +1,64 @@
+h3.text-md.sm:text-xl
+  = "スキンケアの履歴書 (最終更新日: #{l(resume.updated_at.to_date, format: :default)})"
+
+/ スキンケア一覧
+table.table-fixed.w-full.my-4.border.text-sm
+  thead
+    tr
+      th.w-32.border.px-4.py-2.text-center = Product.human_attribute_name :started_on
+      th.border.px-4.py-2.text-left = Product.model_name.human
+  tbody
+    - resume.products.each do |product|
+      tr.h-8
+        td.border.px-4.py-2.text-center
+          - if product.name
+            = product.started_on ? l(product.started_on, format: :default) : t('views.products.form_blank')
+          - else
+            = ''
+        td.border.px-4.py-2.text-left
+          = product.name
+
+/ 薬一覧
+table.table-fixed.w-full.my-4.border.text-sm
+  thead
+    tr
+      th.w-32.border.px-4.py-2.text-center = Medication.human_attribute_name :started_on
+      th.border.px-4.py-2.text-left = Medication.model_name.human
+  tbody
+    - resume.medications.each do |medication|
+      tr.h-8
+        td.border.px-4.py-2.text-center
+          - if medication.name
+            = medication.started_on ? l(medication.started_on) : t('views.medications.form_blank')
+          - else
+            = ''
+        td.border.px-4.py-2.text-left
+          = medication.name
+
+/ アレルギー一覧
+table.table-fixed.w-full.my-4.border.text-sm
+  thead
+    tr
+      th.border.px-4.py-2.text-left = Allergy.model_name.human
+  tbody
+    - resume.allergies.each do |allergy|
+      tr.h-8
+        td.border.px-4.py-2.text-left
+          = allergy.name
+
+/ 治療履歴一覧
+table.table-fixed.w-full.my-4.mt-48.border.text-sm
+  thead
+    tr
+      th.w-32.border.px-4.py-2.text-center = Treatment.human_attribute_name :treated_on
+      th.border.px-4.py-2.text-left = Treatment.model_name.human
+  tbody
+    - resume.treatments.each do |treatment|
+      tr.h-8
+        td.border.px-4.py-2.text-center
+          - if treatment.description
+            = treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
+          - else
+            = ''
+        td.border.px-4.py-2.text-left
+          = treatment.description
