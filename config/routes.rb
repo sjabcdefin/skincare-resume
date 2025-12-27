@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
-  get 'home/index'
   get 'confirmation', to: 'confirmation#show'
 
-  resources :allergies
-  resources :medications
   resources :products
-  resources :skincare_resumes
+  resources :medications
+  resources :allergies
   resources :treatments
+
+  resources :skincare_resumes
 
   namespace :guest do
     resource :skincare_resume, only: %i[update destroy]
