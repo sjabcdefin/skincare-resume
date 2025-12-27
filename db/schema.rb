@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_11_084108) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_27_102049) do
   create_table "allergies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_11_084108) do
 
   create_table "treatments", force: :cascade do |t|
     t.date "treated_on"
-    t.string "description"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "skincare_resume_id", null: false
