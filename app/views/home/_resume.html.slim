@@ -56,9 +56,9 @@ table.table-fixed.w-full.my-4.mt-48.border.text-sm
     - resume.treatments.each do |treatment|
       tr.h-8
         td.border.px-4.py-2.text-center
-          - if treatment.description
+          - if treatment.name
             = treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
           - else
             = ''
         td.border.px-4.py-2.text-left
-          = treatment.description
+          = treatment.name

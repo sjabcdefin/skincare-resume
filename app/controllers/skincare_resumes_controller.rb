@@ -1,58 +1,71 @@
 # frozen_string_literal: true
 
 class SkincareResumesController < ApplicationController
-  before_action :set_skincare_resume, only: %i[show edit update destroy]
+  PRODUCTS_MAX_SIZE = 10
+  MEDICATIONS_MAX_SIZE = 5
+  ALLERGIES_MAX_SIZE = 5
+  TREATMENTS_MAX_SIZE = 20
 
-  def index
-    @skincare_resumes = SkincareResume.all
-  end
+  def confirmation
+    @products = current_user ? Product.order(:started_on) : guest_products
+    @medications = current_user ? Medication.order(:started_on) : guest_medications
+    @allergies = current_user ? Allergy.all : guest_allergies
+    @treatments = current_user ? Treatment.order(:treated_on) : guest_treatments
 
-  def show; end
-
-  def new
-    @skincare_resume = SkincareResume.new
-  end
-
-  def edit; end
-
-  def create
-    @skincare_resume = SkincareResume.new(skincare_resume_params)
-
-    respond_to do |format|
-      if @skincare_resume.save
-        format.html { redirect_to @skincare_resume, notice: 'Skincare resume was successfully created.' }
-        format.json { render :show, status: :created, location: @skincare_resume }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @skincare_resume.errors, status: :unprocessable_entity }
-      end
-    end
+    @products = @products.to_a + Array.new([PRODUCTS_MAX_SIZE - @products.size, 0].max) { Product.new }
+    @medications = @medications.to_a + Array.new([MEDICATIONS_MAX_SIZE - @medications.size, 0].max) { Medication.new }
+    @allergies = @allergies.to_a + Array.new([ALLERGIES_MAX_SIZE - @allergies.size, 0].max) { Allergy.new }
+    @treatments = @treatments.to_a + Array.new([TREATMENTS_MAX_SIZE - @treatments.size, 0].max) { Treatment.new }
   end
 
   def update
-    if @skincare_resume.update(skincare_resume_params)
-      redirect_to root_path, notice: t('.success')
-    else
-      render '/confirmation', status: :unprocessable_entity
-    end
+    current_user ? update_status_for_login : update_status_for_guest
   end
 
   def destroy
-    @skincare_resume.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to skincare_resumes_path, notice: 'Skincare resume was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
-    end
+    session.delete('resume_data')
+    redirect_to root_path
   end
 
   private
 
-  def set_skincare_resume
-    @skincare_resume = SkincareResume.find(params[:id])
+  def guest_products
+    session.dig('resume_data', 'products').to_a
+           .map { |attrs| SessionProduct.new(attrs) }
+           .sort_by { |p| [p.started_on.nil? ? 0 : 1, p.started_on] }
   end
 
-  def skincare_resume_params
-    params.require(:skincare_resume).permit(:user_id, :status)
+  def guest_medications
+    session.dig('resume_data', 'medications').to_a
+           .map { |attrs| SessionMedication.new(attrs) }
+           .sort_by { |m| [m.started_on.nil? ? 0 : 1, m.started_on] }
+  end
+
+  def guest_allergies
+    session.dig('resume_data', 'allergies').to_a
+           .map { |attrs| SessionAllergy.new(attrs) }
+  end
+
+  def guest_treatments
+    session.dig('resume_data', 'treatments').to_a
+           .map { |attrs| SessionTreatment.new(attrs) }
+           .sort_by { |t| [t.treated_on.nil? ? 0 : 1, t.treated_on] }
+  end
+
+  def update_status_for_login
+    @resume = current_user.skincare_resume
+
+    if @resume.update(status: params[:status])
+      redirect_to root_path, notice: t('.success')
+    else
+      render '/skincare_resume/confirmation', status: :unprocessable_entity
+    end
+  end
+
+  def update_status_for_guest
+    session['resume_data'] ||= {}
+    session['resume_data']['status'] = params[:status]
+
+    redirect_to '/auth/google_oauth2'
   end
 end

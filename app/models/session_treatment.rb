@@ -5,11 +5,11 @@ class SessionTreatment
   include ActiveModel::Attributes
 
   attribute :id, :string
-  attribute :description, :string
+  attribute :name, :string
   attribute :treated_on, :date
   attribute :persisted, :boolean, default: false
 
-  validates :description, presence: true
+  validates :name, presence: true
 
   def initialize(attributes = {})
     super(attributes)

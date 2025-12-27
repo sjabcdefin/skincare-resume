@@ -8,6 +8,6 @@
             = treatment.treated_on.present? ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
       .my-3
         .max-w-md
-          label.block.font-semibold = Treatment.human_attribute_name :description
+          label.block.font-semibold = Treatment.human_attribute_name :name
           .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
-            = treatment.description
+            = treatment.name
