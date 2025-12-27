@@ -69,12 +69,12 @@
         - @treatments.each do |treatment|
           tr.h-8
             td.border.px-4.py-2.text-center
-              - if treatment.description
+              - if treatment.name
                 = treatment.treated_on ? l(treatment.treated_on, format: :default) : t('views.treatments.form_blank')
               - else
                 = ''
             td.border.px-4.py-2.text-left
-              = treatment.description
+              = treatment.name
 
   / 前へ次へボタン
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil

@@ -16,7 +16,7 @@ ja:
       allergy:
         name: アレルギー
       treatment:
-        description: 治療内容
+        name: 治療内容
         treated_on: 施術日
     errors:
       messages:

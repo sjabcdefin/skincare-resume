@@ -39,7 +39,7 @@ class TreatmentsController < ApplicationController
   private
 
   def treatment_params
-    params.require(:treatment).permit(:treated_on, :description)
+    params.require(:treatment).permit(:treated_on, :name)
   end
 
   def session_treatments

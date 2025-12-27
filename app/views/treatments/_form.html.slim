@@ -8,15 +8,15 @@
                           class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600']
     .my-3
       .max-w-md
-        = form.label :description, Treatment.human_attribute_name(:description),
+        = form.label :name, Treatment.human_attribute_name(:name),
                      class: 'block font-semibold'
-        = form.text_field :description, placeholder: t('views.treatments.form_example'),
+        = form.text_field :name, placeholder: t('views.treatments.form_example'),
                           class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
-                                 { 'border-gray-400 focus:outline-blue-600': treatment.errors[:description].none?,
-                                   'border-red-400 focus:outline-red-600': treatment.errors[:description].any? }]
-        - if treatment.errors[:description].any?
+                                 { 'border-gray-400 focus:outline-blue-600': treatment.errors[:name].none?,
+                                   'border-red-400 focus:outline-red-600': treatment.errors[:name].any? }]
+        - if treatment.errors[:name].any?
           p class='text-[12px] text-red-600 mt-1'
-            = Treatment.human_attribute_name(:description) + treatment.errors[:description].first
+            = Treatment.human_attribute_name(:name) + treatment.errors[:name].first
     / ボタン
     - if treatment.persisted?
       = form.submit t('views.common.delete'),
