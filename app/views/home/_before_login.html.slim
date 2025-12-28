@@ -1,27 +1,27 @@
 .mx-auto.text-center
-  h1.text-xl
-    | 最適な肌の治療のために、スキンケアの履歴書
-
-  p.mt-6.text-sm
-    | 美容施術やスキンケア、薬、アレルギー情報...
+  h1.text-2xl.font-bold
+    | あなたのスキンケア履歴を、
     br.sm:hidden
-    | 診療のたびに思い出して伝えるのは大変です。
+    | 診察でそのまま共有
 
-  p.mt-6.text-sm
-    | 大切な情報を整理して「履歴書」としてまとめられます。
+  p.mt-6.text-md
+    | スキンケアや薬、美容施術の履歴をまとめて管理。
 
-  p.mt-6.text-sm
-    | 限られた診療時間で必要な情報を伝えられるため、
+  p.mt-6.text-md
+    | 皮膚科の診察時にそのまま医師に見せることで、
+    br.sm:hidden
+    | 説明の手間を減らせます。
+
+  p.mt-6.text-md
+    | 限られた診察時間で必要な情報を伝えられるため、
     br.sm:hidden
     | より適切な治療に繋がります。
 
-.mx-auto.max-w-md.text-sm
-  p.mt-10.sm:mt-14
+.mx-auto.mt-10.max-w-md.text-sm
+  p.mt-4.font-bold
     | 💡 ご利用方法
   p.mx-4
-    | 「スキンケアの履歴書」は、ログインなしでもすぐに使えます。
-    br
-    | ただし、データの保存にはログインが必要です。
+    | ログインなしでもすぐに使えます。保存したい場合はログインが必要です。
 
   p.mt-6.font-bold
     | ・Googleアカウントでログイン：
@@ -31,7 +31,7 @@
   p.mt-6.font-bold
     | ・ログインせずに履歴書を作成：
   p.mx-4
-    | すぐに入力を始めることができます。
+    | すぐに入力を始められます。後からログインすることで保存可能です。
 
 .flex.flex-col.items-center.mt-10.gap-4
   = link_to 'Googleアカウントでログイン', '/auth/google_oauth2', class: 'sm:w-64 rounded-md text-center px-4 py-4 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
