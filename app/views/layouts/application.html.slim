@@ -35,4 +35,4 @@ html
       = link_to 'プライバシーポリシー', nil
       - if current_user
         = link_to 'ログアウト', logout_path, data: { turbo_method: :post, turbo_confirm: t('messages.confirm.logout') }
-        = link_to '会員削除', nil
+        = link_to '会員削除', account_path, data: { turbo_method: :delete, turbo_confirm: t('messages.confirm.user_destroy') }
