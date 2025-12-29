@@ -2,6 +2,7 @@
 
 class HomeController < ApplicationController
   def index
+    @formatter = ResumeFormatter.new(user: current_user, session: session)
     @resume = current_user&.skincare_resume
     @resume_status = decide_resume_state
   end

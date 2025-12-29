@@ -8,7 +8,7 @@ table.table-fixed.w-full.my-4.border.text-sm
       th.w-32.border.px-4.py-2.text-center = Product.human_attribute_name :started_on
       th.border.px-4.py-2.text-left = Product.model_name.human
   tbody
-    - resume.products.each do |product|
+    - formatter.products.each do |product|
       tr.h-8
         td.border.px-4.py-2.text-center
           - if product.name
@@ -25,7 +25,7 @@ table.table-fixed.w-full.my-4.border.text-sm
       th.w-32.border.px-4.py-2.text-center = Medication.human_attribute_name :started_on
       th.border.px-4.py-2.text-left = Medication.model_name.human
   tbody
-    - resume.medications.each do |medication|
+    - formatter.medications.each do |medication|
       tr.h-8
         td.border.px-4.py-2.text-center
           - if medication.name
@@ -41,7 +41,7 @@ table.table-fixed.w-full.my-4.border.text-sm
     tr
       th.border.px-4.py-2.text-left = Allergy.model_name.human
   tbody
-    - resume.allergies.each do |allergy|
+    - formatter.allergies.each do |allergy|
       tr.h-8
         td.border.px-4.py-2.text-left
           = allergy.name
@@ -53,7 +53,7 @@ table.table-fixed.w-full.my-4.mt-48.border.text-sm
       th.w-32.border.px-4.py-2.text-center = Treatment.human_attribute_name :treated_on
       th.border.px-4.py-2.text-left = Treatment.model_name.human
   tbody
-    - resume.treatments.each do |treatment|
+    - formatter.treatments.each do |treatment|
       tr.h-8
         td.border.px-4.py-2.text-center
           - if treatment.name
