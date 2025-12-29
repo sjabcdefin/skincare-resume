@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   post 'logout', to: 'sessions#destroy', as: 'logout'
+  delete 'account', to: 'users#destroy'
 
   resources :products
   resources :medications

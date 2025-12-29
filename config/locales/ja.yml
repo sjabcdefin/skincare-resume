@@ -259,3 +259,4 @@ ja:
     confirm:
       destroy: "本当に削除しますか？"
       logout: "ログアウトしますか？"
+      user_destroy: "本当にアカウントを削除しますか？"
