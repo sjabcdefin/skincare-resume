@@ -15,24 +15,8 @@ class Allergy::LoginAllergyRepository
   end
 
   def build(params)
-    resume = @user.skincare_resume || @user.create_skincare_resume!(status: :draft)
-    resume.allergies.build(params)
-  end
-
-  def save(allergy)
-    allergy.save!
-  end
-
-  def assign(allergy, params)
-    allergy.assign_attributes(params)
-    allergy
-  end
-
-  def update(allergy, _params)
-    allergy.save!
-  end
-
-  def destroy(allergy)
-    allergy.destroy!
+    resume = @user.skincare_resume
+    resume ||= @user.create_skincare_resume!(status: :draft)
+    resume.allergies.new(params)
   end
 end

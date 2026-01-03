@@ -18,22 +18,24 @@ class AllergiesController < ApplicationController
 
   def create
     @allergy = @repository.build(allergy_params)
-    return unless @allergy.valid?
 
-    @repository.save(@allergy)
-    flash.now.notice = t('.success')
+    if @allergy.save
+      flash.now.notice = t('.success')
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
-    @allergy = @repository.assign(@allergy, allergy_params)
-    return unless @allergy.valid?
-
-    @repository.update(@allergy, allergy_params)
-    flash.now.notice = t('.success')
+    if @allergy.update(allergy_params)
+      flash.now.notice = t('.success')
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @repository.destroy(@allergy)
+    @allergy.destroy!
     flash.now.notice = t('.success')
   end
 
