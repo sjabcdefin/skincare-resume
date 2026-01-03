@@ -18,22 +18,24 @@ class ProductsController < ApplicationController
 
   def create
     @product = @repository.build(product_params)
-    return unless @product.valid?
 
-    @repository.save(@product)
-    flash.now.notice = t('.success')
+    if @product.save
+      flash.now.notice = t('.success')
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
-    @product = @repository.assign(@product, product_params)
-    return unless @product.valid?
-
-    @repository.update(@product, product_params)
-    flash.now.notice = t('.success')
+    if @product.update(product_params)
+      flash.now.notice = t('.success')
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @repository.destroy(@product)
+    @product.destroy!
     flash.now.notice = t('.success')
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_27_102049) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_03_124051) do
   create_table "allergies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -38,11 +38,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_27_102049) do
   end
 
   create_table "skincare_resumes", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uuid"
     t.index ["user_id"], name: "index_skincare_resumes_on_user_id"
+    t.index ["uuid"], name: "index_skincare_resumes_on_uuid", unique: true
   end
 
   create_table "treatments", force: :cascade do |t|
