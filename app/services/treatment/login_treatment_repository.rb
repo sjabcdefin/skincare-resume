@@ -15,24 +15,8 @@ class Treatment::LoginTreatmentRepository
   end
 
   def build(params)
-    resume = @user.skincare_resume || @user.create_skincare_resume!(status: :draft)
-    resume.treatments.build(params)
-  end
-
-  def save(treatment)
-    treatment.save!
-  end
-
-  def assign(treatment, params)
-    treatment.assign_attributes(params)
-    treatment
-  end
-
-  def update(treatment, _params)
-    treatment.save!
-  end
-
-  def destroy(treatment)
-    treatment.destroy!
+    resume = @user.skincare_resume
+    resume ||= @user.create_skincare_resume!(status: :draft)
+    resume.treatments.new(params)
   end
 end
