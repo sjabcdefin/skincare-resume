@@ -61,6 +61,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'omniauth-google-oauth2'
+
 gem 'slim-rails'
 
 gem 'tailwindcss-rails', '~> 4.4'
