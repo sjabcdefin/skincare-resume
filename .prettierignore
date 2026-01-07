@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore Node modules:
+node_modules
+
+# Ignore Rails:
+log
+public
+tmp
+vendor
