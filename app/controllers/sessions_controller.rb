@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def create
     user = find_or_create_from_auth_hash(auth_hash)
     log_in(user) if user
-    ResumeImporter.new(user: user, session: session).call if session['resume_data']
+    ResumeAttacher.new(user: user, session: session).call if session['resume_uuid']
     redirect_to root_path
   end
 

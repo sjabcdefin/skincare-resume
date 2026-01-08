@@ -15,24 +15,8 @@ class Medication::LoginMedicationRepository
   end
 
   def build(params)
-    resume = @user.skincare_resume || @user.create_skincare_resume!(status: :draft)
-    resume.medications.build(params)
-  end
-
-  def save(medication)
-    medication.save!
-  end
-
-  def assign(medication, params)
-    medication.assign_attributes(params)
-    medication
-  end
-
-  def update(medication, _params)
-    medication.save!
-  end
-
-  def destroy(medication)
-    medication.destroy!
+    resume = @user.skincare_resume
+    resume ||= @user.create_skincare_resume!(status: :draft)
+    resume.medications.new(params)
   end
 end

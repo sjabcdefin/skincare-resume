@@ -15,24 +15,8 @@ class Product::LoginProductRepository
   end
 
   def build(params)
-    resume = @user.skincare_resume || @user.create_skincare_resume!(status: :draft)
-    resume.products.build(params)
-  end
-
-  def save(product)
-    product.save!
-  end
-
-  def assign(product, params)
-    product.assign_attributes(params)
-    product
-  end
-
-  def update(product, _params)
-    product.save!
-  end
-
-  def destroy(product)
-    product.destroy!
+    resume = @user.skincare_resume
+    resume ||= @user.create_skincare_resume!(status: :draft)
+    resume.products.new(params)
   end
 end

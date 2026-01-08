@@ -10,7 +10,7 @@ class SkincareResumesController < ApplicationController
   end
 
   def destroy
-    session.delete('resume_data')
+    session.delete('resume_uuid')
     redirect_to root_path
   end
 
@@ -27,9 +27,12 @@ class SkincareResumesController < ApplicationController
   end
 
   def update_status_for_guest
-    session['resume_data'] ||= {}
-    session['resume_data']['status'] = params[:status]
+    @resume = SkincareResume.find_by(uuid: session['resume_uuid'])
 
-    redirect_to '/auth/google_oauth2'
+    if @resume.update(status: params[:status])
+      redirect_to '/auth/google_oauth2'
+    else
+      render '/skincare_resume/confirmation', status: :unprocessable_entity
+    end
   end
 end

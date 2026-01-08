@@ -18,22 +18,24 @@ class MedicationsController < ApplicationController
 
   def create
     @medication = @repository.build(medication_params)
-    return unless @medication.valid?
 
-    @repository.save(@medication)
-    flash.now.notice = t('.success')
+    if @medication.save
+      flash.now.notice = t('.success')
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
-    @medication = @repository.assign(@medication, medication_params)
-    return unless @medication.valid?
-
-    @repository.update(@medication, medication_params)
-    flash.now.notice = t('.success')
+    if @medication.update(medication_params)
+      flash.now.notice = t('.success')
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @repository.destroy(@medication)
+    @medication.destroy!
     flash.now.notice = t('.success')
   end
 
