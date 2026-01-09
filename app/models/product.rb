@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   belongs_to :skincare_resume
   validates :name, presence: true

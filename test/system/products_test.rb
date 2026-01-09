@@ -1,45 +1,47 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class ProductsTest < ApplicationSystemTestCase
   setup do
     @product = products(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit products_url
-    assert_selector "h1", text: "Products"
+    assert_selector 'h1', text: 'Products'
   end
 
-  test "should create product" do
+  test 'should create product' do
     visit products_url
-    click_on "New product"
+    click_on 'New product'
 
-    fill_in "Name", with: @product.name
-    fill_in "Skincare resume", with: @product.skincare_resume_id
-    fill_in "Started on", with: @product.started_on
-    click_on "Create Product"
+    fill_in 'Name', with: @product.name
+    fill_in 'Skincare resume', with: @product.skincare_resume_id
+    fill_in 'Started on', with: @product.started_on
+    click_on 'Create Product'
 
-    assert_text "Product was successfully created"
-    click_on "Back"
+    assert_text 'Product was successfully created'
+    click_on 'Back'
   end
 
-  test "should update Product" do
+  test 'should update Product' do
     visit product_url(@product)
-    click_on "Edit this product", match: :first
+    click_on 'Edit this product', match: :first
 
-    fill_in "Name", with: @product.name
-    fill_in "Skincare resume", with: @product.skincare_resume_id
-    fill_in "Started on", with: @product.started_on
-    click_on "Update Product"
+    fill_in 'Name', with: @product.name
+    fill_in 'Skincare resume', with: @product.skincare_resume_id
+    fill_in 'Started on', with: @product.started_on
+    click_on 'Update Product'
 
-    assert_text "Product was successfully updated"
-    click_on "Back"
+    assert_text 'Product was successfully updated'
+    click_on 'Back'
   end
 
-  test "should destroy Product" do
+  test 'should destroy Product' do
     visit product_url(@product)
-    accept_confirm { click_on "Destroy this product", match: :first }
+    accept_confirm { click_on 'Destroy this product', match: :first }
 
-    assert_text "Product was successfully destroyed"
+    assert_text 'Product was successfully destroyed'
   end
 end

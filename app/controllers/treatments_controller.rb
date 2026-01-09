@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TreatmentsController < ApplicationController
-  before_action :set_treatment, only: %i[ show edit update destroy ]
+  before_action :set_treatment, only: %i[show edit update destroy]
 
   # GET /treatments or /treatments.json
   def index
@@ -7,8 +9,7 @@ class TreatmentsController < ApplicationController
   end
 
   # GET /treatments/1 or /treatments/1.json
-  def show
-  end
+  def show; end
 
   # GET /treatments/new
   def new
@@ -16,8 +17,7 @@ class TreatmentsController < ApplicationController
   end
 
   # GET /treatments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /treatments or /treatments.json
   def create
@@ -25,7 +25,7 @@ class TreatmentsController < ApplicationController
 
     respond_to do |format|
       if @treatment.save
-        format.html { redirect_to @treatment, notice: "Treatment was successfully created." }
+        format.html { redirect_to @treatment, notice: 'Treatment was successfully created.' }
         format.json { render :show, status: :created, location: @treatment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TreatmentsController < ApplicationController
   def update
     respond_to do |format|
       if @treatment.update(treatment_params)
-        format.html { redirect_to @treatment, notice: "Treatment was successfully updated.", status: :see_other }
+        format.html { redirect_to @treatment, notice: 'Treatment was successfully updated.', status: :see_other }
         format.json { render :show, status: :ok, location: @treatment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class TreatmentsController < ApplicationController
     @treatment.destroy!
 
     respond_to do |format|
-      format.html { redirect_to treatments_path, notice: "Treatment was successfully destroyed.", status: :see_other }
+      format.html { redirect_to treatments_path, notice: 'Treatment was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_treatment
-      @treatment = Treatment.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def treatment_params
-      params.expect(treatment: [ :skincare_resume_id, :treated_on, :name ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_treatment
+    @treatment = Treatment.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def treatment_params
+    params.expect(treatment: %i[skincare_resume_id treated_on name])
+  end
 end

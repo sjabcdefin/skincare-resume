@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AllergiesController < ApplicationController
-  before_action :set_allergy, only: %i[ show edit update destroy ]
+  before_action :set_allergy, only: %i[show edit update destroy]
 
   # GET /allergies or /allergies.json
   def index
@@ -7,8 +9,7 @@ class AllergiesController < ApplicationController
   end
 
   # GET /allergies/1 or /allergies/1.json
-  def show
-  end
+  def show; end
 
   # GET /allergies/new
   def new
@@ -16,8 +17,7 @@ class AllergiesController < ApplicationController
   end
 
   # GET /allergies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /allergies or /allergies.json
   def create
@@ -25,7 +25,7 @@ class AllergiesController < ApplicationController
 
     respond_to do |format|
       if @allergy.save
-        format.html { redirect_to @allergy, notice: "Allergy was successfully created." }
+        format.html { redirect_to @allergy, notice: 'Allergy was successfully created.' }
         format.json { render :show, status: :created, location: @allergy }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class AllergiesController < ApplicationController
   def update
     respond_to do |format|
       if @allergy.update(allergy_params)
-        format.html { redirect_to @allergy, notice: "Allergy was successfully updated.", status: :see_other }
+        format.html { redirect_to @allergy, notice: 'Allergy was successfully updated.', status: :see_other }
         format.json { render :show, status: :ok, location: @allergy }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class AllergiesController < ApplicationController
     @allergy.destroy!
 
     respond_to do |format|
-      format.html { redirect_to allergies_path, notice: "Allergy was successfully destroyed.", status: :see_other }
+      format.html { redirect_to allergies_path, notice: 'Allergy was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_allergy
-      @allergy = Allergy.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def allergy_params
-      params.expect(allergy: [ :skincare_resume_id, :name ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_allergy
+    @allergy = Allergy.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def allergy_params
+    params.expect(allergy: %i[skincare_resume_id name])
+  end
 end
