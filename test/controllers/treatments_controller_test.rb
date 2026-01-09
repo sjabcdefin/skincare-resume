@@ -1,45 +1,59 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @treatment = treatments(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get treatments_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_treatment_url
     assert_response :success
   end
 
-  test "should create treatment" do
-    assert_difference("Treatment.count") do
-      post treatments_url, params: { treatment: { name: @treatment.name, skincare_resume_id: @treatment.skincare_resume_id, treated_on: @treatment.treated_on } }
+  test 'should create treatment' do
+    assert_difference('Treatment.count') do
+      post treatments_url, params: {
+        treatment: {
+          name: @treatment.name,
+          skincare_resume_id: @treatment.skincare_resume_id,
+          treated_on: @treatment.treated_on
+        }
+      }
     end
 
     assert_redirected_to treatment_url(Treatment.last)
   end
 
-  test "should show treatment" do
+  test 'should show treatment' do
     get treatment_url(@treatment)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_treatment_url(@treatment)
     assert_response :success
   end
 
-  test "should update treatment" do
-    patch treatment_url(@treatment), params: { treatment: { name: @treatment.name, skincare_resume_id: @treatment.skincare_resume_id, treated_on: @treatment.treated_on } }
+  test 'should update treatment' do
+    patch treatment_url(@treatment), params: {
+      treatment: {
+        name: @treatment.name,
+        skincare_resume_id: @treatment.skincare_resume_id,
+        treated_on: @treatment.treated_on
+      }
+    }
     assert_redirected_to treatment_url(@treatment)
   end
 
-  test "should destroy treatment" do
-    assert_difference("Treatment.count", -1) do
+  test 'should destroy treatment' do
+    assert_difference('Treatment.count', -1) do
       delete treatment_url(@treatment)
     end
 

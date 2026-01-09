@@ -1,45 +1,47 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class MedicationsTest < ApplicationSystemTestCase
   setup do
     @medication = medications(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit medications_url
-    assert_selector "h1", text: "Medications"
+    assert_selector 'h1', text: 'Medications'
   end
 
-  test "should create medication" do
+  test 'should create medication' do
     visit medications_url
-    click_on "New medication"
+    click_on 'New medication'
 
-    fill_in "Name", with: @medication.name
-    fill_in "Skincare resume", with: @medication.skincare_resume_id
-    fill_in "Started on", with: @medication.started_on
-    click_on "Create Medication"
+    fill_in 'Name', with: @medication.name
+    fill_in 'Skincare resume', with: @medication.skincare_resume_id
+    fill_in 'Started on', with: @medication.started_on
+    click_on 'Create Medication'
 
-    assert_text "Medication was successfully created"
-    click_on "Back"
+    assert_text 'Medication was successfully created'
+    click_on 'Back'
   end
 
-  test "should update Medication" do
+  test 'should update Medication' do
     visit medication_url(@medication)
-    click_on "Edit this medication", match: :first
+    click_on 'Edit this medication', match: :first
 
-    fill_in "Name", with: @medication.name
-    fill_in "Skincare resume", with: @medication.skincare_resume_id
-    fill_in "Started on", with: @medication.started_on
-    click_on "Update Medication"
+    fill_in 'Name', with: @medication.name
+    fill_in 'Skincare resume', with: @medication.skincare_resume_id
+    fill_in 'Started on', with: @medication.started_on
+    click_on 'Update Medication'
 
-    assert_text "Medication was successfully updated"
-    click_on "Back"
+    assert_text 'Medication was successfully updated'
+    click_on 'Back'
   end
 
-  test "should destroy Medication" do
+  test 'should destroy Medication' do
     visit medication_url(@medication)
-    accept_confirm { click_on "Destroy this medication", match: :first }
+    accept_confirm { click_on 'Destroy this medication', match: :first }
 
-    assert_text "Medication was successfully destroyed"
+    assert_text 'Medication was successfully destroyed'
   end
 end
