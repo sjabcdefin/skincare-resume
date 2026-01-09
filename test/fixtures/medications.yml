@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skincare_resume: one
+  started_on: 2026-01-09
+  name: MyString
+
+two:
+  skincare_resume: two
+  started_on: 2026-01-09
+  name: MyString
