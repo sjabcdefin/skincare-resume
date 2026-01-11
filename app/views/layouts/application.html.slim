@@ -17,6 +17,12 @@ html
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
 
-  body
-    main.container.mx-auto.mt-28.px-5.flex
+  body class='flex flex-col min-h-screen'
+    main.container.mx-auto.mt-28.px-5.flex-grow
       = yield
+
+    footer class='py-4 text-center border-t border-gray-300 space-x-8 text-sm font-bold'
+      = link_to '利用規約', nil
+      = link_to 'プライバシーポリシー', nil
+      = link_to 'ログアウト', nil
+      = link_to '会員削除', nil
