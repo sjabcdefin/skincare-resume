@@ -3,9 +3,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
-  # GET /products or /products.json
   def index
-    @products = Product.all
+    resume = current_user&.skincare_resume
+    @products = resume ? resume.products.order(:started_on) : []
   end
 
   # GET /products/1 or /products/1.json
@@ -19,18 +19,16 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit; end
 
-  # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
+    resume = current_user.skincare_resume
+    resume ||= current_user.create_skincare_resume(status: :draft)
+    @product = resume.products.new(product_params)
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.save
+      Rails.logger.info 'スキンケア製品の登録に成功しました。'
+    else
+      Rails.logger.info @product.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -64,8 +62,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params.expect(:id))
   end
 
-  # Only allow a list of trusted parameters through.
   def product_params
-    params.expect(product: %i[skincare_resume_id started_on name])
+    params.require(:product).permit(:started_on, :name)
   end
 end

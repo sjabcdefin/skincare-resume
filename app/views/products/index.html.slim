@@ -1,0 +1,10 @@
+- content_for :title, '使用しているスキンケアの入力'
+
+.w-full.max-w-4xl.mx-auto
+  #products
+    - @products.each do |product|
+      = render 'products/product', product: product
+
+  = turbo_frame_tag 'new_form' do
+    - if @products.empty?
+      = render 'form', product: Product.new
