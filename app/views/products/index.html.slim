@@ -1,6 +1,15 @@
 - content_for :title, '使用しているスキンケアの入力'
 
 .w-full.max-w-4xl.mx-auto
+  .my-8.px-4
+    h3.font-medium.text-center.text-xl
+      | 使用しているスキンケアの入力
+    .my-3.text-sm
+      p
+        | 💡 ご利用方法
+        br
+        | 使用開始日を入力しなくても保存できます。スキンケアは入力する必要があります。
+
   #products
     - @products.each do |product|
       = render 'products/product', product: product
