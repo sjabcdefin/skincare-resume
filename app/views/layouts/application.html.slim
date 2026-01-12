@@ -18,6 +18,8 @@ html
     = javascript_importmap_tags
 
   body class='flex flex-col min-h-screen'
+    #flash.fixed.top-5.right-5.z-50
+      = render 'flash'
     main.container.mx-auto.mt-28.px-5.flex-grow
       = yield
 

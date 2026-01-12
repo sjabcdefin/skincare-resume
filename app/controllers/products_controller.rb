@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @product = resume.products.new(product_params)
 
     if @product.save
-      Rails.logger.info 'スキンケア製品の登録に成功しました。'
+      flash.now.notice = 'スキンケア製品の登録に成功しました。'
     else
       Rails.logger.info @product.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      Rails.logger.info 'スキンケア製品の更新に成功しました。'
+      flash.now.notice = 'スキンケア製品の更新に成功しました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy!
-    Rails.logger.info 'スキンケア製品の削除に成功しました。'
+    flash.now.notice = 'スキンケア製品の削除に成功しました。'
   end
 
   private
