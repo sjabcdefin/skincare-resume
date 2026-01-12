@@ -11,7 +11,12 @@
         = form.label :name, 'スキンケア製品名',
                      class: 'block font-semibold'
         = form.text_field :name, placeholder: '例）キュレル 潤浸保湿 化粧水',
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600']
+                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
+                                 { 'border-gray-400 focus:outline-blue-600': product.errors[:name].none?,
+                                   'border-red-400 focus:outline-red-600': product.errors[:name].any? }]
+        - if product.errors[:name].any?
+          p class='text-[12px] text-red-600 mt-1'
+            = "スキンケア製品名#{product.errors[:name].first}。"
 
     - if product.persisted?
       = form.submit '✕',
