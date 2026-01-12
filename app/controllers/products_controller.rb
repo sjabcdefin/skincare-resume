@@ -38,14 +38,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1 or /products/1.json
   def destroy
     @product.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to products_path, notice: 'Product was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
-    end
+    Rails.logger.info 'スキンケア製品の削除に成功しました。'
   end
 
   private
