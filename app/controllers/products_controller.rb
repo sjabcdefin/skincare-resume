@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit; end
 
   def create
@@ -56,9 +55,8 @@ class ProductsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_product
-    @product = Product.find(params.expect(:id))
+    @product = current_user.skincare_resume.products.find(params[:id])
   end
 
   def product_params
