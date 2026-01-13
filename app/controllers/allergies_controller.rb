@@ -23,7 +23,7 @@ class AllergiesController < ApplicationController
     @allergy = resume.allergies.new(allergy_params)
 
     if @allergy.save
-      Rails.logger.info 'アレルギー歴の登録に成功しました。'
+      flash.now.notice = 'アレルギー歴の登録に成功しました。'
     else
       Rails.logger.info @allergy.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class AllergiesController < ApplicationController
 
   def update
     if @allergy.update(allergy_params)
-      Rails.logger.info 'アレルギー歴の更新に成功しました。'
+      flash.now.notice = 'アレルギー歴の更新に成功しました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class AllergiesController < ApplicationController
 
   def destroy
     @allergy.destroy!
-    Rails.logger.info 'アレルギー歴の削除に成功しました。'
+    flash.now.notice = 'アレルギー歴の削除に成功しました。'
   end
 
   private
