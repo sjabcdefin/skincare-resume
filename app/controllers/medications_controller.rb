@@ -3,9 +3,9 @@
 class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
 
-  # GET /medications or /medications.json
   def index
-    @medications = Medication.all
+    resume = current_user&.skincare_resume
+    @medications = resume ? resume.medications.order(:started_on) : []
   end
 
   # GET /medications/1 or /medications/1.json
@@ -19,18 +19,16 @@ class MedicationsController < ApplicationController
   # GET /medications/1/edit
   def edit; end
 
-  # POST /medications or /medications.json
   def create
-    @medication = Medication.new(medication_params)
+    resume = current_user.skincare_resume
+    resume ||= current_user.create_skincare_resume(status: :draft)
+    @medication = resume.medications.new(medication_params)
 
-    respond_to do |format|
-      if @medication.save
-        format.html { redirect_to @medication, notice: 'Medication was successfully created.' }
-        format.json { render :show, status: :created, location: @medication }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @medication.errors, status: :unprocessable_entity }
-      end
+    if @medication.save
+      Rails.logger.info '薬の登録に成功しました。'
+    else
+      Rails.logger.info @medication.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -64,8 +62,7 @@ class MedicationsController < ApplicationController
     @medication = Medication.find(params.expect(:id))
   end
 
-  # Only allow a list of trusted parameters through.
   def medication_params
-    params.expect(medication: %i[skincare_resume_id started_on name])
+    params.require(:medication).permit(:started_on, :name)
   end
 end

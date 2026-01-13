@@ -1,0 +1,12 @@
+= turbo_frame_tag dom_id(medication) do
+  .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
+    .my-3
+      .max-w-md
+        label.block.font-semibold 使用開始日
+        .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+          = medication.started_on.present? ? l(medication.started_on, format: :default) : '-'
+    .my-3
+      .max-w-md
+        label.block.font-semibold 薬名
+        .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+          = medication.name

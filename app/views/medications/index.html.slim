@@ -1,0 +1,10 @@
+- content_for :title, '使用している薬の入力'
+
+.w-full.max-w-4xl.mx-auto
+  #medications
+    - @medications.each do |medication|
+      = render 'medications/medication', medication: medication
+
+  = turbo_frame_tag 'new_form' do
+    - if @medications.empty?
+      = render 'form', medication: Medication.new
