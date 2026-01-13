@@ -38,14 +38,9 @@ class AllergiesController < ApplicationController
     end
   end
 
-  # DELETE /allergies/1 or /allergies/1.json
   def destroy
     @allergy.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to allergies_path, notice: 'Allergy was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
-    end
+    Rails.logger.info 'アレルギー歴の削除に成功しました。'
   end
 
   private
