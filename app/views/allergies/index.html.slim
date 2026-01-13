@@ -1,6 +1,15 @@
 - content_for :title, 'アレルギー歴の入力'
 
 .w-full.max-w-4xl.mx-auto
+  .my-8.max-w-4xl.mx-auto.px-4
+    h3.font-medium.text-center.text-xl
+      | アレルギー歴の入力
+    .my-3.text-sm
+      p
+        | 💡 ご利用方法
+        br
+        | アレルギー名を選択または入力してください。
+
   #allergies
     - @allergies.each do |allergy|
       = render 'allergies/allergy', allergy: allergy
