@@ -8,7 +8,6 @@ class TreatmentsController < ApplicationController
     @treatments = resume ? resume.treatments.order(:treated_on) : []
   end
 
-  # GET /treatments/1 or /treatments/1.json
   def show; end
 
   def new
