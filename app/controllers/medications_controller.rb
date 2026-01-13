@@ -30,16 +30,11 @@ class MedicationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /medications/1 or /medications/1.json
   def update
-    respond_to do |format|
-      if @medication.update(medication_params)
-        format.html { redirect_to @medication, notice: 'Medication was successfully updated.', status: :see_other }
-        format.json { render :show, status: :ok, location: @medication }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @medication.errors, status: :unprocessable_entity }
-      end
+    if @medication.update(medication_params)
+      Rails.logger.info '薬の更新に成功しました。'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
