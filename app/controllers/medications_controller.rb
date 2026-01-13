@@ -15,7 +15,6 @@ class MedicationsController < ApplicationController
     @medication = Medication.new
   end
 
-  # GET /medications/1/edit
   def edit; end
 
   def create
@@ -56,9 +55,8 @@ class MedicationsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_medication
-    @medication = Medication.find(params.expect(:id))
+    @medication = current_user.skincare_resume.medications.find(params[:id])
   end
 
   def medication_params
