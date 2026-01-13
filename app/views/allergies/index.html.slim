@@ -1,0 +1,10 @@
+- content_for :title, 'アレルギー歴の入力'
+
+.w-full.max-w-4xl.mx-auto
+  #allergies
+    - @allergies.each do |allergy|
+      = render 'allergies/allergy', allergy: allergy
+
+  = turbo_frame_tag 'new_form' do
+    - if @allergies.empty?
+      = render 'form', allergy: Allergy.new
