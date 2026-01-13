@@ -1,0 +1,10 @@
+- content_for :title, '治療履歴の入力'
+
+.w-full.max-w-4xl.mx-auto
+  #treatments
+    - @treatments.each do |treatment|
+      = render 'treatments/treatment', treatment: treatment
+
+  = turbo_frame_tag 'new_form' do
+    - if @treatments.empty?
+      = render 'form', treatment: Treatment.new
