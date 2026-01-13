@@ -11,7 +11,12 @@
         = form.label :name, '薬名',
                      class: 'block font-semibold'
         = form.text_field :name, placeholder: '例）ベピオゲル',
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600']
+                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
+                                 { 'border-gray-400 focus:outline-blue-600': medication.errors[:name].none?,
+                                   'border-red-400 focus:outline-red-600': medication.errors[:name].any? }]
+        - if medication.errors[:name].any?
+          p class='text-[12px] text-red-600 mt-1'
+            = "薬の名前#{medication.errors[:name].first}。"
 
     - if medication.persisted?
       = form.submit '✕',
