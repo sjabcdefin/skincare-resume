@@ -24,5 +24,8 @@ html
     footer class='py-4 text-center border-t border-gray-300 space-x-8 text-sm font-bold'
       = link_to '利用規約', nil
       = link_to 'プライバシーポリシー', nil
-      = link_to 'ログアウト', nil
-      = link_to '会員削除', nil
+      - if current_user
+        = link_to 'ログアウト', logout_path, data: { turbo_method: :post, turbo_confirm: 'ログアウトしますか？' }
+        = link_to '会員削除', nil
+      - else
+        = link_to 'ログイン', '/auth/google_oauth2'
