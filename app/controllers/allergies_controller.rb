@@ -30,16 +30,11 @@ class AllergiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /allergies/1 or /allergies/1.json
   def update
-    respond_to do |format|
-      if @allergy.update(allergy_params)
-        format.html { redirect_to @allergy, notice: 'Allergy was successfully updated.', status: :see_other }
-        format.json { render :show, status: :ok, location: @allergy }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @allergy.errors, status: :unprocessable_entity }
-      end
+    if @allergy.update(allergy_params)
+      Rails.logger.info 'アレルギー歴の更新に成功しました。'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
