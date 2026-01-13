@@ -8,3 +8,8 @@
   = turbo_frame_tag 'new_form' do
     - if @medications.empty?
       = render 'form', medication: Medication.new
+
+  = link_to '＋',
+            new_medication_path,
+            data: { turbo_frame: 'new_form' },
+            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'

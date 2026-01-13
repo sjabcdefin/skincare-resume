@@ -11,7 +11,6 @@ class MedicationsController < ApplicationController
   # GET /medications/1 or /medications/1.json
   def show; end
 
-  # GET /medications/new
   def new
     @medication = Medication.new
   end
