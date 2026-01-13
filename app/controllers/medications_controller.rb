@@ -38,14 +38,9 @@ class MedicationsController < ApplicationController
     end
   end
 
-  # DELETE /medications/1 or /medications/1.json
   def destroy
     @medication.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to medications_path, notice: 'Medication was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
-    end
+    Rails.logger.info '薬の削除に成功しました。'
   end
 
   private
