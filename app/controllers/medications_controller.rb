@@ -23,7 +23,7 @@ class MedicationsController < ApplicationController
     @medication = resume.medications.new(medication_params)
 
     if @medication.save
-      Rails.logger.info '薬の登録に成功しました。'
+      flash.now.notice = '薬の登録に成功しました。'
     else
       Rails.logger.info @medication.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class MedicationsController < ApplicationController
 
   def update
     if @medication.update(medication_params)
-      Rails.logger.info '薬の更新に成功しました。'
+      flash.now.notice = '薬の更新に成功しました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class MedicationsController < ApplicationController
 
   def destroy
     @medication.destroy!
-    Rails.logger.info '薬の削除に成功しました。'
+    flash.now.notice = '薬の削除に成功しました。'
   end
 
   private
