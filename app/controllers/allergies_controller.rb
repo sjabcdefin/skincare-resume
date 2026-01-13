@@ -8,7 +8,6 @@ class AllergiesController < ApplicationController
     @allergies = resume ? resume.allergies : []
   end
 
-  # GET /allergies/1 or /allergies/1.json
   def show; end
 
   def new
