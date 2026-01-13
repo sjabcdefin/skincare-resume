@@ -7,9 +7,10 @@
         = form.text_field :name, placeholder: '例）金属(酸化亜鉛)',
                           class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600']
 
+    - form_frame = allergy.persisted? ? dom_id(allergy) : 'new_form'
     .flex.sm:justify-end.space-x-2
       = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
       = link_to 'キャンセル',
                 allergies_path,
-                data: { turbo_frame: 'new_form' },
+                data: { turbo_frame: form_frame },
                 class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'

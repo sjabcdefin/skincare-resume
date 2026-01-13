@@ -15,7 +15,6 @@ class AllergiesController < ApplicationController
     @allergy = Allergy.new
   end
 
-  # GET /allergies/1/edit
   def edit; end
 
   def create
@@ -56,9 +55,8 @@ class AllergiesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_allergy
-    @allergy = Allergy.find(params.expect(:id))
+    @allergy = current_user.skincare_resume.allergies.find(params[:id])
   end
 
   def allergy_params
