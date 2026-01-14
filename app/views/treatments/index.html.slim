@@ -1,0 +1,24 @@
+- content_for :title, '治療履歴の入力'
+
+.w-full.max-w-4xl.mx-auto
+  .my-8.px-4
+    h3.font-medium.text-center.text-xl
+      | 治療履歴の入力
+    .my-3.text-sm
+      p
+        | 💡 ご利用方法
+        br
+        | 治療日を入力しなくても保存できます。治療名は入力する必要があります。
+
+  #treatments
+    - @treatments.each do |treatment|
+      = render 'treatments/treatment', treatment: treatment
+
+  = turbo_frame_tag 'new_form' do
+    - if @treatments.empty?
+      = render 'form', treatment: Treatment.new
+
+  = link_to '＋',
+            new_treatment_path,
+            data: { turbo_frame: 'new_form' },
+            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
