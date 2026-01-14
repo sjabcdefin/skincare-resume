@@ -18,6 +18,7 @@ export default class extends Controller {
     ].map((allergy) => ({ value: allergy, text: allergy }));
 
     this.ts = new window.TomSelect(this.element, {
+      create: true,
       options: options,
       placeholder: "アレルギー名を選択または入力してください。",
     });
