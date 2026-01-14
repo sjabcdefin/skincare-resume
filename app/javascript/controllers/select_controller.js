@@ -41,5 +41,10 @@ export default class extends Controller {
           '<div class="no-results">該当する項目が見つかりません。</div>',
       },
     });
+
+    const wrapper = this.ts.wrapper;
+    if (this.element.dataset.error === "true") {
+      wrapper.classList.add("error");
+    }
   }
 }
