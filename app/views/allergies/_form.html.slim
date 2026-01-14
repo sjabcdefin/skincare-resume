@@ -1,0 +1,27 @@
+= turbo_frame_tag dom_id(allergy) do
+  = form_with(model: allergy, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
+    .my-3
+      .max-w-md
+        = form.label :name, 'アレルギー名',
+                     class: 'block font-semibold'
+        = form.select :name, [], {},
+                             class: ['mt-2 w-full'],
+                             data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
+        - if allergy.errors[:name].any?
+          p class='text-[12px] text-red-600 mt-1'
+            = "アレルギー名#{allergy.errors[:name].first}。"
+
+    - if allergy.persisted?
+      = form.submit '✕',
+                    formmethod: :delete,
+                    data: { turbo_confirm: '本当に削除しますか？' },
+                    class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
+                    onclick: 'event.stopPropagation();'
+
+    - form_frame = allergy.persisted? ? dom_id(allergy) : 'new_form'
+    .flex.sm:justify-end.space-x-2
+      = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+      = link_to 'キャンセル',
+                allergies_path,
+                data: { turbo_frame: form_frame },
+                class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'
