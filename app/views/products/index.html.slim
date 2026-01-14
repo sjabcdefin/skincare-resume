@@ -1,0 +1,24 @@
+- content_for :title, '使用しているスキンケアの入力'
+
+.w-full.max-w-4xl.mx-auto
+  .my-8.px-4
+    h3.font-medium.text-center.text-xl
+      | 使用しているスキンケアの入力
+    .my-3.text-sm
+      p
+        | 💡 ご利用方法
+        br
+        | 使用開始日を入力しなくても保存できます。スキンケアは入力する必要があります。
+
+  #products
+    - @products.each do |product|
+      = render 'products/product', product: product
+
+  = turbo_frame_tag 'new_form' do
+    - if @products.empty?
+      = render 'form', product: Product.new
+
+  = link_to '＋',
+            new_product_path,
+            data: { turbo_frame: 'new_form' },
+            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
