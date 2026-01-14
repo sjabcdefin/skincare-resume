@@ -2,6 +2,8 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   connect() {
+    const selectedValue = this.element.dataset.value;
+
     const options = [
       "金属(ニッケル)",
       "金属(コバルト)",
@@ -17,9 +19,18 @@ export default class extends Controller {
       "花粉(イネ)",
     ].map((allergy) => ({ value: allergy, text: allergy }));
 
+    const includedOptions = options.find(
+      (option) => option.value === selectedValue,
+    );
+
+    if (selectedValue && !includedOptions) {
+      options.push({ value: selectedValue, text: selectedValue });
+    }
+
     this.ts = new window.TomSelect(this.element, {
       create: true,
       options: options,
+      items: selectedValue ? [selectedValue] : [],
       placeholder: "アレルギー名を選択または入力してください。",
     });
   }
