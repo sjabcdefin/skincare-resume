@@ -4,10 +4,9 @@
       .max-w-md
         = form.label :name, 'アレルギー名',
                      class: 'block font-semibold'
-        = form.text_field :name, placeholder: '例）金属(酸化亜鉛)',
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
-                                 { 'border-gray-400 focus:outline-blue-600': allergy.errors[:name].none?,
-                                   'border-red-400 focus:outline-red-600': allergy.errors[:name].any? }]
+        = form.select :name, [], {},
+                             class: ['mt-2 w-full'],
+                             data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
         - if allergy.errors[:name].any?
           p class='text-[12px] text-red-600 mt-1'
             = "アレルギー名#{allergy.errors[:name].first}。"
