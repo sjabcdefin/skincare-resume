@@ -3,69 +3,52 @@
 class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
 
-  # GET /medications or /medications.json
   def index
-    @medications = Medication.all
+    resume = current_user&.skincare_resume
+    @medications = resume ? resume.medications.order(:started_on) : []
   end
 
-  # GET /medications/1 or /medications/1.json
   def show; end
 
-  # GET /medications/new
   def new
     @medication = Medication.new
   end
 
-  # GET /medications/1/edit
   def edit; end
 
-  # POST /medications or /medications.json
   def create
-    @medication = Medication.new(medication_params)
+    resume = current_user.skincare_resume
+    resume ||= current_user.create_skincare_resume(status: :draft)
+    @medication = resume.medications.new(medication_params)
 
-    respond_to do |format|
-      if @medication.save
-        format.html { redirect_to @medication, notice: 'Medication was successfully created.' }
-        format.json { render :show, status: :created, location: @medication }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @medication.errors, status: :unprocessable_entity }
-      end
+    if @medication.save
+      flash.now.notice = '薬の登録に成功しました。'
+    else
+      Rails.logger.info @medication.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /medications/1 or /medications/1.json
   def update
-    respond_to do |format|
-      if @medication.update(medication_params)
-        format.html { redirect_to @medication, notice: 'Medication was successfully updated.', status: :see_other }
-        format.json { render :show, status: :ok, location: @medication }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @medication.errors, status: :unprocessable_entity }
-      end
+    if @medication.update(medication_params)
+      flash.now.notice = '薬の更新に成功しました。'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /medications/1 or /medications/1.json
   def destroy
     @medication.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to medications_path, notice: 'Medication was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
-    end
+    flash.now.notice = '薬の削除に成功しました。'
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_medication
-    @medication = Medication.find(params.expect(:id))
+    @medication = current_user.skincare_resume.medications.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def medication_params
-    params.expect(medication: %i[skincare_resume_id started_on name])
+    params.require(:medication).permit(:started_on, :name)
   end
 end
