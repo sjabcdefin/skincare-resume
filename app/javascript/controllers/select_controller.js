@@ -32,6 +32,14 @@ export default class extends Controller {
       options: options,
       items: selectedValue ? [selectedValue] : [],
       placeholder: "アレルギー名を選択または入力してください。",
+      render: {
+        option_create: (data, escape) =>
+          `<div class="create"><strong>${escape(
+            data.input,
+          )}</strong> を追加 &hellip;</div>`,
+        no_results: () =>
+          '<div class="no-results">該当する項目が見つかりません。</div>',
+      },
     });
   }
 }
