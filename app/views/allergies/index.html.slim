@@ -1,7 +1,10 @@
 - content_for :title, 'アレルギー歴の入力'
 
 .w-full.max-w-4xl.mx-auto
-  .my-8.max-w-4xl.mx-auto.px-4
+  .my-5
+    = render 'shared/progress_bar'
+
+  .my-8.px-4
     h3.font-medium.text-center.text-xl
       | アレルギー歴の入力
     .my-3.text-sm
@@ -22,3 +25,5 @@
             new_allergy_path,
             data: { turbo_frame: 'new_form' },
             class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+
+  = render 'shared/navigation', previous_path: medications_path, next_path: treatments_path
