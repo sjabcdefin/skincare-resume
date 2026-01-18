@@ -7,7 +7,7 @@ class SkincareResumesController < ApplicationController
   TREATMENTS_MAX_SIZE = 20
 
   def confirmation
-    resume = current_user.skincare_resume
+    resume = current_user ? current_user.skincare_resume : current_resume
 
     products = resume ? resume.products.order(:started_on) : []
     medications = resume ? resume.medications.order(:started_on) : []
@@ -24,5 +24,12 @@ class SkincareResumesController < ApplicationController
 
   def format(list, max, &block)
     list.to_a + Array.new([max - list.size, 0].max, &block)
+  end
+
+  def current_resume
+    @session = session
+    return nil unless @session['resume_uuid']
+
+    SkincareResume.find_by(uuid: @session['resume_uuid'])
   end
 end
