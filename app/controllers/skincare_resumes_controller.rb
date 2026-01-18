@@ -21,10 +21,11 @@ class SkincareResumesController < ApplicationController
   end
 
   def update
-    @resume = current_user.skincare_resume
+    @resume = current_user ? current_user.skincare_resume : current_resume
+    redirect_path = current_user ? root_path : '/auth/google_oauth2'
 
     if @resume.update(status: params[:status])
-      redirect_to root_path, notice: '履歴書の登録を完了しました。'
+      redirect_to redirect_path, notice: '履歴書の登録を完了しました。'
     else
       render :confirmation, status: :unprocessable_entity
     end

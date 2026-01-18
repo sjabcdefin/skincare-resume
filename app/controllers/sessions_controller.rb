@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def create
     user = find_or_create_from_auth_hash(auth_hash)
     log_in(user) if user
+    after_save_for_guest(user) if session['resume_uuid']
     redirect_to root_path
   end
 
@@ -23,5 +24,11 @@ class SessionsController < ApplicationController
     User.find_or_create_by(email: email) do |user|
       user.update(email: email)
     end
+  end
+
+  def after_save_for_guest(user)
+    resume = SkincareResume.find_by(uuid: session['resume_uuid'])
+    resume.update!(user:)
+    session.delete('resume_uuid')
   end
 end
