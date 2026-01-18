@@ -41,11 +41,19 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = current_user.skincare_resume.products.find(params[:id])
+    @product = current_user ? find_for_login : find_for_guest
   end
 
   def product_params
     params.require(:product).permit(:started_on, :name)
+  end
+
+  def find_for_login
+    current_user.skincare_resume.products.find(params[:id])
+  end
+
+  def find_for_guest
+    current_resume.products.find(params[:id])
   end
 
   def all_for_login
