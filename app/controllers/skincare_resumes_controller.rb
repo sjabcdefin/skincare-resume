@@ -20,6 +20,16 @@ class SkincareResumesController < ApplicationController
     @treatments = format(treatments, TREATMENTS_MAX_SIZE) { Treatment.new }
   end
 
+  def update
+    @resume = current_user.skincare_resume
+
+    if @resume.update(status: params[:status])
+      redirect_to root_path, notice: '履歴書の登録を完了しました。'
+    else
+      render :confirmation, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def format(list, max, &block)
