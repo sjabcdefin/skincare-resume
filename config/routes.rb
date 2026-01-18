@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   root "products#index"
 
   get 'auth/:provider/callback', to: 'sessions#create'
