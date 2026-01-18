@@ -68,14 +68,14 @@ class MedicationsController < ApplicationController
   def build_for_login
     resume = current_user.skincare_resume
     resume ||= current_user.create_skincare_resume(status: :draft)
-    resume.medications.new(medication_params)
+    resume.medications.build(medication_params)
   end
 
   def build_for_guest
     resume = current_resume
     resume ||= SkincareResume.create!(uuid: SecureRandom.uuid, status: :draft, user_id: nil)
     @session['resume_uuid'] = resume.uuid
-    resume.medications.new(medication_params)
+    resume.medications.build(medication_params)
   end
 
   def current_resume
