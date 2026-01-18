@@ -41,11 +41,19 @@ class TreatmentsController < ApplicationController
   private
 
   def set_treatment
-    @treatment = current_user.skincare_resume.treatments.find(params[:id])
+    @treatment = current_user ? find_for_login : find_for_guest
   end
 
   def treatment_params
     params.require(:treatment).permit(:treated_on, :name)
+  end
+
+  def find_for_login
+    current_user.skincare_resume.treatments.find(params[:id])
+  end
+
+  def find_for_guest
+    current_resume.treatments.find(params[:id])
   end
 
   def all_for_login
