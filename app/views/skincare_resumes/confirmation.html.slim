@@ -71,3 +71,13 @@
               = treatment.name
 
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
+
+  .flex.justify-center.mt-10
+    - if current_user
+      = form_with url: skincare_resume_path, method: :patch do |form|
+        = form.hidden_field :status, value: :completed
+        = form.submit '履歴書を完成させる', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+    - else
+      = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
+        = form.hidden_field :status, value: :completed
+        = form.submit '保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'

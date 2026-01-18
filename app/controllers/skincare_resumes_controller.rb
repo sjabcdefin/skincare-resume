@@ -20,6 +20,17 @@ class SkincareResumesController < ApplicationController
     @treatments = format(treatments, TREATMENTS_MAX_SIZE) { Treatment.new }
   end
 
+  def update
+    @resume = current_user ? current_user.skincare_resume : current_resume
+    redirect_path = current_user ? root_path : '/auth/google_oauth2'
+
+    if @resume.update(status: params[:status])
+      redirect_to redirect_path, notice: '履歴書の登録を完了しました。'
+    else
+      render :confirmation, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def format(list, max, &block)
