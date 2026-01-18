@@ -41,11 +41,19 @@ class MedicationsController < ApplicationController
   private
 
   def set_medication
-    @medication = current_user.skincare_resume.medications.find(params[:id])
+    @medication = current_user ? find_for_login : find_for_guest
   end
 
   def medication_params
     params.require(:medication).permit(:started_on, :name)
+  end
+
+  def find_for_login
+    current_user.skincare_resume.medications.find(params[:id])
+  end
+
+  def find_for_guest
+    current_resume.medications.find(params[:id])
   end
 
   def all_for_login
