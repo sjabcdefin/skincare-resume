@@ -41,11 +41,19 @@ class AllergiesController < ApplicationController
   private
 
   def set_allergy
-    @allergy = current_user.skincare_resume.allergies.find(params[:id])
+    @allergy = current_user ? find_for_login : find_for_guest
   end
 
   def allergy_params
     params.require(:allergy).permit(:name)
+  end
+
+  def find_for_login
+    current_user.skincare_resume.allergies.find(params[:id])
+  end
+
+  def find_for_guest
+    current_resume.allergies.find(params[:id])
   end
 
   def all_for_login
