@@ -31,6 +31,11 @@ class SkincareResumesController < ApplicationController
     end
   end
 
+  def destroy
+    session.delete('resume_uuid')
+    redirect_to root_path
+  end
+
   private
 
   def format(list, max, &block)
