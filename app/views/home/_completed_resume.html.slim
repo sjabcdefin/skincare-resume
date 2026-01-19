@@ -1,0 +1,7 @@
+.flex.justify-center.mt-14
+  = link_to '作成した履歴書を編集・更新する',
+            products_path,
+            class: 'sm:w-64 rounded-md text-center px-4 py-4 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+
+.my-8.w-full.max-w-2xl.mx-auto
+  = render 'resume', resume:, products:, medications:, allergies:, treatments:
