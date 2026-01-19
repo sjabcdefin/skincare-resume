@@ -21,6 +21,8 @@ class HomeController < ApplicationController
     case @resume.status
     when 'draft'
       'draft_resume'
+    when 'completed'
+      'completed_resume'
     end
   end
 
