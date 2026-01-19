@@ -21,7 +21,12 @@ html
   body class='flex flex-col min-h-screen'
     #flash.fixed.top-5.right-5.z-50
       = render 'flash'
-    main.container.mx-auto.mt-28.px-5.flex-grow
+
+    .flex.w-full.mx-auto.max-w-4xl.items-center.mt-8.space-x-2.px-2
+      = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
+      h1.text-2xl.font-bold スキンケアの履歴書
+
+    main.container.mx-auto.mt-4.px-5.flex-grow
       = yield
 
     footer class='py-4 text-center border-t border-gray-300 space-x-8 text-sm font-bold'
