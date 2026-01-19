@@ -1,4 +1,9 @@
 - content_for :title, 'トップページ'
 
 .w-full.max-w-2xl.mx-auto
-  = render @resume_status
+  = render @resume_status,
+    resume: @resume,
+    products: @products,
+    medications: @medications,
+    allergies: @allergies,
+    treatments: @treatments
