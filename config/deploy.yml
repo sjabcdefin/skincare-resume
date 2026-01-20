@@ -12,6 +12,8 @@ registry:
     - KAMAL_REGISTRY_PASSWORD
 builder:
   arch: amd64
+  args:
+    KAMAL_BUILD: "true"
 env:
   clear:
     POSTGRES_USER: appuser
