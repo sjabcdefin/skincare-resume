@@ -6,6 +6,7 @@ servers:
 proxy:
   ssl: true
   host: sjabcdefin.com
+  app_port: 3000
 registry:
   username: sjabcdefin
   password:
