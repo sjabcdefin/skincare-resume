@@ -1,0 +1,27 @@
+service: skincare-resume-app
+image: sjabcdefin/skincare-resume-app
+servers:
+  web:
+    - sjabcdefin.com
+proxy:
+  ssl: true
+  host: sjabcdefin.com
+  app_port: 3000
+registry:
+  username: sjabcdefin
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+builder:
+  arch: amd64
+env:
+  clear:
+    POSTGRES_USER: appuser
+    POSTGRES_HOST: 133.167.73.173
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+    - OMNIAUTH_CLIENT_ID
+    - OMNIAUTH_CLIENT_SECRET
+ssh:
+  user: tomoka
+  port: 1201
