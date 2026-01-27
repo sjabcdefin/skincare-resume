@@ -10,15 +10,27 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: skincare_resume_development
+  primary: &primary_development
+    <<: *default
+    database: skincare_resume_development
+  queue:
+    <<: *primary_development
+    database: skincare_resume_development_queue
+    migrations_paths: db/queue_migrate
+    schema_dump: queue_schema.rb
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: skincare_resume_test
+  primary: &primary_test
+    <<: *default
+    database: skincare_resume_test
+  queue:
+    <<: *primary_test
+    database: skincare_resume_test_queue
+    migrations_paths: db/queue_migrate
+    schema_dump: queue_schema.rb
 
 # SQLite3 write its data on the local filesystem, as such it requires
 # persistent disks. If you are deploying to a managed service, you should
@@ -27,9 +39,18 @@ test:
 # Similarly, if you deploy your application as a Docker container, you must
 # ensure the database is located in a persisted volume.
 production:
-  <<: *default
-  adapter: postgresql
-  database: skincare_resume_production
-  username: <%= ENV["POSTGRES_USER"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
-  host: <%= ENV["POSTGRES_HOST"] %>
+  primary: &primary_production
+    <<: *default
+    adapter: postgresql
+    database: skincare_resume_production
+    username: <%= ENV["POSTGRES_USER"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV["POSTGRES_HOST"] %>
+  queue:
+    <<: *primary_production
+    database: skincare_resume_production_queue
+    migrations_paths: db/queue_migrate
+    schema_dump: queue_schema.rb
+    username: <%= ENV["POSTGRES_USER"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV["POSTGRES_HOST"] %>
