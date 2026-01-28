@@ -70,5 +70,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 EXPOSE 3000
 CMD ./bin/jobs start & ./bin/rails server
 
-HEALTHCHECK --interval=5s --timeout=3s --retries=3 \
+HEALTHCHECK --interval=5s --timeout=30s --retries=3 \
   CMD curl -f http://localhost:3000/up || exit 1
