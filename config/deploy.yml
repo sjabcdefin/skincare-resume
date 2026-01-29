@@ -2,10 +2,10 @@ service: skincare-resume-app
 image: sjabcdefin/skincare-resume-app
 servers:
   web:
-    - sjabcdefin.com
+    - skincare-resume.com
 proxy:
   ssl: true
-  host: sjabcdefin.com
+  host: skincare-resume.com
   app_port: 3000
 registry:
   username: sjabcdefin
