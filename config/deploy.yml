@@ -17,6 +17,7 @@ env:
   clear:
     POSTGRES_USER: appuser
     POSTGRES_HOST: 133.167.73.173
+    SOLID_QUEUE_DATABASE: queue
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD

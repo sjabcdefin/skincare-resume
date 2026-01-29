@@ -71,3 +71,5 @@ gem 'slim-rails'
 gem 'tailwindcss-rails', '~> 4.4'
 
 gem 'i18n_generators'
+
+gem 'solid_queue', '~> 1.3'
