@@ -72,4 +72,4 @@ gem 'tailwindcss-rails', '~> 4.4'
 
 gem 'i18n_generators'
 
-gem "solid_queue", "~> 1.3"
+gem 'solid_queue', '~> 1.3'
