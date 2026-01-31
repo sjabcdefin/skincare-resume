@@ -83,6 +83,11 @@
         = form.submit '保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
 
   .flex.justify-center.mt-10
+    = button_tag '印刷する',
+                class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
+                data: { controller: 'print', action: 'click->print#print' }
+
+  .flex.justify-center.mt-10
     - if current_user
       = link_to 'トップページに戻る',
                 root_path,
