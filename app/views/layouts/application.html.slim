@@ -23,14 +23,14 @@ html
     #flash.fixed.top-5.right-5.z-50
       = render 'flash'
 
-    .flex.w-full.mx-auto.max-w-4xl.items-center.mt-8.space-x-2.px-2
+    .flex.w-full.mx-auto.max-w-4xl.items-center.mt-8.space-x-2.px-2.no-print
       = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
       h1.text-2xl.font-bold スキンケアの履歴書
 
-    main.container.mx-auto.mt-4.px-5.flex-grow
+    main.container.mx-auto.mt-4.px-5.flex-grow.print-area
       = yield
 
-    footer class='py-4 text-center border-t border-gray-300 space-x-8 text-sm font-bold'
+    footer class='py-4 text-center border-t border-gray-300 space-x-8 text-sm font-bold no-print'
       = link_to '利用規約', nil
       = link_to 'プライバシーポリシー', nil
       - if current_user

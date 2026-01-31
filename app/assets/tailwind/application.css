@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .print-only {
+    display: none !important;
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    .print-area {
+      display: block !important;
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    table {
+      page-break-inside: avoid;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    .print-only {
+      display: block !important;
+    }
+
+    .print-break-before {
+      break-before: page;
+    }
+  }
+}

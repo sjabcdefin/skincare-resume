@@ -1,16 +1,18 @@
 - content_for :title, '入力したスキンケアの履歴書の確認'
 
 .w-full.max-w-4xl.mx-auto
-  .my-5
+  .my-5.no-print
     = render 'shared/progress_bar'
 
-  .my-8.px-4
+  .my-8.px-4.no-print
     h3.font-medium.text-center.text-xl
       | 入力したスキンケアの履歴書の確認
 
-  .my-4.w-full.max-w-2xl.mx-auto
-    h3.text-md.sm:text-xl
-      = "スキンケアの履歴書 (最終更新日: #{l(Time.zone.today, format: :default)})"
+  .w-full.max-w-2xl.mx-auto
+    .flex.w-full.mx-auto.max-w-4xl.items-center.space-x-2.px-2
+      = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 print-only'
+      h3.text-md.sm:text-xl
+        = "スキンケアの履歴書 (最終更新日: #{l(Time.zone.today, format: :default)})"
 
     table.table-fixed.w-full.my-4.border.text-sm
       thead
@@ -54,7 +56,7 @@
             td.border.px-4.py-2.text-left
               = allergy.name
 
-    table.table-fixed.w-full.my-4.mt-48.border.text-sm
+    table.table-fixed.w-full.my-4.mt-48.border.text-sm.print-break-before
       thead
         tr
           th.w-32.border.px-4.py-2.text-center 施術日
@@ -72,7 +74,7 @@
 
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
-  .flex.justify-center.mt-10
+  .flex.justify-center.mt-10.no-print
     - if current_user
       = form_with url: skincare_resume_path, method: :patch do |form|
         = form.hidden_field :status, value: :completed
@@ -82,12 +84,12 @@
         = form.hidden_field :status, value: :completed
         = form.submit '保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
 
-  .flex.justify-center.mt-10
+  .flex.justify-center.mt-10.no-print
     = button_tag '印刷する',
                 class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
                 data: { controller: 'print', action: 'click->print#print' }
 
-  .flex.justify-center.mt-10
+  .flex.justify-center.mt-10.no-print
     - if current_user
       = link_to 'トップページに戻る',
                 root_path,
