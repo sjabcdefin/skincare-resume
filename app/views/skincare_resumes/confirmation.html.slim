@@ -20,7 +20,7 @@
           th.w-32.border.px-4.py-2.text-center 使用開始日
           th.border.px-4.py-2.text-left スキンケア製品名
       tbody
-        - @products.each do |product|
+        - @formatter.products.each do |product|
           tr.h-8
             td.border.px-4.py-2.text-center
               - if product.name
@@ -36,7 +36,7 @@
           th.w-32.border.px-4.py-2.text-center 使用開始日
           th.border.px-4.py-2.text-left 薬名
       tbody
-        - @medications.each do |medication|
+        - @formatter.medications.each do |medication|
           tr.h-8
             td.border.px-4.py-2.text-center
               - if medication.name
@@ -51,7 +51,7 @@
         tr
           th.border.px-4.py-2.text-left アレルギー名
       tbody
-        - @allergies.each do |allergy|
+        - @formatter.allergies.each do |allergy|
           tr.h-8
             td.border.px-4.py-2.text-left
               = allergy.name
@@ -62,7 +62,7 @@
           th.w-32.border.px-4.py-2.text-center 施術日
           th.border.px-4.py-2.text-left 治療名
       tbody
-        - @treatments.each do |treatment|
+        - @formatter.treatments.each do |treatment|
           tr.h-8
             td.border.px-4.py-2.text-center
               - if treatment.name
