@@ -13,11 +13,6 @@ class HomeController < ApplicationController
     return 'before_login' unless current_user
     return 'no_resume' unless @resume
 
-    case @resume.status
-    when 'draft'
-      'draft_resume'
-    when 'completed'
-      'completed_resume'
-    end
+    'resume_overview'
   end
 end
