@@ -1,10 +1,15 @@
 .flex.justify-center.my-8.no-print
-  = link_to '作成途中の履歴書を編集・更新する',
+  = link_to resume_button_text(resume),
             products_path,
             class: 'sm:w-64 rounded-md text-center px-4 py-4 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
 
 .w-full.max-w-2xl.mx-auto
-  = render 'resume', resume:, products:, medications:, allergies:, treatments:
+  .flex.w-full.mx-auto.max-w-4xl.items-center.space-x-2.px-2
+    = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 print-only'
+    h3.text-md.sm:text-xl
+      = "スキンケアの履歴書 (最終更新日: #{l(resume.updated_at.to_date, format: :default)})"
+
+  = render '/skincare_resumes/resume', formatter:
 
 .flex.justify-center.mt-10.no-print
   = button_tag '印刷する',
