@@ -6,6 +6,10 @@ class ResumeBasedRepository
     @session = session
   end
 
+  def resume
+    current_resume
+  end
+
   protected
 
   def current_resume
