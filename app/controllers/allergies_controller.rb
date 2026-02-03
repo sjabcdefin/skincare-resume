@@ -4,7 +4,7 @@ class AllergiesController < ApplicationController
   before_action :set_allergy, only: %i[show edit update destroy]
 
   def index
-    @allergies = current_user ? all_for_login : all_for_guest
+    @allergies = repository.all
   end
 
   def show; end
@@ -16,7 +16,7 @@ class AllergiesController < ApplicationController
   def edit; end
 
   def create
-    @allergy = current_user ? build_for_login : build_for_guest
+    @allergy = repository.build(allergy_params)
 
     if @allergy.save
       flash.now.notice = 'アレルギー歴の登録に成功しました。'
@@ -40,48 +40,18 @@ class AllergiesController < ApplicationController
 
   private
 
+  def repository
+    @repository ||= AllergiesRepository.new(
+      user: current_user,
+      session: session
+    )
+  end
+
   def set_allergy
-    @allergy = current_user ? find_for_login : find_for_guest
+    @allergy = repository.find(params[:id])
   end
 
   def allergy_params
     params.require(:allergy).permit(:name)
-  end
-
-  def find_for_login
-    current_user.skincare_resume.allergies.find(params[:id])
-  end
-
-  def find_for_guest
-    current_resume.allergies.find(params[:id])
-  end
-
-  def all_for_login
-    resume = current_user&.skincare_resume
-    resume ? resume.allergies : []
-  end
-
-  def all_for_guest
-    current_resume ? current_resume.allergies : []
-  end
-
-  def build_for_login
-    resume = current_user.skincare_resume
-    resume ||= current_user.create_skincare_resume(status: :draft)
-    resume.allergies.build(allergy_params)
-  end
-
-  def build_for_guest
-    resume = current_resume
-    resume ||= SkincareResume.create!(uuid: SecureRandom.uuid, status: :draft, user_id: nil)
-    @session['resume_uuid'] = resume.uuid
-    resume.allergies.build(allergy_params)
-  end
-
-  def current_resume
-    @session = session
-    return nil unless @session['resume_uuid']
-
-    SkincareResume.find_by(uuid: @session['resume_uuid'])
   end
 end
