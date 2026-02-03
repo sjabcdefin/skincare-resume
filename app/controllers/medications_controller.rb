@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
 
   def index
-    @medications = current_user ? all_for_login : all_for_guest
+    @medications = repository.all
   end
 
   def show; end
@@ -16,7 +16,7 @@ class MedicationsController < ApplicationController
   def edit; end
 
   def create
-    @medication = current_user ? build_for_login : build_for_guest
+    @medication = repository.build(medication_params)
 
     if @medication.save
       flash.now.notice = '薬の登録に成功しました。'
@@ -40,48 +40,18 @@ class MedicationsController < ApplicationController
 
   private
 
+  def repository
+    @repository ||= MedicationsRepository.new(
+      user: current_user,
+      session: session
+    )
+  end
+
   def set_medication
-    @medication = current_user ? find_for_login : find_for_guest
+    @medication = repository.find(params[:id])
   end
 
   def medication_params
     params.require(:medication).permit(:started_on, :name)
-  end
-
-  def find_for_login
-    current_user.skincare_resume.medications.find(params[:id])
-  end
-
-  def find_for_guest
-    current_resume.medications.find(params[:id])
-  end
-
-  def all_for_login
-    resume = current_user&.skincare_resume
-    resume ? resume.medications.order(:started_on) : []
-  end
-
-  def all_for_guest
-    current_resume ? current_resume.medications.order(:started_on) : []
-  end
-
-  def build_for_login
-    resume = current_user.skincare_resume
-    resume ||= current_user.create_skincare_resume(status: :draft)
-    resume.medications.build(medication_params)
-  end
-
-  def build_for_guest
-    resume = current_resume
-    resume ||= SkincareResume.create!(uuid: SecureRandom.uuid, status: :draft, user_id: nil)
-    @session['resume_uuid'] = resume.uuid
-    resume.medications.build(medication_params)
-  end
-
-  def current_resume
-    @session = session
-    return nil unless @session['resume_uuid']
-
-    SkincareResume.find_by(uuid: @session['resume_uuid'])
   end
 end
