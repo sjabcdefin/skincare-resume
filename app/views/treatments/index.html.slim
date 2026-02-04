@@ -27,20 +27,4 @@
             class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
 
   = render 'shared/navigation', previous_path: allergies_path, next_path: confirmation_skincare_resume_path
-
-  .flex.justify-center.mt-10
-    - if !current_user
-      = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
-        = form.hidden_field :status, value: :draft
-        = form.submit '一時保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-
-  .flex.justify-center.mt-10
-    - if current_user
-      = link_to 'トップページに戻る',
-                root_path,
-                class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-    - else
-      = form_with url: skincare_resume_path,
-                  method: :delete,
-                  data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-        = form.submit 'トップページに戻る', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  = render 'shared/resume_form_footer'
