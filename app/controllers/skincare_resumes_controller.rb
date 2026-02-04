@@ -6,7 +6,7 @@ class SkincareResumesController < ApplicationController
   end
 
   def update
-    @resume = current_user ? current_user.skincare_resume : current_resume
+    @resume = repository.resume
     redirect_path = current_user ? root_path : '/auth/google_oauth2'
 
     if @resume.update(status: params[:status])
@@ -19,5 +19,14 @@ class SkincareResumesController < ApplicationController
   def destroy
     session.delete('resume_uuid')
     redirect_to root_path
+  end
+
+  private
+
+  def repository
+    @repository ||= ResumeBasedRepository.new(
+      user: current_user,
+      session: session
+    )
   end
 end
