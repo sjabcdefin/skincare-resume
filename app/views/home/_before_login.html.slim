@@ -1,37 +1,31 @@
-.mx-auto.text-center
-  h1.text-2xl.font-bold
-    | あなたのスキンケア履歴を、
+.text-center.mt-8
+  h1 class='text-xl sm:text-4xl font-bold'
+    | 皮膚科での「何だっけ？」をなくす、
     br.sm:hidden
-    | 診察でそのまま共有
+    | スキンケアの履歴書
 
-  p.mt-6.text-md
-    | スキンケアや薬、美容施術の履歴をまとめて管理。
-
-  p.mt-6.text-md
-    | 皮膚科の診察時にそのまま医師に見せることで、
+.mt-10.text-center.text-base.sm:text-xl
+  p
+    | 皮膚科の問診や診察の場で、
     br.sm:hidden
-    | 説明の手間を減らせます。
-
-  p.mt-6.text-md
-    | 限られた診察時間で必要な情報を伝えられるため、
+    | 思い出す手間を減らし、
     br.sm:hidden
-    | より適切な治療に繋がります。
+    | 正確な情報を伝えるためのアプリです。
 
-.mx-auto.mt-10.max-w-md.text-sm
-  p.mt-4.font-bold
+  p.mt-6
+    | スキンケアや処方薬、美容施術の履歴を
+    br.sm:hidden
+    | 一つにまとめ、
+    br.sm:hidden
+    | 診察時に医師へそのまま見せられます。
+
+div class='max-w-2xl mx-auto my-10 bg-[#F2F5F2] px-6 py-2 shadow border border-gray-200 rounded-md'
+  p class='mt-4 text-base sm:text-xl font-bold'
     | 💡 ご利用方法
-  p.mx-4
-    | ログインなしでもすぐに使えます。保存したい場合はログインが必要です。
-
-  p.mt-6.font-bold
-    | ・Googleアカウントでログイン：
-  p.mx-4
-    | 履歴書の作成、保存した履歴書の確認・編集が可能です。
-
-  p.mt-6.font-bold
-    | ・ログインせずに履歴書を作成：
-  p.mx-4
-    | すぐに入力を始められます。後からログインすることで保存可能です。
+  p.my-4.mx-4.text-sm.sm:text-base
+    | ログインなしでもすぐに使えます。
+    br.sm:hidden
+    | 保存したい場合はログインが必要です。
 
 .flex.flex-col.items-center.mt-10.gap-4
   = link_to 'Googleアカウントでログイン', '/auth/google_oauth2', class: 'sm:w-64 rounded-md text-center px-4 py-4 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
