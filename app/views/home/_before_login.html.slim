@@ -27,7 +27,7 @@ div class='max-w-2xl mx-auto my-10 bg-[#F2F5F2] px-6 py-2 shadow border border-g
     br.sm:hidden
     | 保存したい場合はログインが必要です。
 
-.flex.flex-col.items-center.mt-14.gap-4
+.flex.flex-col.items-center.gap-4
   = link_to '/auth/google_oauth2', class: 'gsi-material-button'
     .gsi-material-button-state
     .gsi-material-button-content-wrapper
@@ -42,4 +42,5 @@ div class='max-w-2xl mx-auto my-10 bg-[#F2F5F2] px-6 py-2 shadow border border-g
         | Google アカウントでログイン
       span style='display: none;'
         | Google アカウントでログイン
-  = link_to 'ログインせずに履歴書を作成', products_path, class: 'sm:w-64 rounded-md text-center px-4 py-4 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  = link_to 'ログインせずに履歴書を作成', products_path,
+            class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-[14px] font-normal text-white'
