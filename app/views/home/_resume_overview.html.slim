@@ -12,7 +12,11 @@
 
   = render '/skincare_resumes/resume', formatter:
 
-.flex.justify-center.mt-10.no-print
+.flex.flex-col.items-center.mt-10.gap-2.no-print
   = button_tag '印刷する',
               class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-[14px] font-normal text-white',
               data: { controller: 'print', action: 'click->print#print' }
+  p.text-xs.text-center.leading-relaxed
+    | ※ 印刷はブラウザの印刷機能を使用します。
+    br
+    | PDFとして保存もできます。
