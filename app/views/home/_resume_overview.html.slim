@@ -1,6 +1,6 @@
 .flex.justify-center.my-8.no-print
   = link_to resume_button_text(resume), products_path,
-            class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-[14px] font-normal text-white'
+            class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
 
 .w-full.max-w-2xl.mx-auto
   .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
@@ -14,7 +14,7 @@
 
 .flex.flex-col.items-center.mt-10.gap-2.no-print
   = button_tag '印刷する',
-              class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-[14px] font-normal text-white',
+              class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white',
               data: { controller: 'print', action: 'click->print#print' }
   p.text-xs.text-center.leading-relaxed
     | ※ 印刷はブラウザの印刷機能を使用します。
