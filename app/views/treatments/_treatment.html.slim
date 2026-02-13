@@ -3,11 +3,11 @@
     .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
       .my-3
         .max-w-md
-          label.block.font-semibold 治療日
+          label.block.text-sm.font-semibold 治療日
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-sm
             = treatment.treated_on.present? ? l(treatment.treated_on, format: :default) : '-'
       .my-3
         .max-w-md
-          label.block.font-semibold 治療名
+          label.block.text-sm.font-semibold 治療名
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-sm
             = treatment.name

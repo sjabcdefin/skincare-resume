@@ -3,7 +3,7 @@
     .my-3
       .max-w-md
         = form.label :name, 'アレルギー名',
-                     class: 'block font-semibold'
+                     class: 'block text-sm font-semibold'
         = form.select :name, [], {},
                              class: ['w-full'],
                              data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
