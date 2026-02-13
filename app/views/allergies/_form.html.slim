@@ -5,7 +5,7 @@
         = form.label :name, 'アレルギー名',
                      class: 'block font-semibold'
         = form.select :name, [], {},
-                             class: ['mt-2 w-full'],
+                             class: ['w-full'],
                              data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
         - if allergy.errors[:name].any?
           p class='text-[12px] text-red-600 mt-1'
