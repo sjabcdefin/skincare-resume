@@ -2,7 +2,7 @@
   - unless current_user
     = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
       = form.hidden_field :status, value: :draft
-      = form.submit '一時保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+      = form.submit '一時保存する', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
 
 .flex.justify-center.mt-10
   - if current_user
