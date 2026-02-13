@@ -15,6 +15,15 @@
   align-items: center;
 }
 
+.ts-control:focus-within {
+  border-color: oklch(54.6% 0.245 262.881);
+  border-width: 2px;
+}
+
+.ts-wrapper.error .ts-control {
+  border-color: oklch(57.7% 0.245 27.325);
+}
+
 .ts-dropdown,
 .ts-control,
 .ts-control input {
