@@ -1,13 +1,12 @@
 = turbo_frame_tag dom_id(medication) do
   = link_to edit_medication_path(medication), class: 'cursor-pointer' do
-    .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
-      .my-3
-        .max-w-md
+    .mx-auto.max-w-4xl.mb-3.px-6.pt-6.pb-6.bg-white.border.border-gray-200.shadow.sm:pb-14
+      .w-full.space-y-3
+        .max-w-md.space-y-2
           label.block.text-sm.font-semibold 使用開始日
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-sm
             = medication.started_on.present? ? l(medication.started_on, format: :default) : '-'
-      .my-3
-        .max-w-md
+        .max-w-md.space-y-2
           label.block.text-sm.font-semibold 薬名
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-sm
             = medication.name

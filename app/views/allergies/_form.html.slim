@@ -1,15 +1,23 @@
 = turbo_frame_tag dom_id(allergy) do
-  = form_with(model: allergy, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
-    .my-3
-      .max-w-md
-        = form.label :name, 'アレルギー名',
-                     class: 'block text-sm font-semibold'
-        = form.select :name, [], {},
-                             class: ['w-full'],
-                             data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
-        - if allergy.errors[:name].any?
-          p class='text-[12px] text-red-600 mt-1'
-            = "アレルギー名#{allergy.errors[:name].first}。"
+  = form_with(model: allergy, class: 'relative mx-auto max-w-4xl my-3 px-6 pt-12 pb-6 sm:pt-6 bg-white border border-gray-400 shadow') do |form|
+    .flex.flex-col.gap-4.sm:flex-row.sm:items-end
+      .w-full
+        .max-w-md.mb-2.space-y-2
+          = form.label :name, 'アレルギー名',
+                       class: 'block text-sm font-semibold'
+          = form.select :name, [], {},
+                               class: ['w-full'],
+                               data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
+          p.min-h-6.text-xs.text-red-600
+            - if allergy.errors[:name].any?
+              = "アレルギー名#{allergy.errors[:name].first}。"
+
+      .flex.space-x-2.justify-between.sm:shrink-0
+        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+        = link_to 'キャンセル',
+                  allergies_path,
+                  data: { turbo_frame: form_frame_for(allergy) },
+                  class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
 
     - if allergy.persisted?
       = form.submit '✕',
@@ -17,10 +25,3 @@
                     data: { turbo_confirm: '本当に削除しますか？' },
                     class: 'absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white',
                     onclick: 'event.stopPropagation();'
-
-    .flex.sm:justify-end.space-x-2
-      = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
-      = link_to 'キャンセル',
-                allergies_path,
-                data: { turbo_frame: form_frame_for(allergy) },
-                class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
