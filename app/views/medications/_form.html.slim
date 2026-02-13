@@ -5,13 +5,13 @@
         = form.label :started_on, '使用開始日',
                      class: 'block font-semibold'
         = form.date_field :started_on,
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600']
+                          class: 'w-full px-3 py-2 border border-gray-400 rounded shadow-sm focus:outline-blue-600 text-sm appearance-none'
     .my-3
       .max-w-md
         = form.label :name, '薬名',
                      class: 'block font-semibold'
         = form.text_field :name, placeholder: '例）ベピオゲル',
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
+                          class: ['w-full px-3 py-2 border rounded shadow-sm text-sm',
                                  { 'border-gray-400 focus:outline-blue-600': medication.errors[:name].none?,
                                    'border-red-400 focus:outline-red-600': medication.errors[:name].any? }]
         - if medication.errors[:name].any?
