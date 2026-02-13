@@ -8,9 +8,9 @@
   - if current_user
     = link_to 'トップページに戻る',
               root_path,
-              class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+              class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
   - else
     = form_with url: skincare_resume_path,
                 method: :delete,
                 data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-      = form.submit 'トップページに戻る', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+      = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
