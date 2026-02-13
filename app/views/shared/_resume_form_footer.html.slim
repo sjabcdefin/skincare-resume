@@ -1,8 +1,12 @@
-.flex.justify-center.mt-10
-  - unless current_user
+- unless current_user
+  .flex.flex-col.items-center.mt-10.gap-2
     = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
       = form.hidden_field :status, value: :draft
       = form.submit '一時保存する', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+    p.leading-relaxed.text-center.text-xs
+      | ※ 保存するにはログインが必要です。
+      br
+      | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
 
 .flex.justify-center.mt-10
   - if current_user
