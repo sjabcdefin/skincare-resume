@@ -1,0 +1,46 @@
+.text-center.mt-8
+  h1.text-xl.font-bold.sm:text-4xl
+    | 皮膚科での「何だっけ？」をなくす、
+    br.sm:hidden
+    | スキンケアの履歴書
+
+.mt-10.space-y-6.text-center.text-base.sm:text-xl
+  p
+    | 皮膚科の問診や診察の場で、
+    br.sm:hidden
+    | 思い出す手間を減らし、
+    br.sm:hidden
+    | 正確な情報を伝えるためのアプリです。
+
+  p
+    | スキンケアや処方薬、美容施術の履歴を
+    br.sm:hidden
+    | 一つにまとめ、
+    br.sm:hidden
+    | 診察時に医師へそのまま見せられます。
+
+.max-w-2xl.mx-auto.my-10.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
+  p.mt-4.text-base.font-bold.sm:text-xl
+    | 💡 ご利用方法
+  p.my-4.mx-4.text-sm.sm:text-base
+    | ログインなしでもすぐに使えます。
+    br.sm:hidden
+    | 保存したい場合はログインが必要です。
+
+.flex.flex-col.items-center.gap-4
+  = link_to '/auth/google_oauth2', class: 'gsi-material-button'
+    .gsi-material-button-state
+    .gsi-material-button-content-wrapper
+      .gsi-material-button-icon
+        svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 48 48" style="display: block;"
+          path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+          path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+          path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+          path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+          path fill="none" d="M0 0h48v48H0z"
+      span class='gsi-material-button-contents'
+        | Google アカウントでログイン
+      span style='display: none;'
+        | Google アカウントでログイン
+  = link_to 'ログインせずに履歴書を作成', products_path,
+            class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'

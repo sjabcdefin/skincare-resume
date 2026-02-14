@@ -1,27 +1,31 @@
-.mx-auto.text-center
-  h1.text-2xl.font-bold
-    | 履歴書を作成して、肌の情報を整理しましょう
+.text-center.mt-8
+  h1.text-xl.font-bold.sm:text-4xl
+    | 履歴書を作成して、
+    br.sm:hidden 
+    | 肌の情報を整理しましょう
 
-  p.mt-6.text-md
-    | スキンケアや薬、美容施術の履歴などの
+.mt-10.space-y-6.text-center.text-base.sm:text-xl
+  p
+    | スキンケアや処方薬、美容施術の履歴を
     br.sm:hidden
-    | 大切な情報を一つにまとめられます。
+    | 一つにまとめて管理できます。
 
-  p.mt-6.text-md
-    | 作成した履歴書は保存しておけるため、
+  p
+    | 作成した履歴書は保存できるため、
     br.sm:hidden
-    | いつでも見返すことができます。
+    | いつでも見返せます。
 
-  p.mt-6.text-md
-    | 診療のたびに思い出して説明する手間を減らし、
+  p
+    | 診療のたびに思い出す手間を減らし、
     br.sm:hidden
-    | より適切な治療に繋げましょう。
+    | 診察をよりスムーズに進められます。
 
-.mx-auto.max-w-md.text-sm
-  p.mt-10.sm:mt-14
+.max-w-2xl.mx-auto.my-10.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
+  p.mt-4.text-base.font-bold.sm:text-xl
     | 💡 ご利用方法
-  p.mx-4
+  p.my-4.mx-4.text-sm.sm:text-base
     | 「履歴書を新規作成する」ボタンから、すぐに入力を始められます。
 
-.flex.justify-center.mt-14
-  = link_to '履歴書を新規作成する', products_path, class: 'sm:w-64 rounded-md text-center px-4 py-4 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+.flex.justify-center
+  = link_to '履歴書を新規作成する', products_path,
+            class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
