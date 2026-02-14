@@ -33,10 +33,14 @@
         | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
 
 
-  .flex.justify-center.mt-10.no-print
+  .flex.flex-col.items-center.mt-10.gap-2.no-print
     = button_tag '印刷する',
                 class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white',
                 data: { controller: 'print', action: 'click->print#print' }
+    p.leading-relaxed.text-center.text-xs
+      | ※ 印刷はブラウザの印刷機能を使用します。
+      br
+      | PDFとして保存もできます。
 
   .flex.justify-center.mt-10.no-print
     - if current_user
