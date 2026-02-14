@@ -30,7 +30,7 @@
 
   .flex.justify-center.mt-10.no-print
     = button_tag '印刷する',
-                class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
+                class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white',
                 data: { controller: 'print', action: 'click->print#print' }
 
   .flex.justify-center.mt-10.no-print
