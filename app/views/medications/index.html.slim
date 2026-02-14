@@ -1,13 +1,12 @@
 - content_for :title, '使用している薬の入力'
 
 .w-full.max-w-4xl.mx-auto
-  .my-5
-    = render 'shared/progress_bar'
+  = render 'shared/progress_bar'
 
-  .my-8.px-4
-    h3.font-medium.text-center.text-xl
+  .my-8.px-4.space-y-3
+    h3.text-center.text-xl.font-medium
       | 使用している薬の入力
-    .my-3.text-sm
+    .text-sm
       p
         | 💡 ご利用方法
         br
@@ -24,7 +23,7 @@
   = link_to '＋',
             new_medication_path,
             data: { turbo_frame: 'new_form' },
-            class: 'rounded-full w-8 h-8 mx-auto flex items-center justify-center bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+            class: 'mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] rounded-full text-xl text-white'
 
   = render 'shared/navigation', previous_path: products_path, next_path: allergies_path
   = render 'shared/resume_form_footer'

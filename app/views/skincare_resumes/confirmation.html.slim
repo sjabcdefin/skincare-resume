@@ -9,37 +9,47 @@
       | 入力したスキンケアの履歴書の確認
 
   .w-full.max-w-2xl.mx-auto
-    .flex.w-full.mx-auto.max-w-4xl.items-center.space-x-2.px-2
+    .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
       = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 print-only'
-      h3.text-md.sm:text-xl
-        = "スキンケアの履歴書 (最終更新日: #{l(Time.zone.today, format: :default)})"
+      h3.text-md.font-bold.sm:text-xl
+        | スキンケアの履歴書
+        br.sm:hidden
+        = "（最終更新日: #{l(Time.zone.today, format: :default)}）"
 
     = render 'resume', formatter: @formatter
 
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
-  .flex.justify-center.mt-10.no-print
-    - if current_user
-      = form_with url: skincare_resume_path, method: :patch do |form|
-        = form.hidden_field :status, value: :completed
-        = form.submit '履歴書を完成させる', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-    - else
-      = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
-        = form.hidden_field :status, value: :completed
-        = form.submit '保存する', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+  .flex.flex-col.items-center.mt-4.gap-4.no-print
+    .flex.flex-col.items-center.min-h-24.gap-2
+      - if current_user
+        = form_with url: skincare_resume_path, method: :patch do |form|
+          = form.hidden_field :status, value: :completed
+          = form.submit '履歴書を完成させる', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+      - else
+        = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
+          = form.hidden_field :status, value: :completed
+          = form.submit '保存する', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+        p.leading-relaxed.text-center.text-xs
+          | ※ 保存するにはログインが必要です。
+          br
+          | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
 
-  .flex.justify-center.mt-10.no-print
-    = button_tag '印刷する',
-                class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium',
-                data: { controller: 'print', action: 'click->print#print' }
+    .flex.flex-col.items-center.min-h-24.gap-2
+      = button_tag '印刷する',
+                  class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white',
+                  data: { controller: 'print', action: 'click->print#print' }
+      p.leading-relaxed.text-center.text-xs
+        | ※ 印刷はブラウザの印刷機能を使用します。
+        br
+        | PDFとして保存もできます。
 
-  .flex.justify-center.mt-10.no-print
     - if current_user
       = link_to 'トップページに戻る',
                 root_path,
-                class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+                class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
     - else
       = form_with url: skincare_resume_path,
                   method: :delete,
                   data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-        = form.submit 'トップページに戻る', class: 'w-40 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
+        = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'

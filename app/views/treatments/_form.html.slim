@@ -1,33 +1,33 @@
 = turbo_frame_tag dom_id(treatment) do
-  = form_with(model: treatment, class: 'relative my-3 bg-white px-6 py-3 shadow border border-gray-400 mx-auto max-w-4xl') do |form|
-    .my-3
-      .max-w-md
-        = form.label :treated_on, '治療日',
-                     class: 'block font-semibold'
-        = form.date_field :treated_on,
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full border-gray-400 focus:outline-blue-600']
-    .my-3
-      .max-w-md
-        = form.label :name, '治療名',
-                     class: 'block font-semibold'
-        = form.text_field :name, placeholder: '例）マッサージピール',
-                          class: ['block shadow-sm rounded-md border px-3 py-2 mt-2 w-full',
-                                 { 'border-gray-400 focus:outline-blue-600': treatment.errors[:name].none?,
-                                   'border-red-400 focus:outline-red-600': treatment.errors[:name].any? }]
-        - if treatment.errors[:name].any?
-          p class='text-[12px] text-red-600 mt-1'
-            = "治療名#{treatment.errors[:name].first}。"
+  = form_with(model: treatment, class: 'relative mx-auto max-w-4xl mb-3 px-6 pt-12 sm:pt-6 bg-white border border-gray-400 shadow') do |form|
+    .flex.flex-col.pb-6.gap-4.sm:flex-row.sm:items-end
+      .w-full.space-y-3
+        .max-w-md.space-y-2
+          = form.label :treated_on, '治療日',
+                       class: 'block text-sm font-semibold'
+          = form.date_field :treated_on,
+                            class: 'w-full px-3 py-2 border border-gray-400 rounded shadow-sm focus:outline-blue-600 text-sm appearance-none'
+        .max-w-md.space-y-2
+          = form.label :name, '治療名',
+                       class: 'block text-sm font-semibold'
+          = form.text_field :name, placeholder: '例）マッサージピール',
+                            class: ['w-full px-3 py-2 border rounded shadow-sm text-sm',
+                                   { 'border-gray-400 focus:outline-blue-600': treatment.errors[:name].none?,
+                                     'border-red-400 focus:outline-red-600': treatment.errors[:name].any? }]
+          p.min-h-6.text-xs.text-red-600
+            - if treatment.errors[:name].any?
+              = "治療名#{treatment.errors[:name].first}。"
+
+      .flex.space-x-2.justify-between.sm:shrink-0
+        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+        = link_to 'キャンセル',
+                  treatments_path,
+                  data: { turbo_frame: form_frame_for(treatment) },
+                  class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
 
     - if treatment.persisted?
       = form.submit '✕',
                     formmethod: :delete,
                     data: { turbo_confirm: '本当に削除しますか？' },
-                    class: 'absolute top-3 right-3 rounded-md text-center px-3.5 py-2 bg-red-600 hover:bg-red-500 text-white font-medium',
+                    class: 'absolute top-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white',
                     onclick: 'event.stopPropagation();'
-
-    .flex.sm:justify-end.space-x-2
-      = form.submit class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-[#5F7F67] hover:bg-[#4A6652] text-white font-medium'
-      = link_to 'キャンセル',
-                treatments_path,
-                data: { turbo_frame: form_frame_for(treatment) },
-                class: 'w-full sm:w-24 rounded-md text-center px-3.5 py-2 bg-gray-100 hover:bg-gray-50 font-medium'

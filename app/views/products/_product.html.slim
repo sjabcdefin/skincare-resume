@@ -1,13 +1,12 @@
 = turbo_frame_tag dom_id(product) do
   = link_to edit_product_path(product), class: 'cursor-pointer' do
-    .my-3.bg-white.px-6.py-3.shadow.border.border-gray-200.mx-auto.max-w-4xl
-      .my-3
-        .max-w-md
-          label.block.font-semibold 使用開始日
-          .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+    .mx-auto.max-w-4xl.mb-3.px-6.pt-6.pb-6.bg-white.border.border-gray-200.shadow.sm:pb-14
+      .w-full.space-y-3
+        .max-w-md.space-y-2
+          label.block.text-sm.font-semibold 使用開始日
+          .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-sm
             = product.started_on.present? ? l(product.started_on, format: :default) : '-'
-      .my-3
-        .max-w-md
-          label.block.font-semibold スキンケア製品名
-          .block.shadow-sm.rounded-md.border.px-3.py-2.mt-2.border-gray-400
+        .max-w-md.space-y-2
+          label.block.text-sm.font-semibold スキンケア製品名
+          .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-sm
               = product.name
