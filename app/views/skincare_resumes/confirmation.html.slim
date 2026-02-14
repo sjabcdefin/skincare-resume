@@ -9,10 +9,12 @@
       | 入力したスキンケアの履歴書の確認
 
   .w-full.max-w-2xl.mx-auto
-    .flex.w-full.mx-auto.max-w-4xl.items-center.space-x-2.px-2
+    .flex.w-full.mx-auto.max-w-4xl.items-center.space-x-2
       = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 print-only'
-      h3.text-md.sm:text-xl
-        = "スキンケアの履歴書 (最終更新日: #{l(Time.zone.today, format: :default)})"
+      h3.text-md.font-bold.sm:text-xl
+        | スキンケアの履歴書
+        br.sm:hidden
+        = "（最終更新日: #{l(Time.zone.today, format: :default)}）"
 
     = render 'resume', formatter: @formatter
 
