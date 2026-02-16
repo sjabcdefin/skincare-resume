@@ -17,11 +17,11 @@
       - if current_user
         = form_with url: skincare_resume_path, method: :patch do |form|
           = form.hidden_field :status, value: :completed
-          = form.submit '履歴書を完成させる', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
+          = form.submit '履歴書を完成させる', class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
       - else
         = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
           = form.hidden_field :status, value: :completed
-          = form.submit '保存する', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
+          = form.submit '保存する', class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
         p.leading-relaxed.text-center.text-xs
           | ※ 保存するにはログインが必要です。
           br
@@ -29,7 +29,7 @@
 
     .flex.flex-col.items-center.min-h-24.gap-2
       = button_tag '印刷する',
-                  class: 'inline-flex items-center justify-center h-12 w-36 border border-[#5F7F67] rounded bg-white hover:bg-[#F3F7F4] text-base text-[#5F7F67] font-normal',
+                  class: 'inline-flex items-center justify-center h-12 w-40 border border-[#5F7F67] rounded bg-white hover:bg-[#F3F7F4] text-base text-[#5F7F67] font-normal',
                   data: { controller: 'print', action: 'click->print#print' }
       p.leading-relaxed.text-center.text-xs
         | ※ 印刷はブラウザの印刷機能を使用します。
@@ -39,9 +39,9 @@
     - if current_user
       = link_to 'トップページに戻る',
                 root_path,
-                class: 'inline-flex items-center justify-center h-12 w-36 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+                class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
     - else
       = form_with url: skincare_resume_path,
                   method: :delete,
                   data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-        = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-36 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+        = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
