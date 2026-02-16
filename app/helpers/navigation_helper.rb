@@ -11,7 +11,7 @@ module NavigationHelper
                 border border-[#5F7F67]
                 rounded shadow-sm
                 bg-white hover:bg-[#F3F7F4]
-                text-sm text-[#5F7F67] font-medium
+                text-base text-[#5F7F67] font-medium
               ]
     else
       content_tag(:span, '', class: 'w-24')
