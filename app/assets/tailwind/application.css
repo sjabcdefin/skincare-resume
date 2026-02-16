@@ -120,10 +120,6 @@
 }
 
 @layer utilities {
-  .print-only {
-    display: none !important;
-  }
-
   @media print {
     @page {
       size: A4;
@@ -139,10 +135,6 @@
 
     table {
       page-break-inside: avoid;
-    }
-
-    .print-only {
-      display: block !important;
     }
 
     .print-break-before {
