@@ -1,5 +1,5 @@
 - unless current_user
-  .flex.flex-col.items-center.mt-4.gap-2
+  .flex.flex-col.items-center.mt-6.gap-2
     = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
       = form.hidden_field :status, value: :draft
       = form.submit '一時保存する', class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
