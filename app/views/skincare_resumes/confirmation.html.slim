@@ -29,7 +29,7 @@
 
     .flex.flex-col.items-center.min-h-24.gap-2
       = button_tag '印刷する',
-                  class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white',
+                  class: 'inline-flex items-center justify-center h-12 w-36 border border-[#5F7F67] rounded bg-white hover:bg-[#F3F7F4] text-sm text-[#5F7F67] font-normal',
                   data: { controller: 'print', action: 'click->print#print' }
       p.leading-relaxed.text-center.text-xs
         | ※ 印刷はブラウザの印刷機能を使用します。
