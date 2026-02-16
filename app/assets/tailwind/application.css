@@ -141,10 +141,6 @@
       page-break-inside: avoid;
     }
 
-    .no-print {
-      display: none !important;
-    }
-
     .print-only {
       display: block !important;
     }
