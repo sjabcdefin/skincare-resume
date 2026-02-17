@@ -120,14 +120,9 @@
 }
 
 @layer utilities {
-  .print-only {
-    display: none !important;
-  }
-
   @media print {
     @page {
-      size: A4;
-      margin: 20mm;
+      margin: 16mm 20mm;
     }
 
     .print-area {
@@ -137,20 +132,13 @@
       padding: 0 !important;
     }
 
-    table {
+    .print-area table {
       page-break-inside: avoid;
-    }
-
-    .no-print {
-      display: none !important;
-    }
-
-    .print-only {
-      display: block !important;
     }
 
     .print-break-before {
       break-before: page;
+      page-break-before: always;
     }
   }
 }

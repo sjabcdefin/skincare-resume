@@ -1,26 +1,18 @@
 - content_for :title, '入力したスキンケアの履歴書の確認'
 
 .w-full.max-w-4xl.mx-auto
-  .my-5.no-print
+  .my-5.print:hidden
     = render 'shared/progress_bar'
 
-  .my-8.px-4.no-print
+  .my-8.px-4.print:hidden
     h3.font-medium.text-center.text-xl
       | 入力したスキンケアの履歴書の確認
 
-  .w-full.max-w-2xl.mx-auto
-    .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
-      = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 print-only'
-      h3.text-md.font-bold.sm:text-xl
-        | スキンケアの履歴書
-        br.sm:hidden
-        = "（最終更新日: #{l(Time.zone.today, format: :default)}）"
-
-    = render 'resume', formatter: @formatter
+  = render 'resume', formatter: @formatter, update_date: Time.zone.today
 
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
-  .flex.flex-col.items-center.mt-4.gap-4.no-print
+  .flex.flex-col.items-center.mt-4.gap-4.print:hidden
     .flex.flex-col.items-center.min-h-24.gap-2
       - if current_user
         = form_with url: skincare_resume_path, method: :patch do |form|

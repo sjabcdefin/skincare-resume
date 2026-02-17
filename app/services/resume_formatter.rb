@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ResumeFormatter
-  PRODUCTS_MAX_SIZE = 10
-  MEDICATIONS_MAX_SIZE = 5
-  ALLERGIES_MAX_SIZE = 5
-  TREATMENTS_MAX_SIZE = 20
+  PRODUCTS_MAX_SIZE = 12
+  MEDICATIONS_MAX_SIZE = 4
+  ALLERGIES_MAX_SIZE = 4
+  TREATMENTS_MAX_SIZE = 24
 
   def initialize(user:, session:)
     @resume = user ? user.skincare_resume : current_resume(session)
