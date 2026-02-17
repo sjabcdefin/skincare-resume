@@ -2,15 +2,7 @@
   = link_to resume_button_text(resume), products_path,
             class: 'inline-flex items-center justify-center h-12 min-w-[248px] px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
 
-.w-full.max-w-2xl.mx-auto
-  .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
-    = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 hidden print:block'
-    h3.text-md.font-bold.sm:text-xl
-      | スキンケアの履歴書
-      br.sm:hidden
-      = "（最終更新日: #{l(resume.updated_at.to_date, format: :default)}）"
-
-  = render '/skincare_resumes/resume', formatter:
+= render '/skincare_resumes/resume', formatter: , update_date: resume.updated_at.to_date
 
 .flex.flex-col.items-center.mt-10.gap-2.print:hidden
   = button_tag '印刷する',
