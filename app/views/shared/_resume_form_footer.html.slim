@@ -1,8 +1,8 @@
 - unless current_user
-  .flex.flex-col.items-center.mt-4.gap-2
+  .flex.flex-col.items-center.mt-6.gap-2
     = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
       = form.hidden_field :status, value: :draft
-      = form.submit '一時保存する', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+      = form.submit '一時保存する', class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
     p.leading-relaxed.text-center.text-xs
       | ※ 保存するにはログインが必要です。
       br
@@ -12,9 +12,9 @@
   - if current_user
     = link_to 'トップページに戻る',
               root_path,
-              class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+              class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
   - else
     = form_with url: skincare_resume_path,
                 method: :delete,
                 data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-      = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-36 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
+      = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'

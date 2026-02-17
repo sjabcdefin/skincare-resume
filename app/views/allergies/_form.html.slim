@@ -4,7 +4,7 @@
       .w-full
         .max-w-md.mb-2.space-y-2
           = form.label :name, 'アレルギー名',
-                       class: 'block text-sm font-semibold'
+                       class: 'block text-base font-semibold'
           = form.select :name, [], {},
                                class: ['w-full'],
                                data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
@@ -13,11 +13,11 @@
               = "アレルギー名#{allergy.errors[:name].first}。"
 
       .flex.space-x-2.justify-between.sm:shrink-0
-        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-sm font-normal text-white'
+        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
         = link_to 'キャンセル',
                   allergies_path,
                   data: { turbo_frame: form_frame_for(allergy) },
-                  class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
+                  class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
 
     - if allergy.persisted?
       = form.submit '✕',
