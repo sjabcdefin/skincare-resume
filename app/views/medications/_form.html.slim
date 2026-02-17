@@ -23,7 +23,7 @@
         = link_to 'キャンセル',
                   medications_path,
                   data: { turbo_frame: form_frame_for(medication) },
-                  class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-gray-100 hover:bg-gray-50 text-sm font-normal'
+                  class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-sm font-normal'
 
     - if medication.persisted?
       = form.submit '✕',
