@@ -122,7 +122,6 @@
 @layer utilities {
   @media print {
     @page {
-      size: A4;
       margin: 16mm 20mm;
     }
 
@@ -133,12 +132,13 @@
       padding: 0 !important;
     }
 
-    table {
+    .print-area table {
       page-break-inside: avoid;
     }
 
     .print-break-before {
       break-before: page;
+      page-break-before: always;
     }
   }
 }
