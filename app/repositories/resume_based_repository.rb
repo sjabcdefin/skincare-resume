@@ -10,6 +10,10 @@ class ResumeBasedRepository
     current_resume
   end
 
+  def build
+    @user ? build_login_resume : build_guest_resume
+  end
+
   protected
 
   def current_resume
@@ -24,6 +28,18 @@ class ResumeBasedRepository
     return nil unless @session['resume_uuid']
 
     SkincareResume.find_by(uuid: @session['resume_uuid'])
+  end
+
+  def build_login_resume
+    @user.build_skincare_resume(status: :draft)
+  end
+
+  def build_guest_resume
+    SkincareResume.new(
+      uuid: SecureRandom.uuid,
+      status: :draft,
+      user_id: nil
+    )
   end
 
   def writable_resume
