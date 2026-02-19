@@ -10,6 +10,6 @@ class AllergiesRepository < ResumeBasedRepository
   end
 
   def build(params)
-    writable_resume.allergies.build(params)
+    current_resume.allergies.build(params)
   end
 end

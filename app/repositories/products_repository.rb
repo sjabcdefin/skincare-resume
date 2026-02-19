@@ -10,6 +10,6 @@ class ProductsRepository < ResumeBasedRepository
   end
 
   def build(params)
-    writable_resume.products.build(params)
+    current_resume.products.build(params)
   end
 end

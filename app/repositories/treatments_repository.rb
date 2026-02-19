@@ -10,6 +10,6 @@ class TreatmentsRepository < ResumeBasedRepository
   end
 
   def build(params)
-    writable_resume.treatments.build(params)
+    current_resume.treatments.build(params)
   end
 end
