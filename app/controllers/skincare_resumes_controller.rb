@@ -17,7 +17,7 @@ class SkincareResumesController < ApplicationController
     @resume = repository.resume
     redirect_path = current_user ? root_path : '/auth/google_oauth2'
 
-    if @resume.update(status: params[:status])
+    if @resume.update(status_params)
       redirect_to redirect_path, notice: '履歴書の登録を完了しました。'
     else
       render :confirmation, status: :unprocessable_entity
@@ -36,5 +36,9 @@ class SkincareResumesController < ApplicationController
       user: current_user,
       session: session
     )
+  end
+
+  def status_params
+    params.require(:skincare_resume).permit(:status)
   end
 end

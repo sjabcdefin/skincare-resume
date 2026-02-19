@@ -3,7 +3,7 @@
     == button_to '一時保存する',
                  skincare_resume_path,
                  method: :patch,
-                 params: { status: :draft },
+                 params: { skincare_resume: { status: :completed } },
                  data: { turbo: false },
                  class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
     p.leading-relaxed.text-center.text-xs
