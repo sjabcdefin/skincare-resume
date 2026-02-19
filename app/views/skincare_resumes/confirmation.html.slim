@@ -47,7 +47,8 @@
                 root_path,
                 class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
     - else
-      = form_with url: skincare_resume_path,
+      = button_to 'トップページに戻る',
+                  skincare_resume_path,
                   method: :delete,
-                  data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-        = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+                  data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' },
+                  class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
