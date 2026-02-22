@@ -15,13 +15,19 @@
   .flex.flex-col.items-center.mt-6.gap-4.print:hidden
     .flex.flex-col.items-center.min-h-24.gap-2
       - if current_user
-        = form_with url: skincare_resume_path, method: :patch do |form|
-          = form.hidden_field :status, value: :completed
-          = form.submit '履歴書を完成させる', class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
+        = button_to '履歴書を完成させる',
+                    skincare_resume_path,
+                    method: :patch,
+                    params: { skincare_resume: { status: :completed } },
+                    data: { turbo: false },
+                    class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
       - else
-        = form_with url: skincare_resume_path, method: :patch, data: { turbo: false } do |form|
-          = form.hidden_field :status, value: :completed
-          = form.submit '保存する', class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
+        =button_to '保存する',
+                   skincare_resume_path,
+                   method: :patch,
+                   params: { skincare_resume: { status: :completed } },
+                   data: { turbo: false },
+                   class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
         p.leading-relaxed.text-center.text-xs
           | ※ 保存するにはログインが必要です。
           br
@@ -41,7 +47,8 @@
                 root_path,
                 class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
     - else
-      = form_with url: skincare_resume_path,
+      = button_to 'トップページに戻る',
+                  skincare_resume_path,
                   method: :delete,
-                  data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' } do |form|
-        = form.submit 'トップページに戻る', class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+                  data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' },
+                  class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
