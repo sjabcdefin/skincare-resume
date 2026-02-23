@@ -8,7 +8,7 @@
     h3.font-medium.text-center.text-xl
       | 入力したスキンケアの履歴書の確認
 
-  = render 'resume', formatter: @formatter, update_date: Time.zone.today
+  = render 'resume', display_resume: @display_resume, print_resume: @print_resume, update_date: Time.zone.today
 
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 

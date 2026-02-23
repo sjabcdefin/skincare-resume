@@ -2,7 +2,7 @@
   = link_to resume_button_text(resume), products_path,
             class: 'inline-flex items-center justify-center h-12 min-w-60 px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
 
-= render '/skincare_resumes/resume', formatter:, update_date: resume.updated_at.to_date
+= render '/skincare_resumes/resume', display_resume:, print_resume:, update_date: resume.updated_at.to_date
 
 .flex.flex-col.items-center.mt-10.gap-2.print:hidden
   = button_tag '印刷する',
