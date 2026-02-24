@@ -11,23 +11,27 @@ class ResumePrintFormatter
   end
 
   def products
-    products = @resume.products.order(:started_on)
-    format(products, PRODUCTS_MAX_SIZE) { Product.new }
+    products = @resume.products || Product.none
+    sorted_products = products.order_for_print.limit(PRODUCTS_MAX_SIZE).reverse
+    format(sorted_products, PRODUCTS_MAX_SIZE) { Product.new }
   end
 
   def medications
-    medications = @resume.medications.order(:started_on)
-    format(medications, MEDICATIONS_MAX_SIZE) { Medication.new }
+    medications = @resume.medications || Medication.none
+    sorted_medications = medications.order_for_print.limit(MEDICATIONS_MAX_SIZE).reverse
+    format(sorted_medications, MEDICATIONS_MAX_SIZE) { Medication.new }
   end
 
   def allergies
-    allergies = @resume.allergies
-    format(allergies, ALLERGIES_MAX_SIZE) { Allergy.new }
+    allergies = @resume.allergies || Allergy.none
+    limited_allergies = allergies.limit(ALLERGIES_MAX_SIZE)
+    format(limited_allergies, ALLERGIES_MAX_SIZE) { Allergy.new }
   end
 
   def treatments
-    treatments = @resume.treatments.order(:treated_on)
-    format(treatments, TREATMENTS_MAX_SIZE) { Treatment.new }
+    treatments = @resume.treatments || Treatment.none
+    sorted_treatments = treatments.order_for_print.limit(TREATMENTS_MAX_SIZE).reverse
+    format(sorted_treatments, TREATMENTS_MAX_SIZE) { Treatment.new }
   end
 
   private
