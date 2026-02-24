@@ -1,3 +1,5 @@
 = turbo_stream.append 'treatments', @treatment
 = turbo_stream.update Treatment.new, ''
 = turbo_stream_flash
+
+= turbo_stream.replace 'save_button', partial: 'shared/resume_save_button'

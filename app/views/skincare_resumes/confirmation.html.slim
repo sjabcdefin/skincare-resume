@@ -29,18 +29,27 @@
                     method: :patch,
                     params: { skincare_resume: { status: :completed } },
                     data: { turbo: false },
-                    class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
+                    disabled: @resume.blank?,
+                    class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
+        - if @resume.blank?
+          p.leading-relaxed.text-center.text-xs.text-red-600
+            | ※ 履歴書の情報を登録すると完成できるようになります。
       - else
         =button_to '保存する',
                    skincare_resume_path,
                    method: :patch,
                    params: { skincare_resume: { status: :completed } },
                    data: { turbo: false },
-                   class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
-        p.leading-relaxed.text-center.text-xs
-          | ※ 保存するにはログインが必要です。
-          br
-          | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
+                   disabled: @resume.blank?,
+                   class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
+        - if @resume.present?
+          p.leading-relaxed.text-center.text-xs
+            | ※ 保存するにはログインが必要です。
+            br
+            | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
+        - else
+          p.leading-relaxed.text-center.text-xs.text-red-600
+            | ※ 履歴書の情報を登録すると保存できるようになります。
 
     .flex.flex-col.items-center.min-h-24.gap-2
       = button_tag '印刷する',

@@ -2,17 +2,9 @@
 
 class SkincareResumesController < ApplicationController
   def confirmation
-    resume = repository.resume
-    @display_resume = ResumeDisplayFormatter.new(resume:)
-    @print_resume = ResumePrintFormatter.new(resume:)
-  end
-
-  def create
-    @resume = repository.build
-    @resume.save!
-    session['resume_uuid'] = @resume.uuid unless current_user
-
-    redirect_to products_path
+    @resume = repository.resume
+    @display_resume = ResumeDisplayFormatter.new(resume: @resume)
+    @print_resume = ResumePrintFormatter.new(resume: @resume)
   end
 
   def update
