@@ -8,7 +8,16 @@
     h3.font-medium.text-center.text-xl
       | 入力したスキンケアの履歴書の確認
 
-  = render 'resume', formatter: @formatter, update_date: Time.zone.today
+  .print:hidden
+    - if resume_items_empty(@display_resume)
+      .w-full.max-w-2xl.mx-auto.mt-4.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
+        p.my-4.text-sm.sm:text-base
+          | 📝 現在、登録している履歴書情報はありません。
+    - else
+      = render 'resume', resume: @display_resume, print_mode: false, update_date: Time.zone.today
+
+  .print-area.hidden.print:block
+    = render 'resume', resume: @print_resume, print_mode: true, update_date: Time.zone.today
 
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
@@ -40,7 +49,7 @@
       p.leading-relaxed.text-center.text-xs
         | ※ 印刷はブラウザの印刷機能を使用します。
         br
-        | PDFとして保存もできます。
+        | 日付順に整理された最新の記録を上限件数まで表示します。
 
     - if current_user
       = link_to 'トップページに戻る',

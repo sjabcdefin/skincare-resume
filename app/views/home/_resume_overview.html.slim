@@ -2,7 +2,16 @@
   = link_to resume_button_text(resume), products_path,
             class: 'inline-flex items-center justify-center h-12 min-w-60 px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
 
-= render '/skincare_resumes/resume', formatter:, update_date: resume.updated_at.to_date
+.print:hidden
+  - if resume_items_empty(display_resume)
+    .w-full.max-w-2xl.mx-auto.mt-4.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
+      p.my-4.text-sm.sm:text-base
+        | 📝 現在、登録している履歴書情報はありません。
+  - else
+    = render '/skincare_resumes/resume', resume: display_resume, print_mode: false, update_date: resume.updated_at.to_date
+
+.print-area.hidden.print:block
+  = render '/skincare_resumes/resume', resume: print_resume, print_mode: true, update_date: resume.updated_at.to_date
 
 .flex.flex-col.items-center.mt-10.gap-2.print:hidden
   = button_tag '印刷する',
@@ -11,4 +20,4 @@
   p.text-xs.text-center.leading-relaxed
     | ※ 印刷はブラウザの印刷機能を使用します。
     br
-    | PDFとして保存もできます。
+    | 日付順に整理された最新の記録を上限件数まで表示します。

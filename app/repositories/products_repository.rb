@@ -2,7 +2,7 @@
 
 class ProductsRepository < ResumeBasedRepository
   def all
-    current_resume.products&.order(:started_on) || Product.none
+    current_resume.products || Product.none
   end
 
   def find(id)

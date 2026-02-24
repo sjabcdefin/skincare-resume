@@ -2,7 +2,9 @@
 
 class SkincareResumesController < ApplicationController
   def confirmation
-    @formatter = ResumeFormatter.new(user: current_user, session: session)
+    resume = repository.resume
+    @display_resume = ResumeDisplayFormatter.new(resume:)
+    @print_resume = ResumePrintFormatter.new(resume:)
   end
 
   def create
