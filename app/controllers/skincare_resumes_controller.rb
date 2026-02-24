@@ -7,14 +7,6 @@ class SkincareResumesController < ApplicationController
     @print_resume = ResumePrintFormatter.new(resume:)
   end
 
-  def create
-    @resume = repository.build
-    @resume.save!
-    session['resume_uuid'] = @resume.uuid unless current_user
-
-    redirect_to products_path
-  end
-
   def update
     @resume = repository.resume
     redirect_path = current_user ? root_path : '/auth/google_oauth2'

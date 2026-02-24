@@ -10,10 +10,6 @@ class ResumeBasedRepository
     current_resume
   end
 
-  def build
-    @user ? build_login_resume : build_guest_resume
-  end
-
   protected
 
   def current_resume
@@ -30,15 +26,23 @@ class ResumeBasedRepository
     SkincareResume.find_by(uuid: @session['resume_uuid'])
   end
 
-  def build_login_resume
-    @user.build_skincare_resume(status: :draft)
+  def writable_resume
+    return current_resume if current_resume
+
+    @user ? create_login_resume : create_guest_resume
   end
 
-  def build_guest_resume
-    SkincareResume.new(
+  def create_login_resume
+    @user.create_skincare_resume!(status: :draft)
+  end
+
+  def create_guest_resume
+    resume = SkincareResume.create!(
       uuid: SecureRandom.uuid,
       status: :draft,
       user_id: nil
     )
+    @session['resume_uuid'] = resume.uuid
+    resume
   end
 end

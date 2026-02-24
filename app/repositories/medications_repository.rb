@@ -2,7 +2,7 @@
 
 class MedicationsRepository < ResumeBasedRepository
   def all
-    current_resume.medications || Medication.none
+    current_resume&.medications || Medication.none
   end
 
   def find(id)
@@ -10,6 +10,6 @@ class MedicationsRepository < ResumeBasedRepository
   end
 
   def build(params)
-    current_resume.medications.build(params)
+    writable_resume.medications.build(params)
   end
 end

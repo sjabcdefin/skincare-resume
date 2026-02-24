@@ -2,7 +2,7 @@
 
 class AllergiesRepository < ResumeBasedRepository
   def all
-    current_resume.allergies || Allergy.none
+    current_resume&.allergies || Allergy.none
   end
 
   def find(id)
@@ -10,6 +10,6 @@ class AllergiesRepository < ResumeBasedRepository
   end
 
   def build(params)
-    current_resume.allergies.build(params)
+    writable_resume.allergies.build(params)
   end
 end
