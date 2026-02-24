@@ -4,6 +4,7 @@ class AllergiesController < ApplicationController
   before_action :set_allergy, only: %i[show edit update destroy]
 
   def index
+    @resume = repository.resume
     @allergies = repository.all
   end
 

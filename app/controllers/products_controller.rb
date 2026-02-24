@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
+    @resume = repository.resume
     @products = repository.all.order_for_display
   end
 
