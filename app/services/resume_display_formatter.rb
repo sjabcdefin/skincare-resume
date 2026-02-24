@@ -6,16 +6,19 @@ class ResumeDisplayFormatter
   end
 
   def products
-    @resume.products.order(:started_on)
+    products = @resume.products || Product.none
+    products.order_for_display
   end
 
   def medications
-    @resume.medications.order(:started_on)
+    medications = @resume.medications || Medication.none
+    medications.order_for_display
   end
 
   delegate :allergies, to: :@resume
 
   def treatments
-    @resume.treatments.order(:treated_on)
+    treatments = @resume.treatments || Treatment.none
+    treatments.order_for_display
   end
 end
