@@ -1,3 +1,5 @@
 = turbo_stream.append 'products', @product
 = turbo_stream.update Product.new, ''
 = turbo_stream_flash
+
+= turbo_stream.replace 'save_button', partial: 'shared/resume_save_button'
