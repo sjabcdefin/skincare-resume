@@ -24,4 +24,8 @@ module SkincareResumesHelper
   def resume_items_empty(resume)
     resume.products.empty? && resume.medications.empty? && resume.allergies.empty? && resume.treatments.empty?
   end
+
+  def save_button_class(resume)
+    resume.present? ? 'bg-[#5F7F67] hover:bg-[#4A6652] text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+  end
 end
