@@ -1,124 +1,61 @@
-/ 表示用
-.w-full.max-w-2xl.mx-auto.print:hidden
-  h3.mb-2.text-md.font-bold.sm:text-xl
-    | スキンケアの履歴書
-    br.sm:hidden
-    = "（最終更新日: #{l(update_date, format: :default)}）"
+.w-full.max-w-2xl.mx-auto
+  .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
+    = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 hidden print:block'
+    h3.text-md.font-bold.sm:text-xl
+      | スキンケアの履歴書
+      br.sm:hidden
+      = "（最終更新日: #{l(update_date, format: :default)}）"
 
-  - if display_resume.products.empty? && display_resume.medications.empty? && display_resume.allergies.empty? && display_resume.treatments.empty?
-    .w-full.mx-auto.mt-4.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
-      p.my-4.text-sm.sm:text-base
-        | 📝 現在、登録している履歴書情報はありません。
-
-  .flex.flex-col.space-y-4.text-xs.sm:text-sm
-    - if !display_resume.products.empty?
+  flex.flex-col.space-y-4.text-xs.sm:text-sm
+    - if print_mode || resume.products.any?
       table.table-fixed.w-full.border
         thead
           tr
             th.border.w-32.text-center.py-2 使用開始日
             th.text-left.border.px-4.py-2 スキンケア製品名
         tbody
-          - display_resume.products.each do |product|
+          - resume.products.each do |product|
             tr
               td.border.text-center.py-2
-                = display_date(product.started_on)
+                = print_mode ? print_date(product.name, product.started_on) : format_date(product.started_on)
               td.border.text-left.px-4.py-2
-                = product.name
+                = print_mode ? print_name(product.name) : product.name
 
-    - if !display_resume.medications.empty?
+    - if print_mode || resume.medications.any?
       table.table-fixed.w-full.border
         thead
           tr
             th.border.w-32.text-center.py-2 使用開始日
             th.text-left.border.px-4.py-2 薬名
         tbody
-          - display_resume.medications.each do |medication|
+          - resume.medications.each do |medication|
             tr
               td.border.text-center.py-2
-                = display_date(medication.started_on)
+                = print_mode ? print_date(medication.name, medication.started_on) : format_date(medication.started_on)
               td.border.text-left.px-4.py-2
-                = medication.name
+                = print_mode ? print_name(medication.name) : medication.name
 
-    - if !display_resume.allergies.empty?
+    - if print_mode || resume.allergies.any?
       table.table-fixed.w-full.border
         thead
           tr
             th.text-left.border.px-4.py-2 アレルギー名
         tbody
-          - display_resume.allergies.each do |allergy|
+          - resume.allergies.each do |allergy|
             tr
               td.border.text-left.px-4.py-2
-                = allergy.name
+                = print_mode ? print_name(allergy.name) : allergy.name
 
-    - if !display_resume.treatments.empty?
-      table.table-fixed.w-full.border
+    - if print_mode || resume.treatments.any?
+      table.table-fixed.w-full.border.print-break-before
         thead
           tr
             th.border.w-32.text-center.py-2 施術日
             th.text-left.border.px-4.py-2 治療名
         tbody
-          - display_resume.treatments.each do |treatment|
+          - resume.treatments.each do |treatment|
             tr
               td.border.text-center.py-2
-                = display_date(treatment.treated_on)
+                = print_mode ? print_date(treatment.name, treatment.treated_on) : format_date(treatment.treated_on)
               td.border.text-left.px-4.py-2
-                = treatment.name
-
-/ 印刷用
-.w-full.max-w-2xl.mx-auto.print-area.hidden.print:block
-  .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
-    = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
-    h3.text-md.font-bold.sm:text-xl
-      | スキンケアの履歴書
-      br.sm:hidden
-      = "（最終更新日: #{l(update_date, format: :default)}）"
-
-  .flex.flex-col.space-y-4.text-xs.sm:text-sm
-    table.table-fixed.w-full.border
-      thead
-        tr
-          th.border.w-32.text-center.py-2 使用開始日
-          th.text-left.border.px-4.py-2 スキンケア製品名
-      tbody
-        - print_resume.products.each do |product|
-          tr
-            td.border.text-center.py-2
-              = product.name ? display_date(product.started_on) : blank_cell
-            td.border.text-left.px-4.py-2
-              = product.name || blank_cell
-
-    table.table-fixed.w-full.border
-      thead
-        tr
-          th.border.w-32.text-center.py-2 使用開始日
-          th.text-left.border.px-4.py-2 薬名
-      tbody
-        - print_resume.medications.each do |medication|
-          tr
-            td.border.text-center.py-2
-              = medication.name ? display_date(medication.started_on) : blank_cell
-            td.border.text-left.px-4.py-2
-              = medication.name || blank_cell
-
-    table.table-fixed.w-full.border
-      thead
-        tr
-          th.text-left.border.px-4.py-2 アレルギー名
-      tbody
-        - print_resume.allergies.each do |allergy|
-          tr
-            td.border.text-left.px-4.py-2
-              = allergy.name || blank_cell
-
-    table.table-fixed.w-full.border.print-break-before
-      thead
-        tr
-          th.border.w-32.text-center.py-2 施術日
-          th.text-left.border.px-4.py-2 治療名
-      tbody
-        - print_resume.treatments.each do |treatment|
-          tr
-            td.border.text-center.py-2
-              = treatment.name ? display_date(treatment.treated_on) : blank_cell
-            td.border.text-left.px-4.py-2
-              = treatment.name || blank_cell
+                = print_mode ? print_name(treatment.name) : treatment.name
