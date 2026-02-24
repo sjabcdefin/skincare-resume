@@ -3,7 +3,7 @@
     = button_to '一時保存する',
                  skincare_resume_path,
                  method: :patch,
-                 params: { skincare_resume: { status: :completed } },
+                 params: { skincare_resume: { status: :draft } },
                  data: { turbo: false },
                  disabled: resume.blank?,
                  class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
