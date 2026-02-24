@@ -2,7 +2,7 @@
 
 class TreatmentsRepository < ResumeBasedRepository
   def all
-    current_resume.treatments&.order(:treated_on) || Treatment.none
+    current_resume.treatments || Treatment.none
   end
 
   def find(id)

@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
   before_action :set_medication, only: %i[show edit update destroy]
 
   def index
-    @medications = repository.all
+    @medications = repository.all.order_for_display
   end
 
   def show; end

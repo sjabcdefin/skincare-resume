@@ -4,7 +4,7 @@ class TreatmentsController < ApplicationController
   before_action :set_treatment, only: %i[show edit update destroy]
 
   def index
-    @treatments = repository.all
+    @treatments = repository.all.order_for_display
   end
 
   def show; end
