@@ -18,6 +18,7 @@ class MedicationsController < ApplicationController
 
   def create
     @medication = repository.build(medication_params)
+    @resume = repository.resume
 
     if @medication.save
       flash.now.notice = '薬の登録に成功しました。'

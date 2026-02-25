@@ -22,51 +22,6 @@
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
   .flex.flex-col.items-center.mt-6.gap-4.print:hidden
-    .flex.flex-col.items-center.min-h-24.gap-2
-      - if current_user
-        = button_to '履歴書を完成させる',
-                    skincare_resume_path,
-                    method: :patch,
-                    params: { skincare_resume: { status: :completed } },
-                    data: { turbo: false },
-                    disabled: @resume.blank?,
-                    class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
-        - if @resume.blank?
-          p.leading-relaxed.text-center.text-xs.text-red-600
-            | ※ 履歴書の情報を登録すると完成できるようになります。
-      - else
-        =button_to '保存する',
-                   skincare_resume_path,
-                   method: :patch,
-                   params: { skincare_resume: { status: :completed } },
-                   data: { turbo: false },
-                   disabled: @resume.blank?,
-                   class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
-        - if @resume.present?
-          p.leading-relaxed.text-center.text-xs
-            | ※ 保存するにはログインが必要です。
-            br
-            | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
-        - else
-          p.leading-relaxed.text-center.text-xs.text-red-600
-            | ※ 履歴書の情報を登録すると保存できるようになります。
-
-    .flex.flex-col.items-center.min-h-24.gap-2
-      = button_tag '印刷する',
-                  class: 'inline-flex items-center justify-center h-12 w-40 border border-[#5F7F67] rounded bg-white hover:bg-[#F3F7F4] text-base text-[#5F7F67] font-normal',
-                  data: { controller: 'print', action: 'click->print#print' }
-      p.leading-relaxed.text-center.text-xs
-        | ※ 印刷はブラウザの印刷機能を使用します。
-        br
-        | 日付順に整理された最新の記録を上限件数まで表示します。
-
-    - if current_user
-      = link_to 'トップページに戻る',
-                root_path,
-                class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
-    - else
-      = button_to 'トップページに戻る',
-                  skincare_resume_path,
-                  method: :delete,
-                  data: { turbo_confirm: '入力内容は保存されませんが、トップページに戻りますか？' },
-                  class: 'inline-flex items-center justify-center h-12 w-40 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+    = render 'shared/resume_save_button', resume: @resume, next_action: :completed
+    = render 'shared/resume_print_button'
+    = render 'shared/resume_back_button'
