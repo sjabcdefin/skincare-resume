@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = repository.build(product_params)
+    @resume = repository.resume
 
     if @product.save
       flash.now.notice = 'スキンケア製品の登録に成功しました。'

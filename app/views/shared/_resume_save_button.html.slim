@@ -1,11 +1,16 @@
-#save_button.flex.flex-col.items-center.mt-6.gap-2
-  = button_to '一時保存する',
-               skincare_resume_path,
-               method: :patch,
-               params: { skincare_resume: { status: :draft } },
-               data: { turbo: false },
-               class: 'inline-flex items-center justify-center h-12 w-40 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
-  p.leading-relaxed.text-center.text-xs
-    | ※ 保存するにはログインが必要です。
-    br
-    | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
+#save_button.flex.flex-col.items-center.min-h-24.gap-2
+  =button_to resume_save_button_text(next_action),
+             skincare_resume_path,
+             method: :patch,
+             params: { skincare_resume: { status: next_action } },
+             data: { turbo: false },
+             disabled: resume.blank?,
+             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(resume)}"
+  - if resume.blank?
+    p.leading-relaxed.text-center.text-xs.text-red-600
+      | ※ 履歴書の情報を登録すると保存できるようになります。
+  - if resume.present? && !current_user
+    p.leading-relaxed.text-center.text-xs
+      | ※ 保存するにはログインが必要です。
+      br
+      | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。

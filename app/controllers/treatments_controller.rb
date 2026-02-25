@@ -18,6 +18,7 @@ class TreatmentsController < ApplicationController
 
   def create
     @treatment = repository.build(treatment_params)
+    @resume = repository.resume
 
     if @treatment.save
       flash.now.notice = '治療履歴の登録に成功しました。'

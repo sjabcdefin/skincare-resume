@@ -2,4 +2,5 @@
 = turbo_stream.update Medication.new, ''
 = turbo_stream_flash
 
-= turbo_stream.replace 'save_button', partial: 'shared/resume_save_button'
+= turbo_stream.replace 'save_button' do
+  = render 'shared/resume_save_button', resume: @resume, next_action: :draft

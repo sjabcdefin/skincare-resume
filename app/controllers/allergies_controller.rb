@@ -18,6 +18,7 @@ class AllergiesController < ApplicationController
 
   def create
     @allergy = repository.build(allergy_params)
+    @resume = repository.resume
 
     if @allergy.save
       flash.now.notice = 'アレルギー歴の登録に成功しました。'

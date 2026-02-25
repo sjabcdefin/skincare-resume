@@ -22,34 +22,6 @@
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
   .flex.flex-col.items-center.mt-6.gap-4.print:hidden
-    .flex.flex-col.items-center.min-h-24.gap-2
-      - if current_user
-        = button_to '履歴書を完成させる',
-                    skincare_resume_path,
-                    method: :patch,
-                    params: { skincare_resume: { status: :completed } },
-                    data: { turbo: false },
-                    disabled: @resume.blank?,
-                    class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
-        - if @resume.blank?
-          p.leading-relaxed.text-center.text-xs.text-red-600
-            | ※ 履歴書の情報を登録すると完成できるようになります。
-      - else
-        =button_to '保存する',
-                   skincare_resume_path,
-                   method: :patch,
-                   params: { skincare_resume: { status: :completed } },
-                   data: { turbo: false },
-                   disabled: @resume.blank?,
-                   class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(@resume)}"
-        - if @resume.present?
-          p.leading-relaxed.text-center.text-xs
-            | ※ 保存するにはログインが必要です。
-            br
-            | まだログインしていない場合は、ボタンを押すとログイン画面に進みます。
-        - else
-          p.leading-relaxed.text-center.text-xs.text-red-600
-            | ※ 履歴書の情報を登録すると保存できるようになります。
-
+    = render 'shared/resume_save_button', resume: @resume, next_action: :completed
     = render 'shared/resume_print_button'
     = render 'shared/resume_back_button'

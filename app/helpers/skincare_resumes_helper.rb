@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module SkincareResumesHelper
+  def resume_save_button_text(status)
+    if status == :draft
+      '一時保存する'
+    elsif status == :completed
+      current_user ? '履歴書を完成させる' : '保存する'
+    end
+  end
+
   def resume_button_text(resume)
     resume.status == 'draft' ? '作成途中の履歴書を編集・更新する' : '作成した履歴書を編集・更新する'
   end
