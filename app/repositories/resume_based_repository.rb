@@ -16,6 +16,14 @@ class ResumeBasedRepository
     @current_resume ||= @user ? login_resume : guest_resume
   end
 
+  def writable_resume
+    return current_resume if current_resume
+
+    @user ? create_login_resume : create_guest_resume
+  end
+
+  private
+
   def login_resume
     @user.skincare_resume
   end
@@ -24,12 +32,6 @@ class ResumeBasedRepository
     return nil unless @session['resume_uuid']
 
     SkincareResume.find_by(uuid: @session['resume_uuid'])
-  end
-
-  def writable_resume
-    return current_resume if current_resume
-
-    @user ? create_login_resume : create_guest_resume
   end
 
   def create_login_resume
