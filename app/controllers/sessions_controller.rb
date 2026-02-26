@@ -27,6 +27,8 @@ class SessionsController < ApplicationController
   end
 
   def after_save_for_guest(user)
+    user.skincare_resume.destroy! if user.skincare_resume.present?
+
     resume = SkincareResume.find_by(uuid: session['resume_uuid'])
     resume.update!(user:)
     session.delete('resume_uuid')
