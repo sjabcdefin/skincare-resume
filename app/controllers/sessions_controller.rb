@@ -20,10 +20,11 @@ class SessionsController < ApplicationController
   end
 
   def find_or_create_from_auth_hash(auth_hash)
+    name = auth_hash['info']['name']
     email = auth_hash['info']['email']
-    User.find_or_create_by(email: email) do |user|
-      user.update(email: email)
-    end
+    user = User.find_or_create_by(email:)
+    user.update!(name:)
+    user
   end
 
   def after_save_for_guest(user)
