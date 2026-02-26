@@ -13,11 +13,11 @@
               = "アレルギー名#{allergy.errors[:name].first}。"
 
       .flex.space-x-2.justify-between.sm:shrink-0
-        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
         = link_to 'キャンセル',
                   allergies_path,
                   data: { turbo_frame: form_frame_for(allergy) },
                   class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
 
     - if allergy.persisted?
       = form.submit '✕',

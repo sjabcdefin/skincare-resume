@@ -19,11 +19,11 @@
               = "スキンケア製品名#{product.errors[:name].first}。"
 
       .flex.space-x-2.justify-between.sm:shrink-0
-        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
         = link_to 'キャンセル',
                   products_path,
                   data: { turbo_frame: form_frame_for(product) },
                   class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
 
     - if product.persisted?
       = form.submit '✕',
