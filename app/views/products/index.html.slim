@@ -22,7 +22,7 @@
     - if @products.empty?
       = render 'form', product: Product.new
 
-  = link_to '＋',
+  = link_to t('buttons.icon.new'),
             new_product_path,
             data: { turbo_frame: 'new_form' },
             class: 'mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] rounded-full text-xl text-white'

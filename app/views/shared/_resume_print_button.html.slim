@@ -1,5 +1,5 @@
 .flex.flex-col.items-center.min-h-24.gap-2
-  = button_tag '印刷する',
+  = button_tag t('buttons.print'),
               class: 'inline-flex items-center justify-center h-12 w-40 border border-[#5F7F67] rounded bg-white hover:bg-[#F3F7F4] text-base text-[#5F7F67] font-normal',
               data: { controller: 'print', action: 'click->print#print' }
   p.leading-relaxed.text-center.text-xs

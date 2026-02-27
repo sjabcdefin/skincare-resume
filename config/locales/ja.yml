@@ -39,6 +39,27 @@ ja:
   skincare_resumes:
     confirmation:
       title: 入力したスキンケアの履歴書の確認
+  buttons:
+    login: Google アカウントでログイン
+    create:
+      login: 履歴書を新規作成する
+      guest: ログインせずに履歴書を作成
+    save:
+      completed_login: 履歴書を完成させる
+      completed_guest: 保存する
+      draft_guest: 一時保存する
+    edit:
+      draft: 作成途中の履歴書を編集・更新する
+      completed: 作成した履歴書を編集・更新する
+    print: 印刷する
+    back_to_home: トップページに戻る
+    cancel: キャンセル
+    navigation:
+      previous: 前へ
+      next: 次へ
+    icon:
+      new: ＋
+      delete: ✕
   common:
     title: "%{model}の入力"
     usage:
