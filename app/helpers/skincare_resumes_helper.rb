@@ -22,7 +22,7 @@ module SkincareResumesHelper
   end
 
   def format_date(date)
-    date ? l(date, format: :default) : '－'
+    date ? l(date, format: :default) : t('common.date_blank')
   end
 
   def blank_cell

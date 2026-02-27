@@ -1,4 +1,4 @@
-- content_for :title, '入力したスキンケアの履歴書の確認'
+- content_for :title, t('.title')
 
 .w-full.max-w-4xl.mx-auto
   .my-5.print:hidden
@@ -6,13 +6,13 @@
 
   .my-8.px-4.print:hidden
     h3.font-medium.text-center.text-xl
-      | 入力したスキンケアの履歴書の確認
+      = t('.title')
 
   .print:hidden
     - if resume_items_empty(@display_resume)
       .w-full.max-w-2xl.mx-auto.mt-4.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
         p.my-4.text-sm.sm:text-base
-          | 📝 現在、登録している履歴書情報はありません。
+          = t('common.no_resume_items')
     - else
       = render 'resume', resume: @display_resume, print_mode: false, update_date: Time.zone.today
 

@@ -6,6 +6,7 @@ ja:
       medication: 使用している薬
       allergy: アレルギー歴
       treatment: 治療履歴
+      skincare_resume: スキンケアの履歴書
     attributes:
       product:
         started_on: 使用開始日
@@ -18,6 +19,8 @@ ja:
       treatment:
         treated_on: 治療日
         name: 治療名
+      skincare_resume:
+        update_date: 最終更新日
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -33,6 +36,9 @@ ja:
   treatments:
     form:
       placeholder: 例）マッサージピール
+  skincare_resumes:
+    confirmation:
+      title: 入力したスキンケアの履歴書の確認
   common:
     title: "%{model}の入力"
     usage:
@@ -41,6 +47,7 @@ ja:
       detail_allergy: アレルギー名を選択または入力してください。
     delete_confirmation: 本当に削除しますか？
     date_blank: －
+    no_resume_items: 📝 現在、登録している履歴書情報はありません。
   date:
     abbr_day_names:
       - 日
