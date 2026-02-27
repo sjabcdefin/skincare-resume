@@ -11,7 +11,7 @@ class SkincareResumesController < ApplicationController
     repository.resume.update!(status_params)
     redirect_path = current_user ? root_path : '/auth/google_oauth2'
 
-    redirect_to redirect_path, notice: '履歴書の登録を完了しました。'
+    redirect_to redirect_path, notice: t('.success')
   end
 
   private

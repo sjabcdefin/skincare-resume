@@ -39,6 +39,8 @@ ja:
   skincare_resumes:
     confirmation:
       title: 入力したスキンケアの履歴書の確認
+    update:
+      success: 履歴書の登録を完了しました。
   buttons:
     login: Google アカウントでログイン
     create:
@@ -60,6 +62,13 @@ ja:
     icon:
       new: ＋
       delete: ✕
+  flash:
+    create:
+      success: 登録されました。
+    update:
+      success: 更新されました。
+    destroy:
+      success: 削除されました。
   common:
     title: "%{model}の入力"
     usage:

@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     @resume = repository.resume
 
     if @product.save
-      flash.now.notice = 'スキンケア製品の登録に成功しました。'
+      flash.now.notice = t('flash.create.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      flash.now.notice = 'スキンケア製品の更新に成功しました。'
+      flash.now.notice = t('flash.update.success')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy!
-    flash.now.notice = 'スキンケア製品の削除に成功しました。'
+    flash.now.notice = t('flash.destroy.success')
   end
 
   private
