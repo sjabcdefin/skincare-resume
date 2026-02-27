@@ -1,12 +1,46 @@
 ---
 ja:
   activerecord:
+    models:
+      product: 使用しているスキンケア製品
+      medication: 使用している薬
+      allergy: アレルギー歴
+      treatment: 治療履歴
+    attributes:
+      product:
+        started_on: 使用開始日
+        name: スキンケア製品名
+      medication:
+        started_on: 使用開始日
+        name: 薬名
+      allergy:
+        name: アレルギー名
+      treatment:
+        treated_on: 治療日
+        name: 治療名
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  products:
+    form:
+      placeholder: 例）キュレル 潤浸保湿 化粧水
+  medications:
+    form:
+      placeholder: 例）ベピオゲル
+  treatments:
+    form:
+      placeholder: 例）マッサージピール
+  common:
+    title: "%{model}の入力"
+    usage:
+      title: 💡 ご利用方法
+      detail: "%{date_attribute}を入力しなくても保存できます。%{name_attribute}は入力する必要があります。"
+      detail_allergy: アレルギー名を選択または入力してください。
+    delete_confirmation: 本当に削除しますか？
+    date_blank: －
   date:
     abbr_day_names:
       - 日
@@ -83,7 +117,7 @@ ja:
       month: 月
       year: 年
   errors:
-    format: "%{attribute}%{message}"
+    format: "%{attribute}%{message}。"
     messages:
       accepted: を受諾してください
       blank: を入力してください

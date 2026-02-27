@@ -1,16 +1,16 @@
-- content_for :title, 'アレルギー歴の入力'
+- content_for :title, t('common.title', model: Allergy.model_name.human)
 
 .w-full.max-w-4xl.mx-auto
   = render 'shared/progress_bar'
 
   .my-8.px-4.space-y-3
     h3.text-center.text-xl.font-medium
-      | アレルギー歴の入力
+      = t('common.title', model: Allergy.model_name.human)
     .text-sm
       p
-        | 💡 ご利用方法
+        = t('common.usage.title')
         br
-        | アレルギー名を選択または入力してください。
+        = t('common.usage.detail_allergy')
 
   #allergies
     - @allergies.each do |allergy|

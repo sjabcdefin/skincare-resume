@@ -3,14 +3,16 @@
     .flex.flex-col.gap-4.sm:flex-row.sm:items-end
       .w-full
         .max-w-md.mb-2.space-y-2
-          = form.label :name, 'アレルギー名',
+          = form.label :name, Allergy.human_attribute_name(:name),
                        class: 'block text-base font-semibold'
           = form.select :name, [], {},
                                class: ['w-full'],
                                data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
           p.min-h-6.text-xs.text-red-600
             - if allergy.errors[:name].any?
-              = "アレルギー名#{allergy.errors[:name].first}。"
+              = t('errors.format',
+                   attribute: Allergy.human_attribute_name(:name),
+                   message: allergy.errors[:name].first)
 
       .flex.space-x-2.justify-between.sm:shrink-0
         = link_to 'キャンセル',
@@ -22,6 +24,6 @@
     - if allergy.persisted?
       = form.submit '✕',
                     formmethod: :delete,
-                    data: { turbo_confirm: '本当に削除しますか？' },
+                    data: { turbo_confirm: t('common.delete_confirmation') },
                     class: 'absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white',
                     onclick: 'event.stopPropagation();'

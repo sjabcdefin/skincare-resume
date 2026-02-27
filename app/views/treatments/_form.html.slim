@@ -3,20 +3,22 @@
     .flex.flex-col.pb-6.gap-4.sm:flex-row.sm:items-end
       .w-full.space-y-3
         .max-w-md.space-y-2
-          = form.label :treated_on, '治療日',
+          = form.label :treated_on, Treatment.human_attribute_name(:treated_on),
                        class: 'block text-base font-semibold'
           = form.date_field :treated_on,
                             class: 'w-full px-3 py-2 border border-gray-400 rounded shadow-sm focus:outline-blue-600 text-base appearance-none'
         .max-w-md.space-y-2
-          = form.label :name, '治療名',
+          = form.label :name, Treatment.human_attribute_name(:name),
                        class: 'block text-base font-semibold'
-          = form.text_field :name, placeholder: '例）マッサージピール',
+          = form.text_field :name, placeholder: t('.placeholder'),
                             class: ['w-full px-3 py-2 border rounded shadow-sm text-base',
                                    { 'border-gray-400 focus:outline-blue-600': treatment.errors[:name].none?,
                                      'border-red-400 focus:outline-red-600': treatment.errors[:name].any? }]
           p.min-h-6.text-xs.text-red-600
             - if treatment.errors[:name].any?
-              = "治療名#{treatment.errors[:name].first}。"
+              = t('errors.format',
+                   attribute: Treatment.human_attribute_name(:name),
+                   message: treatment.errors[:name].first)
 
       .flex.space-x-2.justify-between.sm:shrink-0
         = link_to 'キャンセル',
@@ -28,6 +30,6 @@
     - if treatment.persisted?
       = form.submit '✕',
                     formmethod: :delete,
-                    data: { turbo_confirm: '本当に削除しますか？' },
+                    data: { turbo_confirm: t('common.delete_confirmation') },
                     class: 'absolute top-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white',
                     onclick: 'event.stopPropagation();'

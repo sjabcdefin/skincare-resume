@@ -1,16 +1,18 @@
-- content_for :title, '治療履歴の入力'
+- content_for :title, t('common.title', model: Treatment.model_name.human)
 
 .w-full.max-w-4xl.mx-auto
   = render 'shared/progress_bar'
 
   .my-8.px-4.space-y-3
     h3.text-center.text-xl.font-medium
-      | 治療履歴の入力
+      = t('common.title', model: Treatment.model_name.human)
     .text-sm
       p
-        | 💡 ご利用方法
+        = t('common.usage.title')
         br
-        | 治療日を入力しなくても保存できます。治療名は入力する必要があります。
+        = t('common.usage.detail',
+            date_attribute: Treatment.human_attribute_name(:treated_on),
+            name_attribute: Treatment.human_attribute_name(:name))
 
   #treatments
     - @treatments.each do |treatment|
