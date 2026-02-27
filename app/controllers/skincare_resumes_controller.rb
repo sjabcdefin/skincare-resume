@@ -14,11 +14,6 @@ class SkincareResumesController < ApplicationController
     redirect_to redirect_path, notice: '履歴書の登録を完了しました。'
   end
 
-  def destroy
-    session.delete('resume_uuid')
-    redirect_to root_path
-  end
-
   private
 
   def repository
