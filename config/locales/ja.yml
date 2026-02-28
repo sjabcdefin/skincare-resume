@@ -41,6 +41,9 @@ ja:
       title: 入力したスキンケアの履歴書の確認
     update:
       success: 履歴書の登録を完了しました。
+  home:
+    index:
+      title: トップページ
   buttons:
     login: Google アカウントでログイン
     create:
