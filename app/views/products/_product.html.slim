@@ -3,10 +3,12 @@
     .mx-auto.max-w-4xl.mb-3.px-6.pt-6.pb-6.bg-white.border.border-gray-200.shadow.sm:pb-14
       .w-full.space-y-3
         .max-w-md.space-y-2
-          label.block.text-base.font-semibold 使用開始日
+          label.block.text-base.font-semibold
+            = Product.human_attribute_name(:started_on)
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-base
-            = product.started_on.present? ? l(product.started_on, format: :default) : '-'
+            = product.started_on.present? ? l(product.started_on, format: :default) : t('common.date_blank')
         .max-w-md.space-y-2
-          label.block.text-base.font-semibold スキンケア製品名
+          label.block.text-base.font-semibold
+            = Product.human_attribute_name(:name)
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-base
               = product.name

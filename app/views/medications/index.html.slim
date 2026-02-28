@@ -1,16 +1,18 @@
-- content_for :title, '使用している薬の入力'
+- content_for :title, t('common.title', model: Medication.model_name.human)
 
 .w-full.max-w-4xl.mx-auto
   = render 'shared/progress_bar'
 
   .my-8.px-4.space-y-3
     h3.text-center.text-xl.font-medium
-      | 使用している薬の入力
+      = t('common.title', model: Medication.model_name.human)
     .text-sm
       p
-        | 💡 ご利用方法
+        = t('common.usage.title')
         br
-        | 使用開始日を入力しなくても保存できます。薬名は入力する必要があります。
+        = t('common.usage.detail',
+            date_attribute: Medication.human_attribute_name(:started_on),
+            name_attribute: Medication.human_attribute_name(:name))
 
   #medications
     - @medications.each do |medication|
@@ -20,7 +22,7 @@
     - if @medications.empty?
       = render 'form', medication: Medication.new
 
-  = link_to '＋',
+  = link_to t('buttons.icon.new'),
             new_medication_path,
             data: { turbo_frame: 'new_form' },
             class: 'mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] rounded-full text-xl text-white'

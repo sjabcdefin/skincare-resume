@@ -4,20 +4,10 @@ export default class extends Controller {
   connect() {
     const selectedValue = this.element.dataset.value;
 
-    const options = [
-      "金属(ニッケル)",
-      "金属(コバルト)",
-      "金属(クロム)",
-      "金属(パラジウム)",
-      "金属(金)",
-      "金属(銀)",
-      "金属(亜鉛)",
-      "花粉(スギ)",
-      "花粉(ヒノキ)",
-      "花粉(ブタクサ)",
-      "花粉(ヨモギ)",
-      "花粉(イネ)",
-    ].map((allergy) => ({ value: allergy, text: allergy }));
+    const options = JSON.parse(this.element.dataset.options).map((allergy) => ({
+      value: allergy,
+      text: allergy,
+    }));
 
     const includedOptions = options.find(
       (option) => option.value === selectedValue,
@@ -31,14 +21,13 @@ export default class extends Controller {
       create: true,
       options: options,
       items: selectedValue ? [selectedValue] : [],
-      placeholder: "選択または入力してください。",
+      placeholder: this.element.dataset.placeholder,
       render: {
         option_create: (data, escape) =>
           `<div class="create"><strong>${escape(
             data.input,
-          )}</strong> を追加 &hellip;</div>`,
-        no_results: () =>
-          '<div class="no-results">該当する項目が見つかりません。</div>',
+          )}</strong> ${this.element.dataset.createLabel}</div>`,
+        no_results: () => "",
       },
     });
 

@@ -3,11 +3,11 @@
 module ProgressBarHelper
   def skincare_steps
     {
-      'products' => 'スキンケア',
-      'medications' => '薬名',
-      'allergies' => 'アレルギー',
-      'treatments' => '治療',
-      'skincare_resumes' => '確認'
+      'products' => t('progress_bar.steps.product'),
+      'medications' => t('progress_bar.steps.medication'),
+      'allergies' => t('progress_bar.steps.allergy'),
+      'treatments' => t('progress_bar.steps.treatment'),
+      'skincare_resumes' => t('progress_bar.steps.confirmation')
     }
   end
 

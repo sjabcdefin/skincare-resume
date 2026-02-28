@@ -21,7 +21,7 @@ class MedicationsController < ApplicationController
     @resume = repository.resume
 
     if @medication.save
-      flash.now.notice = '薬の登録に成功しました。'
+      flash.now.notice = t('flash.create.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class MedicationsController < ApplicationController
 
   def update
     if @medication.update(medication_params)
-      flash.now.notice = '薬の更新に成功しました。'
+      flash.now.notice = t('flash.update.success')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class MedicationsController < ApplicationController
 
   def destroy
     @medication.destroy!
-    flash.now.notice = '薬の削除に成功しました。'
+    flash.now.notice = t('flash.destroy.success')
   end
 
   private

@@ -1,12 +1,118 @@
 ---
 ja:
   activerecord:
+    models:
+      product: 使用しているスキンケア製品
+      medication: 使用している薬
+      allergy: アレルギー歴
+      treatment: 治療履歴
+      skincare_resume: スキンケアの履歴書
+    attributes:
+      product:
+        started_on: 使用開始日
+        name: スキンケア製品名
+      medication:
+        started_on: 使用開始日
+        name: 薬名
+      allergy:
+        name: アレルギー名
+      treatment:
+        treated_on: 治療日
+        name: 治療名
+      skincare_resume:
+        update_date: 最終更新日
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  products:
+    form:
+      placeholder: 例）キュレル 潤浸保湿 化粧水
+  medications:
+    form:
+      placeholder: 例）ベピオゲル
+  allergies:
+    form:
+      placeholder: 選択または入力してください。
+      create_label: を選択肢に追加します。
+      options:
+        - 金属(ニッケル)
+        - 金属(コバルト)
+        - 金属(クロム)
+        - 金属(パラジウム)
+        - 金属(金)
+        - 金属(銀)
+        - 金属(亜鉛)
+        - 花粉(スギ)
+        - 花粉(ヒノキ)
+        - 花粉(ブタクサ)
+        - 花粉(ヨモギ)
+        - 花粉(イネ)
+  treatments:
+    form:
+      placeholder: 例）マッサージピール
+  skincare_resumes:
+    confirmation:
+      title: 入力したスキンケアの履歴書の確認
+    update:
+      success: 履歴書の登録を完了しました。
+  home:
+    index:
+      title: トップページ
+  users:
+    destroy:
+      success: アカウントを削除しました。
+  buttons:
+    login: Google アカウントでログイン
+    create:
+      login: 履歴書を新規作成する
+      guest: ログインせずに履歴書を作成
+    save:
+      completed_login: 履歴書を完成させる
+      completed_guest: 保存する
+      draft_guest: 一時保存する
+    edit:
+      draft: 作成途中の履歴書を編集・更新する
+      completed: 作成した履歴書を編集・更新する
+    print: 印刷する
+    back_to_home: トップページに戻る
+    cancel: キャンセル
+    navigation:
+      previous: 前へ
+      next: 次へ
+    icon:
+      new: ＋
+      delete: ✕
+  progress_bar:
+    steps:
+      product: スキンケア
+      medication: 薬
+      allergy: アレルギー
+      treatment: 治療
+      confirmation: 確認
+  footer:
+    terms: 利用規約
+    privacy: プライバシーポリシー
+    logout: ログアウト
+    acount_delete: アカウント削除
+  flash:
+    create:
+      success: 登録されました。
+    update:
+      success: 更新されました。
+    destroy:
+      success: 削除されました。
+  common:
+    title: "%{model}の入力"
+    usage:
+      title: 💡 ご利用方法
+      detail: "%{date_attribute}を入力しなくても保存できます。%{name_attribute}は入力する必要があります。"
+      detail_allergy: アレルギー名を選択または入力してください。
+    delete_confirmation: 本当に削除しますか？
+    date_blank: －
+    no_resume_items: 📝 現在、登録している履歴書情報はありません。
   date:
     abbr_day_names:
       - 日
@@ -83,7 +189,7 @@ ja:
       month: 月
       year: 年
   errors:
-    format: "%{attribute}%{message}"
+    format: "%{attribute}%{message}。"
     messages:
       accepted: を受諾してください
       blank: を入力してください

@@ -3,6 +3,7 @@
     .mx-auto.max-w-4xl.mb-3.px-6.pt-6.pb-10.bg-white.border.border-gray-200.shadow.sm:pb-16
       .w-full
         .max-w-md.space-y-2
-          label.block.text-base.font-semibold アレルギー名
+          label.block.text-base.font-semibold
+            = Allergy.human_attribute_name(:name)
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-base
             = allergy.name

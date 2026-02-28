@@ -6,7 +6,7 @@
   - if resume_items_empty(display_resume)
     .w-full.max-w-2xl.mx-auto.mt-4.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
       p.my-4.text-sm.sm:text-base
-        | 📝 現在、登録している履歴書情報はありません。
+        = t('common.no_resume_items')
   - else
     = render '/skincare_resumes/resume', resume: display_resume, print_mode: false, update_date: resume.updated_at.to_date
 

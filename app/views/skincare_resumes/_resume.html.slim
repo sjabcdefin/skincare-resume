@@ -2,17 +2,19 @@
   .flex.w-full.mx-auto.max-w-4xl.items-center.mb-2.space-x-2
     = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14 hidden print:block'
     h3.text-md.font-bold.sm:text-xl
-      | スキンケアの履歴書
+      = SkincareResume.model_name.human
       br.sm:hidden
-      = "（最終更新日: #{l(update_date, format: :default)}）"
+      = "（#{SkincareResume.human_attribute_name(:update_date)}: #{l(update_date, format: :default)}）"
 
   flex.flex-col.space-y-4.text-xs.sm:text-sm
     - if print_mode || resume.products.any?
       table.table-fixed.w-full.border
         thead
           tr
-            th.border.w-32.text-center.py-2 使用開始日
-            th.text-left.border.px-4.py-2 スキンケア製品名
+            th.border.w-32.text-center.py-2
+              = Product.human_attribute_name(:started_on)
+            th.text-left.border.px-4.py-2
+              = Product.human_attribute_name(:name)
         tbody
           - resume.products.each do |product|
             tr
@@ -25,8 +27,10 @@
       table.table-fixed.w-full.border
         thead
           tr
-            th.border.w-32.text-center.py-2 使用開始日
-            th.text-left.border.px-4.py-2 薬名
+            th.border.w-32.text-center.py-2
+              = Medication.human_attribute_name(:started_on)
+            th.text-left.border.px-4.py-2
+              = Medication.human_attribute_name(:name)
         tbody
           - resume.medications.each do |medication|
             tr
@@ -39,7 +43,8 @@
       table.table-fixed.w-full.border
         thead
           tr
-            th.text-left.border.px-4.py-2 アレルギー名
+            th.text-left.border.px-4.py-2
+              = Allergy.human_attribute_name(:name)
         tbody
           - resume.allergies.each do |allergy|
             tr
@@ -50,8 +55,10 @@
       table.table-fixed.w-full.border.print-break-before
         thead
           tr
-            th.border.w-32.text-center.py-2 施術日
-            th.text-left.border.px-4.py-2 治療名
+            th.border.w-32.text-center.py-2
+              = Treatment.human_attribute_name(:treated_on)
+            th.text-left.border.px-4.py-2
+              = Treatment.human_attribute_name(:name)
         tbody
           - resume.treatments.each do |treatment|
             tr

@@ -3,25 +3,32 @@
     .flex.flex-col.gap-4.sm:flex-row.sm:items-end
       .w-full
         .max-w-md.mb-2.space-y-2
-          = form.label :name, 'アレルギー名',
+          = form.label :name, Allergy.human_attribute_name(:name),
                        class: 'block text-base font-semibold'
           = form.select :name, [], {},
                                class: ['w-full'],
-                               data: { controller: 'select', value: allergy.name, error: allergy.errors[:name].any? }
+                               data: { controller: 'select',
+                                       value: allergy.name,
+                                       error: allergy.errors[:name].any?,
+                                       options: t('.options').to_json,
+                                       placeholder: t('.placeholder'),
+                                       create_label: t('.create_label') }
           p.min-h-6.text-xs.text-red-600
             - if allergy.errors[:name].any?
-              = "アレルギー名#{allergy.errors[:name].first}。"
+              = t('errors.format',
+                   attribute: Allergy.human_attribute_name(:name),
+                   message: allergy.errors[:name].first)
 
       .flex.space-x-2.justify-between.sm:shrink-0
-        = link_to 'キャンセル',
+        = link_to t('buttons.cancel'),
                   allergies_path,
                   data: { turbo_frame: form_frame_for(allergy) },
                   class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
         = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
 
     - if allergy.persisted?
-      = form.submit '✕',
+      = form.submit t('buttons.icon.delete'),
                     formmethod: :delete,
-                    data: { turbo_confirm: '本当に削除しますか？' },
+                    data: { turbo_confirm: t('common.delete_confirmation') },
                     class: 'absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white',
                     onclick: 'event.stopPropagation();'
