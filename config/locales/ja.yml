@@ -75,6 +75,11 @@ ja:
       allergy: アレルギー
       treatment: 治療
       confirmation: 確認
+  footer:
+    terms: 利用規約
+    privacy: プライバシーポリシー
+    logout: ログアウト
+    acount_delete: アカウント削除
   flash:
     create:
       success: 登録されました。
