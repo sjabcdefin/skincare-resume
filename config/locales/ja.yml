@@ -44,6 +44,9 @@ ja:
   home:
     index:
       title: トップページ
+  users:
+    destroy:
+      success: アカウントを削除しました。
   buttons:
     login: Google アカウントでログイン
     create:
