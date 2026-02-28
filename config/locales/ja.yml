@@ -68,6 +68,13 @@ ja:
     icon:
       new: ＋
       delete: ✕
+  progress_bar:
+    steps:
+      product: スキンケア
+      medication: 薬
+      allergy: アレルギー
+      treatment: 治療
+      confirmation: 確認
   flash:
     create:
       success: 登録されました。
