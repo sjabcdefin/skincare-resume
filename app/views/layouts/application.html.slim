@@ -25,7 +25,8 @@ html
     .w-full.mx-auto.max-w-4xl.mt-8.px-2.print:hidden
       = link_to root_path, class: 'flex items-center space-x-2' do
         = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
-        h1.text-2xl.font-bold スキンケアの履歴書
+        h1.text-2xl.font-bold
+          = SkincareResume.model_name.human
 
     main.container.mx-auto.mt-4.px-5.flex-grow.print-area
       = yield
