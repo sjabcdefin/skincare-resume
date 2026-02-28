@@ -33,6 +33,23 @@ ja:
   medications:
     form:
       placeholder: 例）ベピオゲル
+  allergies:
+    form:
+      placeholder: 選択または入力してください。
+      create_label: を選択肢に追加します。
+      options:
+        - 金属(ニッケル)
+        - 金属(コバルト)
+        - 金属(クロム)
+        - 金属(パラジウム)
+        - 金属(金)
+        - 金属(銀)
+        - 金属(亜鉛)
+        - 花粉(スギ)
+        - 花粉(ヒノキ)
+        - 花粉(ブタクサ)
+        - 花粉(ヨモギ)
+        - 花粉(イネ)
   treatments:
     form:
       placeholder: 例）マッサージピール
