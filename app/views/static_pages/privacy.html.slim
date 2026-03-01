@@ -1,7 +1,8 @@
-- content_for :title, 'プライバシーポリシー'
+- content_for :title, t('.title')
 
 .max-w-3xl.mx-auto.px-4.py-8.leading-relaxed
-  h1.text-center.text-2xl.font-bold.mb-6 プライバシーポリシー
+  h1.text-center.text-2xl.font-bold.mb-6
+    = t('.title')
 
   p.mb-4
     | 本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の管理者（以下、「管理者」といいます。）は、
@@ -66,7 +67,8 @@
   h2.mt-8.mb-3.text-lg.font-semibold 第6条（お問い合わせ窓口）
   p 本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。
   p.mt-2
-    | Email: 
+    | Email:
+    = ' '
     = mail_to 'skincare.resume.contact@gmail.com', class: 'hover:border-b'
 
   p.mt-6 以上

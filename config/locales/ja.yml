@@ -61,6 +61,11 @@ ja:
   home:
     index:
       title: トップページ
+  static_pages:
+    terms:
+      title: 利用規約
+    privacy:
+      title: プライバシーポリシー
   users:
     destroy:
       success: アカウントを削除しました。
