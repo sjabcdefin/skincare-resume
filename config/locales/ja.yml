@@ -101,7 +101,9 @@ ja:
     terms: 利用規約
     privacy: プライバシーポリシー
     logout: ログアウト
+    logout_confirmation: ログアウトしますか？
     acount_delete: アカウント削除
+    account_delete_confirmation: 本当にアカウントを削除しますか？
   flash:
     create:
       success: 登録されました。

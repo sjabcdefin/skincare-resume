@@ -38,9 +38,9 @@ html
         - if current_user
           = link_to t('footer.logout'),
                     logout_path,
-                    data: { turbo_method: :post, turbo_confirm: 'ログアウトしますか？' },
+                    data: { turbo_method: :post, turbo_confirm: t('footer.logout_confirmation') },
                     class: 'hover:border-b'
           = link_to t('footer.acount_delete'),
                     account_path,
-                    data: { turbo_method: :delete, turbo_confirm: '本当にアカウントを削除しますか？' },
+                    data: { turbo_method: :delete, turbo_confirm: t('footer.account_delete_confirmation') },
                     class: 'hover:border-b'
