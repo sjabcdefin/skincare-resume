@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     get :confirmation
   end
 
-  get "static_pages/terms"
-  get "static_pages/privacy"
+  get '/terms', to: 'static_pages#terms'
+  get '/privacy', to: 'static_pages#privacy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
