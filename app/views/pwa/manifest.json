@@ -1,13 +1,13 @@
 {
-  "name": "SkincareResume",
+  "name": "スキンケアの履歴書",
   "icons": [
     {
-      "src": "/icon.png",
+      "src": "/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "/icon.png",
+      "src": "/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
@@ -16,7 +16,7 @@
   "start_url": "/",
   "display": "standalone",
   "scope": "/",
-  "description": "SkincareResume.",
+  "description": "スキンケアの履歴書.",
   "theme_color": "red",
   "background_color": "red"
 }
