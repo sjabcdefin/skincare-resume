@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   def index
     @resume = current_user&.skincare_resume
     @resume_status = decide_resume_state
-    @display_resume = ResumeDisplayFormatter.new(resume: @resume)
-    @print_resume = ResumePrintFormatter.new(resume: @resume)
+    @display_resume = ResumeFormatter.new(resume: @resume, mode: :display)
+    @print_resume = ResumeFormatter.new(resume: @resume, mode: :print)
   end
 
   private
