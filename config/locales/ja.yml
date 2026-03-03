@@ -87,9 +87,6 @@ ja:
     navigation:
       previous: 前へ
       next: 次へ
-    icon:
-      new: ＋
-      delete: ✕
   progress_bar:
     steps:
       product: スキンケア
