@@ -13,11 +13,11 @@ module SkincareResumesHelper
     resume.status == 'draft' ? t('buttons.edit.draft') : t('buttons.edit.completed')
   end
 
-  def print_date(name, date)
+  def formatted_date_for(name, date)
     name ? format_date(date) : blank_cell
   end
 
-  def print_name(name)
+  def formatted_name_for(name)
     name || blank_cell
   end
 

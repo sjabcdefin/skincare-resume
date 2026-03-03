@@ -7,62 +7,58 @@
       = "（#{SkincareResume.human_attribute_name(:update_date)}: #{l(update_date, format: :default)}）"
 
   flex.flex-col.space-y-4.text-xs.sm:text-sm
-    - if print_mode || resume.products.any?
-      table.table-fixed.w-full.border
-        thead
+    table.table-fixed.w-full.border
+      thead
+        tr
+          th.border.w-32.text-center.py-2
+            = Product.human_attribute_name(:started_on)
+          th.text-left.border.px-4.py-2
+            = Product.human_attribute_name(:name)
+      tbody
+        - resume.products.each do |product|
           tr
-            th.border.w-32.text-center.py-2
-              = Product.human_attribute_name(:started_on)
-            th.text-left.border.px-4.py-2
-              = Product.human_attribute_name(:name)
-        tbody
-          - resume.products.each do |product|
-            tr
-              td.border.text-center.py-2
-                = print_mode ? print_date(product.name, product.started_on) : format_date(product.started_on)
-              td.border.text-left.px-4.py-2
-                = print_mode ? print_name(product.name) : product.name
+            td.border.text-center.py-2
+              = formatted_date_for(product.name, product.started_on)
+            td.border.text-left.px-4.py-2
+              = formatted_name_for(product.name)
 
-    - if print_mode || resume.medications.any?
-      table.table-fixed.w-full.border
-        thead
+    table.table-fixed.w-full.border
+      thead
+        tr
+          th.border.w-32.text-center.py-2
+            = Medication.human_attribute_name(:started_on)
+          th.text-left.border.px-4.py-2
+            = Medication.human_attribute_name(:name)
+      tbody
+        - resume.medications.each do |medication|
           tr
-            th.border.w-32.text-center.py-2
-              = Medication.human_attribute_name(:started_on)
-            th.text-left.border.px-4.py-2
-              = Medication.human_attribute_name(:name)
-        tbody
-          - resume.medications.each do |medication|
-            tr
-              td.border.text-center.py-2
-                = print_mode ? print_date(medication.name, medication.started_on) : format_date(medication.started_on)
-              td.border.text-left.px-4.py-2
-                = print_mode ? print_name(medication.name) : medication.name
+            td.border.text-center.py-2
+              = formatted_date_for(medication.name, medication.started_on)
+            td.border.text-left.px-4.py-2
+              = formatted_name_for(medication.name)
 
-    - if print_mode || resume.allergies.any?
-      table.table-fixed.w-full.border
-        thead
+    table.table-fixed.w-full.border
+      thead
+        tr
+          th.text-left.border.px-4.py-2
+            = Allergy.human_attribute_name(:name)
+      tbody
+        - resume.allergies.each do |allergy|
           tr
-            th.text-left.border.px-4.py-2
-              = Allergy.human_attribute_name(:name)
-        tbody
-          - resume.allergies.each do |allergy|
-            tr
-              td.border.text-left.px-4.py-2
-                = print_mode ? print_name(allergy.name) : allergy.name
+            td.border.text-left.px-4.py-2
+              = formatted_name_for(allergy.name)
 
-    - if print_mode || resume.treatments.any?
-      table.table-fixed.w-full.border.print-break-before
-        thead
+    table.table-fixed.w-full.border.print-break-before
+      thead
+        tr
+          th.border.w-32.text-center.py-2
+            = Treatment.human_attribute_name(:treated_on)
+          th.text-left.border.px-4.py-2
+            = Treatment.human_attribute_name(:name)
+      tbody
+        - resume.treatments.each do |treatment|
           tr
-            th.border.w-32.text-center.py-2
-              = Treatment.human_attribute_name(:treated_on)
-            th.text-left.border.px-4.py-2
-              = Treatment.human_attribute_name(:name)
-        tbody
-          - resume.treatments.each do |treatment|
-            tr
-              td.border.text-center.py-2
-                = print_mode ? print_date(treatment.name, treatment.treated_on) : format_date(treatment.treated_on)
-              td.border.text-left.px-4.py-2
-                = print_mode ? print_name(treatment.name) : treatment.name
+            td.border.text-center.py-2
+              = formatted_date_for(treatment.name, treatment.treated_on)
+            td.border.text-left.px-4.py-2
+              = formatted_name_for(treatment.name)
