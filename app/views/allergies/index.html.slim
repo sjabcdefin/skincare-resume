@@ -20,10 +20,11 @@
     - if @allergies.empty?
       = render 'form', allergy: Allergy.new
 
-  = link_to t('buttons.icon.new'),
-            new_allergy_path,
+  = link_to new_allergy_path,
             data: { turbo_frame: 'new_form' },
-            class: 'mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] rounded-full text-xl text-white'
+            class: 'mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] rounded-full text-white' do
+    svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-6'
+      path stroke-linecap='round' stroke-linejoin='round' d='M12 4.5v15m7.5-7.5h-15'
 
   = render 'shared/navigation', previous_path: medications_path, next_path: treatments_path
 
