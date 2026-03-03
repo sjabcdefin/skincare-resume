@@ -5,7 +5,7 @@
              params: { skincare_resume: { status: next_action } },
              data: { turbo: false },
              disabled: resume.blank?,
-             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(resume)}"
+             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal cursor-pointer #{save_button_class(resume)}"
   - if resume.blank?
     p.leading-relaxed.text-center.text-xs.text-red-600
       | ※ 履歴書の情報を登録すると保存できるようになります。
