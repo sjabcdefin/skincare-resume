@@ -5,4 +5,8 @@ class Product < ApplicationRecord
   validates :name, presence: true
   scope :order_for_display, -> { order(arel_table[:started_on].asc.nulls_first) }
   scope :order_for_print, -> { order(arel_table[:started_on].desc.nulls_last) }
+
+  def display_date
+    started_on
+  end
 end

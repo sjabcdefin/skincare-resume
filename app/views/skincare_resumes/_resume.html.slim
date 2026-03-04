@@ -15,12 +15,16 @@
           th.text-left.border.px-4.py-2
             = Product.human_attribute_name(:name)
       tbody
-        - resume.products.each do |product|
-          tr
+        - resume.product_rows.each do |row|
+          tr class=('bg-gray-200' if row.over_limit)
             td.border.text-center.py-2
-              = formatted_date_for(product.name, product.started_on)
+              = formatted_date_for(row.name, row.date)
             td.border.text-left.px-4.py-2
-              = formatted_name_for(product.name)
+              .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
+                = formatted_name_for(row.name)
+                - if row.over_limit
+                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
+                    | 印刷対象外
 
     table.table-fixed.w-full.border
       thead
@@ -30,12 +34,16 @@
           th.text-left.border.px-4.py-2
             = Medication.human_attribute_name(:name)
       tbody
-        - resume.medications.each do |medication|
-          tr
+        - resume.medication_rows.each do |row|
+          tr class=('bg-gray-200' if row.over_limit)
             td.border.text-center.py-2
-              = formatted_date_for(medication.name, medication.started_on)
+              = formatted_date_for(row.name, row.date)
             td.border.text-left.px-4.py-2
-              = formatted_name_for(medication.name)
+              .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
+                = formatted_name_for(row.name)
+                - if row.over_limit
+                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
+                    | 印刷対象外
 
     table.table-fixed.w-full.border
       thead
@@ -43,10 +51,14 @@
           th.text-left.border.px-4.py-2
             = Allergy.human_attribute_name(:name)
       tbody
-        - resume.allergies.each do |allergy|
-          tr
+        - resume.allergy_rows.each do |row|
+          tr class=('bg-gray-200' if row.over_limit)
             td.border.text-left.px-4.py-2
-              = formatted_name_for(allergy.name)
+              .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
+                = formatted_name_for(row.name)
+                - if row.over_limit
+                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
+                    | 印刷対象外
 
     table.table-fixed.w-full.border.print-break-before
       thead
@@ -56,9 +68,13 @@
           th.text-left.border.px-4.py-2
             = Treatment.human_attribute_name(:name)
       tbody
-        - resume.treatments.each do |treatment|
-          tr
+        - resume.treatment_rows.each do |row|
+          tr class=('bg-gray-200' if row.over_limit)
             td.border.text-center.py-2
-              = formatted_date_for(treatment.name, treatment.treated_on)
+              = formatted_date_for(row.name, row.date)
             td.border.text-left.px-4.py-2
-              = formatted_name_for(treatment.name)
+              .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
+                = formatted_name_for(row.name)
+                - if row.over_limit
+                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
+                    | 印刷対象外

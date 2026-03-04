@@ -5,4 +5,8 @@ class Treatment < ApplicationRecord
   validates :name, presence: true
   scope :order_for_display, -> { order(arel_table[:treated_on].asc.nulls_first) }
   scope :order_for_print, -> { order(arel_table[:treated_on].desc.nulls_last) }
+
+  def display_date
+    treated_on
+  end
 end

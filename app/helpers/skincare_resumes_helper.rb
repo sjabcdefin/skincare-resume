@@ -30,7 +30,7 @@ module SkincareResumesHelper
   end
 
   def resume_items_empty(resume)
-    resume.products.empty? && resume.medications.empty? && resume.allergies.empty? && resume.treatments.empty?
+    resume.product_rows.empty? && resume.medication_rows.empty? && resume.allergy_rows.empty? && resume.treatment_rows.empty?
   end
 
   def save_button_class(resume)
