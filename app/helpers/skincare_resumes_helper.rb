@@ -13,10 +13,6 @@ module SkincareResumesHelper
     resume.status == 'draft' ? t('buttons.edit.draft') : t('buttons.edit.completed')
   end
 
-  def resume_items_empty(resume)
-    resume.product_rows.empty? && resume.medication_rows.empty? && resume.allergy_rows.empty? && resume.treatment_rows.empty?
-  end
-
   def save_button_class(resume)
     resume.present? ? 'bg-[#5F7F67] hover:bg-[#4A6652] text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
   end

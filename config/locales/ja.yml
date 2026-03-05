@@ -116,7 +116,6 @@ ja:
       detail_allergy: アレルギー名を選択または入力してください。
     delete_confirmation: 本当に削除しますか？
     date_blank: －
-    no_resume_items: 📝 現在、登録している履歴書情報はありません。
   date:
     abbr_day_names:
       - 日
