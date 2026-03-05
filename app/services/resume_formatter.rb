@@ -47,10 +47,18 @@ class ResumeFormatter
 
     padded_records.map.with_index do |record, index|
       DisplayRow.new(
-        name: record.name,
-        date: record.display_date,
+        name: record.name || blank_cell,
+        date: record.name ? format_date(record.display_date) : blank_cell,
         over_limit: index < over_limit_count
       )
     end
+  end
+
+  def format_date(date)
+    date ? I18n.l(date, format: :default) : I18n.t('common.date_blank')
+  end
+
+  def blank_cell
+    "\u00A0"
   end
 end
