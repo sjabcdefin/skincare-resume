@@ -23,8 +23,7 @@
               .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
                 = row.name
                 - if row.over_limit
-                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
-                    | 印刷対象外
+                  = render 'over_limit_badge'
 
     table.table-fixed.w-full.border
       thead
@@ -42,8 +41,7 @@
               .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
                 = row.name
                 - if row.over_limit
-                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
-                    | 印刷対象外
+                  = render 'over_limit_badge'
 
     table.table-fixed.w-full.border
       thead
@@ -57,8 +55,7 @@
               .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
                 = row.name
                 - if row.over_limit
-                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
-                    | 印刷対象外
+                  = render 'over_limit_badge'
 
     table.table-fixed.w-full.border.print-break-before
       thead
@@ -76,5 +73,4 @@
               .flex.flex-col.gap-1.sm:flex-row.sm:justify-between
                 = row.name
                 - if row.over_limit
-                  .inline-flex.items-center.justify-center.w-18.px-2.py-1.rounded-xl.border.border-red-600.bg-red-50.font-bold class='text-[10px]'
-                    | 印刷対象外
+                  = render 'over_limit_badge'
