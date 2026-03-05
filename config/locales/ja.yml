@@ -56,6 +56,8 @@ ja:
   skincare_resumes:
     confirmation:
       title: 入力したスキンケアの履歴書の確認
+    over_limit_badge:
+      non_printable: 印刷対象外
     update:
       success: 履歴書の登録を完了しました。
   home:
@@ -116,7 +118,6 @@ ja:
       detail_allergy: アレルギー名を選択または入力してください。
     delete_confirmation: 本当に削除しますか？
     date_blank: －
-    no_resume_items: 📝 現在、登録している履歴書情報はありません。
   date:
     abbr_day_names:
       - 日

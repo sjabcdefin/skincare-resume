@@ -3,8 +3,8 @@
 class SkincareResumesController < ApplicationController
   def confirmation
     @resume = repository.resume
-    @display_resume = ResumeDisplayFormatter.new(resume: @resume)
-    @print_resume = ResumePrintFormatter.new(resume: @resume)
+    @display_resume = ResumeFormatter.new(resume: @resume, mode: :display)
+    @print_resume = ResumeFormatter.new(resume: @resume, mode: :print)
   end
 
   def update
