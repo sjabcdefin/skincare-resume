@@ -8,8 +8,10 @@
           = form.date_field :started_on,
                             class: 'w-full px-3 py-2 border border-gray-400 rounded shadow-sm focus:outline-blue-600 text-base appearance-none'
         .max-w-md.space-y-2
-          = form.label :name, Product.human_attribute_name(:name),
-                       class: 'block text-base font-semibold'
+          = form.label :name, class: 'block text-base font-semibold' do
+            = Product.human_attribute_name(:name)
+            span.text-red-600.ml-1
+              = t('common.required_mark')
           = form.text_field :name, placeholder: t('.placeholder'),
                             class: ['w-full px-3 py-2 border rounded shadow-sm text-base',
                                    { 'border-gray-400 focus:outline-blue-600': product.errors[:name].none?,
