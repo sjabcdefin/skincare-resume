@@ -115,6 +115,7 @@ ja:
     delete_confirmation: 本当に削除しますか？
     date_blank: －
     required_mark: "*"
+    usage: 💡 ご利用方法
   date:
     abbr_day_names:
       - 日
