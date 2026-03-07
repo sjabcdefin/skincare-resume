@@ -3,14 +3,8 @@
 .w-full.max-w-3xl.mx-auto
   = render 'shared/progress_bar'
 
-  .my-8.px-4.space-y-3
-    h3.text-center.text-xl.font-medium
-      = t('common.title', model: Allergy.model_name.human)
-    .text-sm
-      p
-        = t('common.usage.title')
-        br
-        = t('common.usage.detail_allergy')
+  h1.my-8.px-4.text-center.text-xl.font-medium
+    = t('common.title', model: Allergy.model_name.human)
 
   #allergies
     - @allergies.each do |allergy|

@@ -112,12 +112,9 @@ ja:
       success: 削除されました。
   common:
     title: "%{model}の入力"
-    usage:
-      title: 💡 ご利用方法
-      detail: "%{date_attribute}を入力しなくても保存できます。%{name_attribute}は入力する必要があります。"
-      detail_allergy: アレルギー名を選択または入力してください。
     delete_confirmation: 本当に削除しますか？
     date_blank: －
+    required_mark: "*"
   date:
     abbr_day_names:
       - 日
