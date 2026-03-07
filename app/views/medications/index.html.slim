@@ -1,4 +1,7 @@
 - content_for :title, t('common.title', model: Medication.model_name.human)
+- content_for :description,
+              ['スキンケアの履歴書の薬情報入力ページです。',
+               '使用中の薬情報を記録して、診察時に医師へ正確に伝えられます。'].join
 
 .w-full.max-w-3xl.mx-auto
   = render 'shared/progress_bar'
