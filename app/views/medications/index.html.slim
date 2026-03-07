@@ -3,16 +3,8 @@
 .w-full.max-w-3xl.mx-auto
   = render 'shared/progress_bar'
 
-  .my-8.px-4.space-y-3
-    h3.text-center.text-xl.font-medium
-      = t('common.title', model: Medication.model_name.human)
-    .text-sm
-      p
-        = t('common.usage.title')
-        br
-        = t('common.usage.detail',
-            date_attribute: Medication.human_attribute_name(:started_on),
-            name_attribute: Medication.human_attribute_name(:name))
+  h1.my-8.px-4.text-center.text-xl.font-medium
+    = t('common.title', model: Medication.model_name.human)
 
   #medications
     - @medications.each do |medication|
