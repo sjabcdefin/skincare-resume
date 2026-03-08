@@ -33,7 +33,7 @@ html lang="ja"
       = yield
 
     footer.mt-4.py-4.border-t.border-gray-300.print:hidden
-      .flex.flex-wrap.justify-center.gap-x-8.gap-y-2.text-sm.font-bold
+      nav.flex.flex-wrap.justify-center.gap-x-8.gap-y-2.text-sm.font-bold
         = link_to t('footer.terms'), terms_path, class: 'hover:border-b'
         = link_to t('footer.privacy'), privacy_path, class: 'hover:border-b'
         - if current_user
