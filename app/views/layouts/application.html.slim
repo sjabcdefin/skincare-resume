@@ -22,13 +22,14 @@ html lang="ja"
     #flash.fixed.top-5.right-5.z-50
       = render 'flash'
 
-    .w-full.mx-auto.max-w-4xl.mt-8.px-2.print:hidden
-      = link_to root_path, class: 'flex items-center space-x-2' do
-        = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
-        h1.text-2xl.font-bold
-          = SkincareResume.model_name.human
+    header.mt-8.px-2.print:hidden
+      .mx-auto.max-w-4xl
+        = link_to root_path, class: 'inline-flex items-center gap-2' do
+          = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
+          span.text-2xl.font-bold
+            = SkincareResume.model_name.human
 
-    main.container.mx-auto.mt-4.px-5.flex-grow.print-area
+    main.container.mx-auto.px-5.flex-grow.print-area
       = yield
 
     footer.mt-4.py-4.border-t.border-gray-300.print:hidden
