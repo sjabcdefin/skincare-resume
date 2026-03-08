@@ -1,6 +1,9 @@
 - content_for :title, t('.title')
 
 .w-full.max-w-6xl.mx-auto
+  h1.sr-only
+    = t('.title')
+
   = render @resume_status,
     resume: @resume,
     display_resume: @display_resume,
