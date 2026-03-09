@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     @resume = repository.resume
 
     if @product.save
-      flash.now.notice = t('flash.create.success')
+      render :create
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      flash.now.notice = t('flash.update.success')
+      render :update
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy!
-    flash.now.notice = t('flash.destroy.success')
+    render :destroy
   end
 
   private

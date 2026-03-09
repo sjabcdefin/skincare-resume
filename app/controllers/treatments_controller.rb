@@ -21,7 +21,7 @@ class TreatmentsController < ApplicationController
     @resume = repository.resume
 
     if @treatment.save
-      flash.now.notice = t('flash.create.success')
+      render :create
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class TreatmentsController < ApplicationController
 
   def update
     if @treatment.update(treatment_params)
-      flash.now.notice = t('flash.update.success')
+      render :update
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class TreatmentsController < ApplicationController
 
   def destroy
     @treatment.destroy!
-    flash.now.notice = t('flash.destroy.success')
+    render :destroy
   end
 
   private

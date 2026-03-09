@@ -21,7 +21,7 @@ class AllergiesController < ApplicationController
     @resume = repository.resume
 
     if @allergy.save
-      flash.now.notice = t('flash.create.success')
+      render :create
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class AllergiesController < ApplicationController
 
   def update
     if @allergy.update(allergy_params)
-      flash.now.notice = t('flash.update.success')
+      render :update
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class AllergiesController < ApplicationController
 
   def destroy
     @allergy.destroy!
-    flash.now.notice = t('flash.destroy.success')
+    render :destroy
   end
 
   private
