@@ -3,7 +3,11 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test 'the truth' do
-  #   assert true
-  # end
+  test 'destroying user destroys skincare_resume' do
+    user = users(:alice)
+
+    assert_difference('SkincareResume.count', -1) do
+      user.destroy!
+    end
+  end
 end
