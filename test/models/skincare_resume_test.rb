@@ -2,8 +2,12 @@
 
 require 'test_helper'
 
-class SkincareResumeTest < ActiveSupport::TestCase
-  # test 'the truth' do
-  #   assert true
-  # end
+class UserTest < ActiveSupport::TestCase
+  test 'destroying resume destroys products' do
+    resume = skincare_resumes(:one)
+
+    assert_difference('Product.count', -4) do
+      resume.destroy!
+    end
+  end
 end
