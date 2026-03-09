@@ -2,10 +2,8 @@
 
 one:
   user: alice
-  status: MyString
-  uuid: MyString
+  uuid: <%= SecureRandom.uuid %>
 
 two:
   user: bob
-  status: MyString
-  uuid: MyString
+  uuid: <%= SecureRandom.uuid %>
