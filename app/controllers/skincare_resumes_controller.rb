@@ -7,13 +7,6 @@ class SkincareResumesController < ApplicationController
     @print_resume = ResumeFormatter.new(resume: @resume, mode: :print)
   end
 
-  def update
-    repository.resume.update!(status_params)
-    redirect_path = current_user ? root_path : '/auth/google_oauth2'
-
-    redirect_to redirect_path, notice: t('.success')
-  end
-
   private
 
   def repository
@@ -21,9 +14,5 @@ class SkincareResumesController < ApplicationController
       user: current_user,
       session: session
     )
-  end
-
-  def status_params
-    params.require(:skincare_resume).permit(:status)
   end
 end

@@ -17,6 +17,7 @@
   = render 'shared/navigation', previous_path: treatments_path, next_path: nil
 
   .flex.flex-col.items-center.mt-6.gap-4.print:hidden
-    = render 'shared/resume_save_button', resume: @resume, next_action: :completed
+    - unless current_user
+      = render 'shared/resume_save_button'
     = render 'shared/resume_print_button'
     = render 'shared/resume_back_button'

@@ -35,13 +35,12 @@ class ResumeBasedRepository
   end
 
   def create_login_resume
-    @user.create_skincare_resume!(status: :draft)
+    @user.create_skincare_resume!
   end
 
   def create_guest_resume
     resume = SkincareResume.create!(
       uuid: SecureRandom.uuid,
-      status: :draft,
       user_id: nil
     )
     @session['resume_uuid'] = resume.uuid
