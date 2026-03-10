@@ -1,15 +1,12 @@
 #save_button.flex.flex-col.items-center.min-h-24.gap-2
-  =button_to resume_save_button_text(next_action),
-             skincare_resume_path,
-             method: :patch,
-             params: { skincare_resume: { status: next_action } },
+  = button_to t('buttons.save'), '/auth/google_oauth2',
              data: { turbo: false },
-             disabled: resume.blank?,
-             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal cursor-pointer #{save_button_class(resume)}"
-  - if resume.blank?
+             disabled:,
+             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(disabled)}"
+  - if disabled
     p.leading-relaxed.text-center.text-xs.text-red-600
       | ※ 履歴書の情報を登録すると保存できるようになります。
-  - if resume.present? && !current_user
+  - else
     p.leading-relaxed.text-center.text-xs
       | ※ 保存にはログインが必要です。
       br

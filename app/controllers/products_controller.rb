@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = repository.build(product_params)
-    @resume = repository.resume
 
     if @product.save
       render :create

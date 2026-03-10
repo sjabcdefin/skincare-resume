@@ -58,8 +58,6 @@ ja:
       title: 入力したスキンケアの履歴書の確認
     over_limit_badge:
       non_printable: 印刷対象外
-    update:
-      success: 履歴書の登録を完了しました。
   home:
     index:
       title: トップページ
@@ -76,13 +74,8 @@ ja:
     create:
       login: 履歴書を新規作成する
       guest: ログインせずに履歴書を作成
-    save:
-      completed_login: 履歴書を完成させる
-      completed_guest: 保存する
-      draft_guest: 一時保存する
-    edit:
-      draft: 作成途中の履歴書を編集・更新する
-      completed: 作成した履歴書を編集・更新する
+    save: 保存する
+    edit: 保存した履歴書を編集・更新する
     print: 印刷する
     back_to_home: トップページに戻る
     cancel: キャンセル

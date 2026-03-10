@@ -18,7 +18,6 @@ class AllergiesController < ApplicationController
 
   def create
     @allergy = repository.build(allergy_params)
-    @resume = repository.resume
 
     if @allergy.save
       render :create
