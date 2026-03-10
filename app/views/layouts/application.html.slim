@@ -6,6 +6,15 @@ html lang="ja"
     meta name="viewport" content="width=device-width,initial-scale=1"
     = csrf_meta_tags
     = csp_meta_tag
+    meta name="description" content=yield(:description)
+    meta property="og:title" content=yield(:title)
+    meta property="og:description" content=yield(:description)
+    meta property="og:url" content=request.original_url
+    meta property="og:image" content=image_url('ogp.png')
+    meta property="og:type" content="website"
+    meta property="og:site_name" content="スキンケアの履歴書"
+    meta name="twitter:card" content="summary_large_image"
+    meta name="twitter:image" content=image_url('ogp.png')
 
     = yield :head
 
