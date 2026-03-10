@@ -18,6 +18,6 @@
 
   .flex.flex-col.items-center.mt-6.gap-4.print:hidden
     - unless current_user
-      = render 'shared/resume_save_button'
+      = render 'shared/resume_save_button', disabled: @resume.blank?
     = render 'shared/resume_print_button'
     = render 'shared/resume_back_button'

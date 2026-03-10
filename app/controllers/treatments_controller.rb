@@ -18,7 +18,6 @@ class TreatmentsController < ApplicationController
 
   def create
     @treatment = repository.build(treatment_params)
-    @resume = repository.resume
 
     if @treatment.save
       render :create

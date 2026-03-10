@@ -1,8 +1,13 @@
-.flex.flex-col.items-center.min-h-24.gap-2
+#save_button.flex.flex-col.items-center.min-h-24.gap-2
   = button_to t('buttons.save'), '/auth/google_oauth2',
              data: { turbo: false },
-             class: 'inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal cursor-pointer bg-[#5F7F67] hover:bg-[#4A6652] text-white'
-  p.leading-relaxed.text-center.text-xs
-    | ※ 保存にはログインが必要です。
-    br
-    | 既に履歴書がある場合は、最新の内容で上書き保存されます。
+             disabled:,
+             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(disabled)}"
+  - if disabled
+    p.leading-relaxed.text-center.text-xs.text-red-600
+      | ※ 履歴書の情報を登録すると保存できるようになります。
+  - else
+    p.leading-relaxed.text-center.text-xs
+      | ※ 保存にはログインが必要です。
+      br
+      | 既に履歴書がある場合は、最新の内容で上書き保存されます。

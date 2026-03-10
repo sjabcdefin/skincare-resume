@@ -1,2 +1,5 @@
 = turbo_stream.append 'allergies', @allergy
 = turbo_stream.update Allergy.new, ''
+
+= turbo_stream.replace 'save_button' do
+  = render 'shared/resume_save_button', disabled: false
