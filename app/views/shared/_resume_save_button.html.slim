@@ -1,5 +1,6 @@
 .flex.flex-col.items-center.min-h-24.gap-2
-  = link_to t('buttons.save'), '/auth/google_oauth2',
+  = button_to t('buttons.save'), '/auth/google_oauth2',
+             data: { turbo: false },
              class: 'inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal cursor-pointer bg-[#5F7F67] hover:bg-[#4A6652] text-white'
   p.leading-relaxed.text-center.text-xs
     | ※ 保存にはログインが必要です。
