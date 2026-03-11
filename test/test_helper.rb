@@ -16,5 +16,9 @@ module ActiveSupport
     def sign_in(user, &block)
       ApplicationController.stub_any_instance :current_user, user, &block
     end
+
+    def with_session(session, &block)
+      ApplicationController.stub_any_instance :session, session, &block
+    end
   end
 end
