@@ -4,59 +4,76 @@ require 'test_helper'
 
 class MedicationsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:alice)
     @medication = medications(:one)
   end
 
-  test 'should get index' do
-    get medications_url
-    assert_response :success
-  end
-
-  test 'should get new' do
-    get new_medication_url
-    assert_response :success
-  end
-
-  test 'should create medication' do
-    assert_difference('Medication.count') do
-      post medications_url, params: {
-        medication: {
-          name: @medication.name,
-          skincare_resume_id: @medication.skincare_resume_id,
-          started_on: @medication.started_on
-        }
-      }
+  test 'should get index when logged in' do
+    sign_in @user do
+      get medications_url
+      assert_response :success
     end
-
-    assert_redirected_to medication_url(Medication.last)
   end
 
-  test 'should show medication' do
-    get medication_url(@medication)
-    assert_response :success
-  end
-
-  test 'should get edit' do
-    get edit_medication_url(@medication)
-    assert_response :success
-  end
-
-  test 'should update medication' do
-    patch medication_url(@medication), params: {
-      medication: {
-        name: @medication.name,
-        skincare_resume_id: @medication.skincare_resume_id,
-        started_on: @medication.started_on
-      }
-    }
-    assert_redirected_to medication_url(@medication)
-  end
-
-  test 'should destroy medication' do
-    assert_difference('Medication.count', -1) do
-      delete medication_url(@medication)
+  test 'should get new when logged in' do
+    sign_in @user do
+      get new_medication_url
+      assert_response :success
     end
+  end
 
-    assert_redirected_to medications_url
+  test 'should create medication when logged in' do
+    sign_in @user do
+      assert_difference('Medication.count') do
+        post medications_url,
+             params: {
+               medication: {
+                 name: 'ベピオゲル',
+                 started_on: Date.new(2025, 12, 25)
+               }
+             },
+             as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should show medication when logged in' do
+    sign_in @user do
+      get medication_url(@medication)
+      assert_response :success
+    end
+  end
+
+  test 'should get edit when logged in' do
+    sign_in @user do
+      get edit_medication_url(@medication)
+      assert_response :success
+    end
+  end
+
+  test 'should update medication when logged in' do
+    sign_in @user do
+      patch medication_url(@medication),
+            params: {
+              medication: {
+                started_on: Date.new(2025, 12, 24)
+              }
+            },
+            as: :turbo_stream
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should destroy medication when logged in' do
+    sign_in @user do
+      assert_difference('Medication.count', -1) do
+        delete medication_url(@medication), as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
   end
 end
