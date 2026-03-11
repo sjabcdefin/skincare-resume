@@ -13,5 +13,8 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    def sign_in(user, &block)
+      ApplicationController.stub_any_instance :current_user, user, &block
+    end
   end
 end
