@@ -1,9 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   skincare_resume: one
-  name: MyString
+  name: 金属(酸化亜鉛)
 
 two:
-  skincare_resume: two
-  name: MyString
+  id: 2
+  skincare_resume: one
+  name: 金属(銀)
+
+three:
+  id: 3
+  skincare_resume: one
+  name: 花粉(スギ)
