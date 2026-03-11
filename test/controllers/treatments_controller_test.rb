@@ -4,59 +4,76 @@ require 'test_helper'
 
 class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:alice)
     @treatment = treatments(:one)
   end
 
-  test 'should get index' do
-    get treatments_url
-    assert_response :success
-  end
-
-  test 'should get new' do
-    get new_treatment_url
-    assert_response :success
-  end
-
-  test 'should create treatment' do
-    assert_difference('Treatment.count') do
-      post treatments_url, params: {
-        treatment: {
-          name: @treatment.name,
-          skincare_resume_id: @treatment.skincare_resume_id,
-          treated_on: @treatment.treated_on
-        }
-      }
+  test 'should get index when logged in' do
+    sign_in @user do
+      get treatments_url
+      assert_response :success
     end
-
-    assert_redirected_to treatment_url(Treatment.last)
   end
 
-  test 'should show treatment' do
-    get treatment_url(@treatment)
-    assert_response :success
-  end
-
-  test 'should get edit' do
-    get edit_treatment_url(@treatment)
-    assert_response :success
-  end
-
-  test 'should update treatment' do
-    patch treatment_url(@treatment), params: {
-      treatment: {
-        name: @treatment.name,
-        skincare_resume_id: @treatment.skincare_resume_id,
-        treated_on: @treatment.treated_on
-      }
-    }
-    assert_redirected_to treatment_url(@treatment)
-  end
-
-  test 'should destroy treatment' do
-    assert_difference('Treatment.count', -1) do
-      delete treatment_url(@treatment)
+  test 'should get new when logged in' do
+    sign_in @user do
+      get new_treatment_url
+      assert_response :success
     end
+  end
 
-    assert_redirected_to treatments_url
+  test 'should create treatment when logged in' do
+    sign_in @user do
+      assert_difference('Treatment.count') do
+        post treatments_url,
+             params: {
+               treatment: {
+                 name: 'エレクトロポーション ケアシス',
+                 started_on: Date.new(2025, 12, 25)
+               }
+             },
+             as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should show treatment when logged in' do
+    sign_in @user do
+      get treatment_url(@treatment)
+      assert_response :success
+    end
+  end
+
+  test 'should get edit when logged in' do
+    sign_in @user do
+      get edit_treatment_url(@treatment)
+      assert_response :success
+    end
+  end
+
+  test 'should update treatment when logged in' do
+    sign_in @user do
+      patch treatment_url(@treatment),
+            params: {
+              treatment: {
+                started_on: Date.new(2025, 12, 24)
+              }
+            },
+            as: :turbo_stream
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should destroy treatment when logged in' do
+    sign_in @user do
+      assert_difference('Treatment.count', -1) do
+        delete treatment_url(@treatment), as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
   end
 end
