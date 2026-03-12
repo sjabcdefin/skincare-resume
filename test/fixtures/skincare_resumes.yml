@@ -3,7 +3,3 @@
 one:
   user: alice
   uuid: <%= SecureRandom.uuid %>
-
-two:
-  user: bob
-  uuid: <%= SecureRandom.uuid %>
