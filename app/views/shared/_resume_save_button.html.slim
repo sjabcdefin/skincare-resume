@@ -1,5 +1,5 @@
 #save_button.flex.flex-col.items-center.min-h-24.gap-2
-  = button_to t('buttons.save'), '/auth/google_oauth2',
+  = button_to t('buttons.save'), '/auth/google_oauth2?button=save',
              data: { turbo: false },
              disabled:,
              class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(disabled)}"
