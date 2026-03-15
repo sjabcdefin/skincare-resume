@@ -1,16 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+metal_zinc:
   id: 1
-  skincare_resume: one
-  name: 金属(酸化亜鉛)
+  skincare_resume: with_user
+  name: 金属(亜鉛)
 
-two:
+metal_silver:
   id: 2
-  skincare_resume: one
+  skincare_resume: with_user
   name: 金属(銀)
 
-three:
+cedar_pollen:
   id: 3
-  skincare_resume: one
+  skincare_resume: with_user
   name: 花粉(スギ)
+
+latex:
+  id: 4
+  skincare_resume: without_user
+  name: ラテックス

@@ -1,25 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+zoskin_cleanser:
   id: 1
-  skincare_resume: one
+  skincare_resume: with_user
   started_on: 2025-12-25
   name: ゼオスキン ハイドレーティングクレンザー
 
-two:
+nivea_cream:
   id: 2
-  skincare_resume: one
+  skincare_resume: with_user
   started_on: nil
   name: ニベアクリーム
 
-three:
+collage_lotion:
   id: 3
-  skincare_resume: one
+  skincare_resume: with_user
   started_on: 2024-12-25
   name: コラージュリペアローション
 
-four:
+collage_milk:
   id: 4
-  skincare_resume: one
+  skincare_resume: with_user
   started_on: nil
   name: コラージュリペアミルク
+
+curel_lotion:
+  id: 5
+  skincare_resume: without_user
+  started_on: nil
+  name: キュレル 潤浸保湿 化粧水
