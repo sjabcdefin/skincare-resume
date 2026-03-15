@@ -1,9 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+with_user:
   user: alice
   uuid: <%= SecureRandom.uuid %>
 
-two:
-  user: bob
+without_user:
   uuid: <%= SecureRandom.uuid %>

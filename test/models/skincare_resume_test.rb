@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test 'destroying resume destroys products' do
-    resume = skincare_resumes(:one)
+    resume = skincare_resumes(:with_user)
 
     assert_difference('Product.count', -4) do
       resume.destroy!

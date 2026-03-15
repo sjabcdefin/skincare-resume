@@ -1,25 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+caresys1:
   id: 1
-  skincare_resume: one
+  skincare_resume: with_user
   treated_on: 2025-12-25
   name: エレクトロポーション ケアシス
 
-two:
+milano_repeel:
   id: 2
-  skincare_resume: one
+  skincare_resume: with_user
   treated_on: nil
   name: ミラノリピール
 
-three:
+caresys2:
   id: 3
-  skincare_resume: one
+  skincare_resume: with_user
   treated_on: 2024-12-25
   name: エレクトロポーション ケアシス
 
-four:
+lumecca:
   id: 4
-  skincare_resume: one
+  skincare_resume: with_user
   treated_on: nil
   name: ルメッカ
+
+massage_peel:
+  id: 5
+  skincare_resume: without_user
+  treated_on: nil
+  name: マッサージピール

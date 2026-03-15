@@ -4,57 +4,159 @@ require 'test_helper'
 
 class AllergiesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @allergy = allergies(:one)
+    @alice = users(:alice)
+    @session = { 'resume_uuid' => skincare_resumes(:without_user).uuid }
+    @metal_zinc = allergies(:metal_zinc)
+    @latex = allergies(:latex)
   end
 
-  test 'should get index' do
-    get allergies_url
-    assert_response :success
+  test 'should get index when logged in' do
+    sign_in @alice do
+      get allergies_url
+      assert_response :success
+    end
   end
 
-  test 'should get new' do
-    get new_allergy_url
-    assert_response :success
+  test 'should get new when logged in' do
+    sign_in @alice do
+      get new_allergy_url
+      assert_response :success
+    end
   end
 
-  test 'should create allergy' do
+  test 'should create allergy when logged in' do
+    sign_in @alice do
+      assert_difference('Allergy.count') do
+        post allergies_url,
+             params: {
+               allergy: {
+                 name: '金属(酸化亜鉛)'
+               }
+             },
+             as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should show allergy when logged in' do
+    sign_in @alice do
+      get allergy_url(@metal_zinc)
+      assert_response :success
+    end
+  end
+
+  test 'should get edit when logged in' do
+    sign_in @alice do
+      get edit_allergy_url(@metal_zinc)
+      assert_response :success
+    end
+  end
+
+  test 'should update allergy when logged in' do
+    sign_in @alice do
+      patch allergy_url(@metal_zinc),
+            params: {
+              allergy: {
+                name: '金属(亜鉛)'
+              }
+            },
+            as: :turbo_stream
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should destroy allergy when logged in' do
+    sign_in @alice do
+      assert_difference('Allergy.count', -1) do
+        delete allergy_url(@metal_zinc), as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should get index when not logged in' do
+    with_session @session do
+      get allergies_url
+      assert_response :success
+    end
+  end
+
+  test 'should get new when not logged in' do
+    with_session @session do
+      get new_allergy_url
+      assert_response :success
+    end
+  end
+
+  test 'should create allergy when not logged in without session' do
     assert_difference('Allergy.count') do
-      post allergies_url, params: {
-        allergy: {
-          name: @allergy.name,
-          skincare_resume_id: @allergy.skincare_resume_id
-        }
-      }
+      post allergies_url,
+           params: {
+             allergy: {
+               name: '金属(酸化亜鉛)'
+             }
+           },
+           as: :turbo_stream
     end
-
-    assert_redirected_to allergy_url(Allergy.last)
-  end
-
-  test 'should show allergy' do
-    get allergy_url(@allergy)
     assert_response :success
+    assert_equal 'text/vnd.turbo-stream.html', @response.media_type
   end
 
-  test 'should get edit' do
-    get edit_allergy_url(@allergy)
-    assert_response :success
-  end
-
-  test 'should update allergy' do
-    patch allergy_url(@allergy), params: {
-      allergy: {
-        name: @allergy.name,
-        skincare_resume_id: @allergy.skincare_resume_id
-      }
-    }
-    assert_redirected_to allergy_url(@allergy)
-  end
-
-  test 'should destroy allergy' do
-    assert_difference('Allergy.count', -1) do
-      delete allergy_url(@allergy)
+  test 'should create allergy when not logged in' do
+    with_session @session do
+      assert_difference('Allergy.count') do
+        post allergies_url,
+             params: {
+               allergy: {
+                 name: '金属(酸化亜鉛)'
+               }
+             },
+             as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
     end
+  end
 
-    assert_redirected_to allergies_url
+  test 'should show allergy when not logged in' do
+    with_session @session do
+      get allergy_url(@latex)
+      assert_response :success
+    end
+  end
+
+  test 'should get edit when not logged in' do
+    with_session @session do
+      get edit_allergy_url(@latex)
+      assert_response :success
+    end
+  end
+
+  test 'should update allergy when not logged in' do
+    with_session @session do
+      patch allergy_url(@latex),
+            params: {
+              allergy: {
+                name: 'ラテックス(ゴム)'
+              }
+            },
+            as: :turbo_stream
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
+  end
+
+  test 'should destroy allergy when not logged in' do
+    with_session @session do
+      assert_difference('Allergy.count', -1) do
+        delete allergy_url(@latex), as: :turbo_stream
+      end
+      assert_response :success
+      assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+    end
   end
 end
