@@ -35,5 +35,15 @@ module ActiveSupport
       post path
       follow_redirect!
     end
+
+    def mock_google_auth(user)
+      OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+        provider: 'google_oauth2',
+        info: {
+          name: user.name,
+          email: user.email
+        }
+      )
+    end
   end
 end
