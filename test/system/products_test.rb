@@ -140,14 +140,4 @@ class ProductsTest < ApplicationSystemTestCase
       end
     end
   end
-
-  private
-
-  def create_product(name:, date: nil)
-    within '#new_product' do
-      fill_in '使用開始日', with: date if date.present?
-      fill_in 'スキンケア製品名', with: name
-      click_on '登録する'
-    end
-  end
 end

@@ -157,23 +157,4 @@ class AllergiesTest < ApplicationSystemTestCase
       end
     end
   end
-
-  private
-
-  def select_and_create_allergy(name:)
-    within '#new_allergy' do
-      find('.ts-control').click
-      find('.ts-dropdown-content .option', text: name).click
-      click_on '登録する'
-    end
-  end
-
-  def input_and_create_allergy(name:)
-    within '#new_allergy' do
-      find('.ts-control').click
-      find('.ts-control input').set(name)
-      find('.ts-dropdown-content .create', text: "#{name} を選択肢に追加します。").click
-      click_on '登録する'
-    end
-  end
 end

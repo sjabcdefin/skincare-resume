@@ -121,46 +121,6 @@ class SkincareResumesTest < ApplicationSystemTestCase
 
   private
 
-  def create_input_items
-    visit products_url
-
-    within '#new_product' do
-      fill_in '使用開始日', with: '002025/12/25'
-      fill_in 'スキンケア製品名', with: 'NAVISION TAホワイトローション'
-      click_on '登録する'
-    end
-    assert_text '2025/12/25'
-    assert_text 'NAVISION TAホワイトローション'
-
-    click_on '次へ'
-    assert_current_path medications_path
-
-    within '#new_medication' do
-      fill_in '薬名', with: 'ベピオローション'
-      click_on '登録する'
-    end
-    assert_text 'ベピオローション'
-
-    click_on '次へ'
-    assert_current_path allergies_path
-
-    within '#new_allergy' do
-      find('.ts-control').click
-      find('.ts-dropdown-content .option', text: '金属(金)').click
-      click_on '登録する'
-    end
-    assert_text '金属(金)'
-
-    click_on '次へ'
-    assert_current_path treatments_path
-
-    within '#new_treatment' do
-      fill_in '治療日', with: '002025/12/25'
-      fill_in '治療名', with: 'ヤグレーザー'
-      click_on '登録する'
-    end
-  end
-
   def assert_blank_table(table, expected_rows)
     within ".display-area ##{table}-table" do
       rows = all('tbody tr')

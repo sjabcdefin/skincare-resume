@@ -140,14 +140,4 @@ class TreatmentsTest < ApplicationSystemTestCase
       end
     end
   end
-
-  private
-
-  def create_treatment(name:, date: nil)
-    within '#new_treatment' do
-      fill_in '治療日', with: date if date.present?
-      fill_in '治療名', with: name
-      click_on '登録する'
-    end
-  end
 end
