@@ -12,7 +12,7 @@
     h1.font-medium.text-center.text-xl
       = t('.title')
 
-  .print:hidden
+  .display-area.print:hidden
     = render 'resume', resume: @display_resume, update_date: Time.zone.today
 
   .print-area.hidden.print:block

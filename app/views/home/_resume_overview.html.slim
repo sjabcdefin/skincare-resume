@@ -2,7 +2,7 @@
   = link_to t('buttons.edit'), products_path,
             class: 'inline-flex items-center justify-center h-12 min-w-60 px-6 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white'
 
-.mb-8.print:hidden
+.display-area.mb-8.print:hidden
   = render '/skincare_resumes/resume', resume: display_resume, update_date: resume.updated_at.to_date
 
 .print-area.hidden.print:block
