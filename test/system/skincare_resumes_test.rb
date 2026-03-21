@@ -55,6 +55,24 @@ class SkincareResumesTest < ApplicationSystemTestCase
     assert_selector '.display-area'
   end
 
+  test 'shows overflow label when allergy rows exceed print limit' do
+    login users(:carol)
+
+    visit confirmation_skincare_resume_url
+
+    assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
+
+    row = all('#allergies-table tbody tr')[0]
+    within row do
+      assert_text '金属(ニッケル)'
+      assert_text '印刷対象外'
+    end
+    assert_table_row('allergies', 1, ['金属(コバルト)'])
+    assert_table_row('allergies', 2, ['花粉(イネ)'])
+    assert_table_row('allergies', 3, ['花粉(ヨモギ)'])
+    assert_table_row('allergies', 4, ['ピーナッツ'])
+  end
+
   test 'guest user without resume sees resume summary' do
     visit confirmation_skincare_resume_url
 

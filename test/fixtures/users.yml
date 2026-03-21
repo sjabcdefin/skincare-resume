@@ -7,3 +7,7 @@ alice:
 bob:
   name: Bob
   email: bob@gmail.com
+
+carol:
+  name: Carol
+  email: carol@gmail.com
