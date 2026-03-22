@@ -11,21 +11,21 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get treatments_url
       assert_response :success
     end
   end
 
   test 'should get new when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get new_treatment_url
       assert_response :success
     end
   end
 
   test 'should create treatment when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       assert_difference('Treatment.count') do
         post treatments_url,
              params: {
@@ -42,21 +42,21 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show treatment when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get treatment_url(@caresys1)
       assert_response :success
     end
   end
 
   test 'should get edit when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get edit_treatment_url(@caresys1)
       assert_response :success
     end
   end
 
   test 'should update treatment when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       patch treatment_url(@caresys1),
             params: {
               treatment: {
@@ -70,7 +70,7 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy treatment when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       assert_difference('Treatment.count', -1) do
         delete treatment_url(@caresys1), as: :turbo_stream
       end
@@ -80,14 +80,14 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when not logged in' do
-    with_session @session do
+    stub_session @session do
       get treatments_url
       assert_response :success
     end
   end
 
   test 'should get new when not logged in' do
-    with_session @session do
+    stub_session @session do
       get new_treatment_url
       assert_response :success
     end
@@ -109,7 +109,7 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create treatment when not logged in' do
-    with_session @session do
+    stub_session @session do
       assert_difference('Treatment.count') do
         post treatments_url,
              params: {
@@ -126,21 +126,21 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show treatment when not logged in' do
-    with_session @session do
+    stub_session @session do
       get treatment_url(@massage_peel)
       assert_response :success
     end
   end
 
   test 'should get edit when not logged in' do
-    with_session @session do
+    stub_session @session do
       get edit_treatment_url(@massage_peel)
       assert_response :success
     end
   end
 
   test 'should update treatment when not logged in' do
-    with_session @session do
+    stub_session @session do
       patch treatment_url(@massage_peel),
             params: {
               treatment: {
@@ -154,7 +154,7 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy treatment when not logged in' do
-    with_session @session do
+    stub_session @session do
       assert_difference('Treatment.count', -1) do
         delete treatment_url(@massage_peel), as: :turbo_stream
       end

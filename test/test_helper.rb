@@ -14,28 +14,15 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
-    def sign_in(user, &block)
+    def stub_current_user(user, &block)
       ApplicationController.stub_any_instance :current_user, user, &block
     end
 
-    def with_session(session, &block)
+    def stub_session(session, &block)
       ApplicationController.stub_any_instance :session, session, &block
     end
 
     OmniAuth.config.test_mode = true
-    def login_with_google(user, save: false)
-      OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
-        provider: 'google_oauth2',
-        info: {
-          name: user.name,
-          email: user.email
-        }
-      )
-      path = '/auth/google_oauth2'
-      path += '?button=save' if save
-      post path
-      follow_redirect!
-    end
 
     def mock_google_auth(user)
       OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(

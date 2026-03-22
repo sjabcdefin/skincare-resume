@@ -11,21 +11,21 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get medications_url
       assert_response :success
     end
   end
 
   test 'should get new when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get new_medication_url
       assert_response :success
     end
   end
 
   test 'should create medication when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       assert_difference('Medication.count') do
         post medications_url,
              params: {
@@ -42,21 +42,21 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show medication when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get medication_url(@bepio_gel)
       assert_response :success
     end
   end
 
   test 'should get edit when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get edit_medication_url(@bepio_gel)
       assert_response :success
     end
   end
 
   test 'should update medication when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       patch medication_url(@bepio_gel),
             params: {
               medication: {
@@ -70,7 +70,7 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy medication when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       assert_difference('Medication.count', -1) do
         delete medication_url(@bepio_gel), as: :turbo_stream
       end
@@ -80,14 +80,14 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when not logged in' do
-    with_session @session do
+    stub_session @session do
       get medications_url
       assert_response :success
     end
   end
 
   test 'should get new when not logged in' do
-    with_session @session do
+    stub_session @session do
       get new_medication_url
       assert_response :success
     end
@@ -109,7 +109,7 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create medication when not logged in' do
-    with_session @session do
+    stub_session @session do
       assert_difference('Medication.count') do
         post medications_url,
              params: {
@@ -126,21 +126,21 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show medication when not logged in' do
-    with_session @session do
+    stub_session @session do
       get medication_url(@differin_gel)
       assert_response :success
     end
   end
 
   test 'should get edit when not logged in' do
-    with_session @session do
+    stub_session @session do
       get edit_medication_url(@differin_gel)
       assert_response :success
     end
   end
 
   test 'should update medication when not logged in' do
-    with_session @session do
+    stub_session @session do
       patch medication_url(@differin_gel),
             params: {
               medication: {
@@ -154,7 +154,7 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy medication when not logged in' do
-    with_session @session do
+    stub_session @session do
       assert_difference('Medication.count', -1) do
         delete medication_url(@differin_gel), as: :turbo_stream
       end
