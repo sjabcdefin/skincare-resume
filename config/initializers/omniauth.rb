@@ -1,5 +1,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  if Rails.env.development?
+  if Rails.env.test?
+    provider :google_oauth2, "dummy", "dummy", prompt: 'select_account'
+  elsif Rails.env.development?
     provider :google_oauth2,
       Rails.application.credentials.google[:client_id],
       Rails.application.credentials.google[:client_secret],
