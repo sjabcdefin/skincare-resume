@@ -7,7 +7,7 @@
       = "（#{SkincareResume.human_attribute_name(:update_date)}: #{l(update_date, format: :default)}）"
 
   .flex.flex-col.space-y-4.text-xs.sm:text-sm
-    table.table-fixed.w-full.border
+    table#products-table.table-fixed.w-full.border
       thead
         tr
           th.border.w-32.text-center.py-2
@@ -25,7 +25,7 @@
                 - if row.over_limit
                   = render 'skincare_resumes/over_limit_badge'
 
-    table.table-fixed.w-full.border
+    table#medications-table.table-fixed.w-full.border
       thead
         tr
           th.border.w-32.text-center.py-2
@@ -43,7 +43,7 @@
                 - if row.over_limit
                   = render 'skincare_resumes/over_limit_badge'
 
-    table.table-fixed.w-full.border
+    table#allergies-table.table-fixed.w-full.border
       thead
         tr
           th.text-left.border.px-4.py-2
@@ -57,7 +57,7 @@
                 - if row.over_limit
                   = render 'skincare_resumes/over_limit_badge'
 
-    table.table-fixed.w-full.border.print-break-before
+    table#treatments-table.table-fixed.w-full.border.print-break-before
       thead
         tr
           th.border.w-32.text-center.py-2

@@ -6,3 +6,7 @@ with_user:
 
 without_user:
   uuid: <%= SecureRandom.uuid %>
+
+over_limit_user:
+  user: carol
+  uuid: <%= SecureRandom.uuid %>

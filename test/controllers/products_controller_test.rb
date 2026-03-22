@@ -11,21 +11,21 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get products_url
       assert_response :success
     end
   end
 
   test 'should get new when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get new_product_url
       assert_response :success
     end
   end
 
   test 'should create product when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       assert_difference('Product.count') do
         post products_url,
              params: {
@@ -42,21 +42,21 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show product when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get product_url(@zoskin_cleanser)
       assert_response :success
     end
   end
 
   test 'should get edit when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get edit_product_url(@zoskin_cleanser)
       assert_response :success
     end
   end
 
   test 'should update product when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       patch product_url(@zoskin_cleanser),
             params: {
               product: {
@@ -70,7 +70,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy product when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       assert_difference('Product.count', -1) do
         delete product_url(@zoskin_cleanser), as: :turbo_stream
       end
@@ -80,14 +80,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when not logged in' do
-    with_session @session do
+    stub_session @session do
       get products_url
       assert_response :success
     end
   end
 
   test 'should get new when not logged in' do
-    with_session @session do
+    stub_session @session do
       get new_product_url
       assert_response :success
     end
@@ -109,7 +109,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create product when not logged in' do
-    with_session @session do
+    stub_session @session do
       assert_difference('Product.count') do
         post products_url,
              params: {
@@ -126,21 +126,21 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show product when not logged in' do
-    with_session @session do
+    stub_session @session do
       get product_url(@curel_lotion)
       assert_response :success
     end
   end
 
   test 'should get edit when not logged in' do
-    with_session @session do
+    stub_session @session do
       get edit_product_url(@curel_lotion)
       assert_response :success
     end
   end
 
   test 'should update product when not logged in' do
-    with_session @session do
+    stub_session @session do
       patch product_url(@curel_lotion),
             params: {
               product: {
@@ -154,7 +154,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy product when not logged in' do
-    with_session @session do
+    stub_session @session do
       assert_difference('Product.count', -1) do
         delete product_url(@curel_lotion), as: :turbo_stream
       end

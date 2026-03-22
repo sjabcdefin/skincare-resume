@@ -9,14 +9,14 @@ class SkincareResumesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get confirmation when logged in' do
-    sign_in @alice do
+    stub_current_user @alice do
       get confirmation_skincare_resume_url
       assert_response :success
     end
   end
 
   test 'should get confirmation when not logged in' do
-    with_session @session do
+    stub_session @session do
       get confirmation_skincare_resume_url
       assert_response :success
     end

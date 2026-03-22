@@ -33,7 +33,7 @@ html lang="ja"
 
     header.mt-8.px-2.print:hidden
       .mx-auto.max-w-4xl
-        = link_to root_path, class: 'inline-flex items-center gap-2' do
+        = link_to root_path, id: 'logo_title', class: 'inline-flex items-center gap-2' do
           = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
           span.text-2xl.font-bold
             = SkincareResume.model_name.human

@@ -19,3 +19,28 @@ latex:
   id: 4
   skincare_resume: without_user
   name: ラテックス
+
+metal_nickel:
+  id: 5
+  skincare_resume: over_limit_user
+  name: 金属(ニッケル)
+
+metal_cobalt:
+  id: 6
+  skincare_resume: over_limit_user
+  name: 金属(コバルト)
+
+rice_pollen:
+  id: 7
+  skincare_resume: over_limit_user
+  name: 花粉(イネ)
+
+mugwort_pollen:
+  id: 8
+  skincare_resume: over_limit_user
+  name: 花粉(ヨモギ)
+
+peanuts:
+  id: 9
+  skincare_resume: over_limit_user
+  name: ピーナッツ
