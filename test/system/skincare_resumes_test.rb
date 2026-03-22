@@ -144,6 +144,15 @@ class SkincareResumesTest < ApplicationSystemTestCase
     assert_text '※ 履歴書の情報を登録すると保存できるようになります。'
   end
 
+  test 'user can navigate between input steps' do
+    visit confirmation_skincare_resume_url
+    click_on '前へ'
+    assert_current_path treatments_path
+
+    click_on '次へ'
+    assert_current_path confirmation_skincare_resume_url
+  end
+
   private
 
   def assert_blank_table(table, expected_rows)
