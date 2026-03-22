@@ -140,4 +140,11 @@ class ProductsTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test 'user cannot create product without name' do
+    visit products_url
+
+    click_on '登録する'
+    assert_text 'スキンケア製品名を入力してください'
+  end
 end

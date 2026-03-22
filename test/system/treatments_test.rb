@@ -140,4 +140,11 @@ class TreatmentsTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test 'user cannot create treatment without name' do
+    visit treatments_url
+
+    click_on '登録する'
+    assert_text '治療名を入力してください'
+  end
 end

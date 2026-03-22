@@ -157,4 +157,11 @@ class AllergiesTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test 'user cannot create allergy without name' do
+    visit allergies_url
+
+    click_on '登録する'
+    assert_text 'アレルギー名を入力してください'
+  end
 end
