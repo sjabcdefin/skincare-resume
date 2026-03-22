@@ -7,6 +7,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: appuser
+          POSTGRES_PASSWORD: appuser
+          POSTGRES_DB: skincare_resume_test
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: appuser
+      POSTGRES_HOST: localhost
+
     steps:
       - uses: actions/checkout@v4
 
@@ -23,14 +40,10 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Set up Database
-        env:
-          RAILS_ENV: test
         run: bin/rails db:prepare
 
       - name: Run Rubocop
         run: bundle exec rubocop
 
       - name: Run tests
-        env:
-          RAILS_ENV: test
         run: bin/rails test:all

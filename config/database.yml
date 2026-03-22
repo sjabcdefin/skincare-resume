@@ -26,11 +26,17 @@ test:
   primary: &primary_test
     <<: *default
     database: skincare_resume_test
+    username: <%= ENV["POSTGRES_USER"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV["POSTGRES_HOST"] %>
   queue:
     <<: *primary_test
     database: skincare_resume_test_queue
     migrations_paths: db/queue_migrate
     schema_dump: queue_schema.rb
+    username: <%= ENV["POSTGRES_USER"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV["POSTGRES_HOST"] %>
 
 # SQLite3 write its data on the local filesystem, as such it requires
 # persistent disks. If you are deploying to a managed service, you should
