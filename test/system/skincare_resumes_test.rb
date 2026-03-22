@@ -153,6 +153,12 @@ class SkincareResumesTest < ApplicationSystemTestCase
     assert_current_path confirmation_skincare_resume_url
   end
 
+  test 'clicking logo returns to top page' do
+    visit confirmation_skincare_resume_url
+    find('#logo_title').click
+    assert_current_path root_path
+  end
+
   private
 
   def assert_blank_table(table, expected_rows)
