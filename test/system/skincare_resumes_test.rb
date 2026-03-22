@@ -137,6 +137,13 @@ class SkincareResumesTest < ApplicationSystemTestCase
     assert_blank_rows('treatments', 1)
   end
 
+  test 'guest user cannot save skincare resume without resume' do
+    visit confirmation_skincare_resume_url
+
+    assert_selector 'button[disabled]', text: '保存する'
+    assert_text '※ 履歴書の情報を登録すると保存できるようになります。'
+  end
+
   private
 
   def assert_blank_table(table, expected_rows)

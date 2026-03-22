@@ -141,6 +141,13 @@ class MedicationsTest < ApplicationSystemTestCase
     end
   end
 
+  test 'guest user cannot save skincare resume without resume' do
+    visit medications_url
+
+    assert_selector 'button[disabled]', text: '保存する'
+    assert_text '※ 履歴書の情報を登録すると保存できるようになります。'
+  end
+
   test 'user cannot create medication without name' do
     visit medications_url
 
