@@ -9,10 +9,10 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'creates user on first login' do
-    carol = User.new(name: 'Carol', email: 'carol@gmail.com')
+    david = User.new(name: 'David', email: 'david@gmail.com')
 
     assert_difference 'User.count', 1 do
-      login_with_google carol
+      login_with_google david
     end
 
     assert_redirected_to root_url
@@ -27,15 +27,15 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'assigns resume to user when save button clicked on first login' do
-    carol = User.new(name: 'Carol', email: 'carol@gmail.com')
+    david = User.new(name: 'David', email: 'david@gmail.com')
     with_session('resume_uuid' => @resume.uuid) do
       assert_no_difference 'SkincareResume.count' do
-        login_with_google carol, save: true
+        login_with_google david, save: true
       end
     end
 
     assert_redirected_to root_url
-    user = User.find_by!(email: carol.email)
+    user = User.find_by!(email: david.email)
     assert_equal user, @resume.reload.user
   end
 
