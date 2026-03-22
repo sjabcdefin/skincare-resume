@@ -1,10 +1,10 @@
-name: Rails Lint
+name: Rails Tests and Lint
 
 on:
   push:
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,5 +19,14 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Set up Database
+        run: bin/rails db:prepare
+
       - name: Run Rubocop
         run: bundle exec rubocop
+
+      - name: Run tests
+        run: bin/rails test:all
