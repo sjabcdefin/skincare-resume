@@ -23,10 +23,14 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Set up Database
+        env:
+          RAILS_ENV: test
         run: bin/rails db:prepare
 
       - name: Run Rubocop
         run: bundle exec rubocop
 
       - name: Run tests
+        env:
+          RAILS_ENV: test
         run: bin/rails test:all
