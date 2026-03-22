@@ -3,7 +3,7 @@
 module SkincareResumeHelpers
   def create_product(name:, date: nil)
     within '#new_product' do
-      fill_in '使用開始日', with: date if date.present?
+      page.execute_script("document.getElementById('product_started_on').value = '#{date}'") if date.present?
       fill_in 'スキンケア製品名', with: name
       click_on '登録する'
     end
@@ -11,7 +11,7 @@ module SkincareResumeHelpers
 
   def create_medication(name:, date: nil)
     within '#new_medication' do
-      fill_in '使用開始日', with: date if date.present?
+      page.execute_script("document.getElementById('medication_started_on').value = '#{date}'") if date.present?
       fill_in '薬名', with: name
       click_on '登録する'
     end
@@ -36,7 +36,7 @@ module SkincareResumeHelpers
 
   def create_treatment(name:, date: nil)
     within '#new_treatment' do
-      fill_in '治療日', with: date if date.present?
+      page.execute_script("document.getElementById('treatment_treated_on').value = '#{date}'") if date.present?
       fill_in '治療名', with: name
       click_on '登録する'
     end
@@ -45,7 +45,7 @@ module SkincareResumeHelpers
   def create_input_items
     visit products_url
 
-    create_product(name: 'NAVISION TAホワイトローション', date: '002025/12/25')
+    create_product(name: 'NAVISION TAホワイトローション', date: '2025-12-25')
 
     click_on '次へ'
     assert_current_path medications_path
@@ -60,6 +60,6 @@ module SkincareResumeHelpers
     click_on '次へ'
     assert_current_path treatments_path
 
-    create_treatment(date: '002025/12/25', name: 'ヤグレーザー')
+    create_treatment(date: '2025-12-25', name: 'ヤグレーザー')
   end
 end

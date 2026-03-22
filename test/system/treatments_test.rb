@@ -18,7 +18,7 @@ class TreatmentsTest < ApplicationSystemTestCase
     find('#add-form-button').click
     assert_selector '#new_treatment'
 
-    create_treatment(date: '002025/12/25', name: 'ヤグレーザー')
+    create_treatment(date: '2025-12-25', name: 'ヤグレーザー')
     assert_text '2025/12/25'
     assert_text 'ヤグレーザー'
   end
@@ -71,7 +71,7 @@ class TreatmentsTest < ApplicationSystemTestCase
   test 'guest user selects and creates treatment' do
     visit treatments_url
 
-    create_treatment(date: '002025/12/25', name: 'ヤグレーザー')
+    create_treatment(date: '2025-12-25', name: 'ヤグレーザー')
     assert_text '2025/12/25'
     assert_text 'ヤグレーザー'
   end
@@ -125,7 +125,7 @@ class TreatmentsTest < ApplicationSystemTestCase
   test 'guest user saves skincare resume' do
     visit treatments_url
 
-    create_treatment(date: '002025/12/25', name: 'ヤグレーザー')
+    create_treatment(date: '2025-12-25', name: 'ヤグレーザー')
     assert_selector '#treatments', text: 'ヤグレーザー'
 
     click_on '保存する'

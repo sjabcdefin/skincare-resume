@@ -18,7 +18,7 @@ class ProductsTest < ApplicationSystemTestCase
     find('#add-form-button').click
     assert_selector '#new_product'
 
-    create_product(date: '002025/12/25', name: 'NAVISION TAホワイトローション')
+    create_product(date: '2025-12-25', name: 'NAVISION TAホワイトローション')
     assert_text '2025/12/25'
     assert_text 'NAVISION TAホワイトローション'
   end
@@ -71,7 +71,7 @@ class ProductsTest < ApplicationSystemTestCase
   test 'guest user creates product' do
     visit products_url
 
-    create_product(date: '002025/12/25', name: 'NAVISION TAホワイトローション')
+    create_product(date: '2025-12-25', name: 'NAVISION TAホワイトローション')
     assert_text '2025/12/25'
     assert_text 'NAVISION TAホワイトローション'
   end
@@ -125,7 +125,7 @@ class ProductsTest < ApplicationSystemTestCase
   test 'guest user saves skincare resume' do
     visit products_url
 
-    create_product(name: 'NAVISION TAホワイトローション', date: '002025/12/25')
+    create_product(name: 'NAVISION TAホワイトローション', date: '2025-12-25')
     assert_selector '#products', text: 'NAVISION TAホワイトローション'
 
     click_on '保存する'
