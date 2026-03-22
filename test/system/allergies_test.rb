@@ -7,6 +7,8 @@ class AllergiesTest < ApplicationSystemTestCase
     login users(:bob)
 
     visit allergies_url
+
+    assert_current_path allergies_path
     assert_selector 'h1', text: 'アレルギー歴'
     assert_selector '#new_allergy'
   end

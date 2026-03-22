@@ -7,6 +7,8 @@ class TreatmentsTest < ApplicationSystemTestCase
     login users(:bob)
 
     visit treatments_url
+
+    assert_current_path treatments_url
     assert_selector 'h1', text: '治療履歴'
     assert_selector '#new_treatment'
   end

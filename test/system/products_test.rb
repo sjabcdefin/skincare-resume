@@ -7,6 +7,8 @@ class ProductsTest < ApplicationSystemTestCase
     login users(:bob)
 
     visit products_url
+
+    assert_current_path products_url
     assert_selector 'h1', text: '使用しているスキンケア製品'
     assert_selector '#new_product'
   end
