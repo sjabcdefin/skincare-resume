@@ -9,7 +9,9 @@
           = form.label :treated_on, Treatment.human_attribute_name(:treated_on),
                        class: 'block text-base font-semibold'
           = form.date_field :treated_on,
-                            class: 'w-full px-3 py-2 border border-gray-400 rounded shadow-sm focus:outline-blue-600 text-base appearance-none'
+                            class: ['w-full px-3 py-2',
+                                    'border border-gray-400 rounded shadow-sm focus:outline-blue-600',
+                                    'text-base appearance-none']
         .max-w-md.space-y-2
           = form.label :name, class: 'block text-base font-semibold' do
             = Treatment.human_attribute_name(:name)
