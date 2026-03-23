@@ -26,7 +26,7 @@
         = link_to t('buttons.cancel'),
                   products_path,
                   data: { turbo_frame: form_frame_for(product) },
-                  class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
+                  class: 'cancel-button'
         = form.submit class: 'primary-button'
 
     - if product.persisted?
