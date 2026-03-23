@@ -33,6 +33,6 @@
       = form.button formmethod: :delete,
                     data: { turbo_confirm: t('common.delete_confirmation') },
                     id: 'delete_button',
-                    class: 'absolute top-6 right-6 inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white cursor-pointer',
+                    class: 'trash-button top-6 right-6',
                     onclick: 'event.stopPropagation();'
         = render 'shared/icons/trash'
