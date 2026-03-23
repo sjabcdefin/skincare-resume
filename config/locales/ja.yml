@@ -93,9 +93,7 @@ ja:
     terms: 利用規約
     privacy: プライバシーポリシー
     logout: ログアウト
-    logout_confirmation: ログアウトしますか？
     acount_delete: アカウント削除
-    account_delete_confirmation: 本当にアカウントを削除しますか？
   flash:
     create:
       success: 登録されました。
@@ -103,9 +101,12 @@ ja:
       success: 更新されました。
     destroy:
       success: 削除されました。
+  confirmation:
+    entry_delete: 本当に削除しますか？
+    account_delete: 本当にアカウントを削除しますか？
+    logout: ログアウトしますか？
   common:
     title: "%{model}の入力"
-    delete_confirmation: 本当に削除しますか？
     date_blank: －
     required_mark: "*"
     usage: 💡 ご利用方法
