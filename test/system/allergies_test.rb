@@ -59,7 +59,7 @@ class AllergiesTest < ApplicationSystemTestCase
 
     within "##{dom_id(allergy)}" do
       accept_confirm '本当に削除しますか？' do
-        find('#delete_button').click
+        find('.trash-button').click
       end
     end
     assert_no_selector "##{dom_id(allergy)}"
@@ -123,7 +123,7 @@ class AllergiesTest < ApplicationSystemTestCase
 
     within "##{dom_id(allergy)}" do
       accept_confirm '本当に削除しますか？' do
-        find('#delete_button').click
+        find('.trash-button').click
       end
     end
     assert_no_selector "##{dom_id(allergy)}"
