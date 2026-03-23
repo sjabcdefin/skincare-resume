@@ -1,5 +1,8 @@
 = turbo_frame_tag dom_id(allergy) do
-  = form_with(model: allergy, class: 'relative mx-auto max-w-4xl my-3 px-6 pt-12 pb-6 sm:pt-6 bg-white border border-[#5F7F67]0 shadow') do |form|
+  = form_with model: allergy,
+              class: ['relative mx-auto max-w-4xl bg-white',
+                      'border border-[#5F7F67] shadow',
+                      'my-3 px-6 pt-12 sm:pt-6 pb-6'] do |form|
     .flex.flex-col.gap-4.sm:flex-row.sm:items-end
       .w-full
         .max-w-md.mb-2.space-y-2
