@@ -17,7 +17,7 @@ class MedicationsTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit medications_url
-    find('#add-form-button').click
+    find('.plus-button').click
     assert_selector '#new_medication'
 
     create_medication(date: '2025-12-25', name: 'ベピオローション')

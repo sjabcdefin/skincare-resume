@@ -17,7 +17,7 @@ class ProductsTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit products_url
-    find('#add-form-button').click
+    find('.plus-button').click
     assert_selector '#new_product'
 
     create_product(date: '2025-12-25', name: 'NAVISION TAホワイトローション')

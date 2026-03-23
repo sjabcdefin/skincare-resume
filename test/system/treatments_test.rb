@@ -17,7 +17,7 @@ class TreatmentsTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit treatments_url
-    find('#add-form-button').click
+    find('.plus-button').click
     assert_selector '#new_treatment'
 
     create_treatment(date: '2025-12-25', name: 'ヤグレーザー')

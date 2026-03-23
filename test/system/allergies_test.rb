@@ -17,7 +17,7 @@ class AllergiesTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit allergies_url
-    find('#add-form-button').click
+    find('.plus-button').click
     assert_selector '#new_allergy'
 
     select_and_create_allergy(name: '金属(金)')
@@ -28,7 +28,7 @@ class AllergiesTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit allergies_url
-    find('#add-form-button').click
+    find('.plus-button').click
     assert_selector '#new_allergy'
 
     input_and_create_allergy(name: 'ピーナッツ')
