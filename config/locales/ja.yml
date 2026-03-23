@@ -93,7 +93,7 @@ ja:
     terms: 利用規約
     privacy: プライバシーポリシー
     logout: ログアウト
-    acount_delete: アカウント削除
+    account_delete: アカウント削除
   flash:
     create:
       success: 登録されました。
