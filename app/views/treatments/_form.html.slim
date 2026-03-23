@@ -27,7 +27,7 @@
                   treatments_path,
                   data: { turbo_frame: form_frame_for(treatment) },
                   class: 'inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal'
-        = form.submit class: 'inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white cursor-pointer'
+        = form.submit class: 'primary-button'
 
     - if treatment.persisted?
       = form.button formmethod: :delete,
