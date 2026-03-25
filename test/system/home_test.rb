@@ -5,6 +5,8 @@ require 'application_system_test_case'
 class HomeTest < ApplicationSystemTestCase
   test 'all user sees top page before login' do
     visit root_path
+
+    assert_selector 'h1', text: 'トップページ'
     assert_text 'Google アカウントでログイン'
     assert_text 'ログインせずに履歴書を作成'
   end
@@ -27,6 +29,9 @@ class HomeTest < ApplicationSystemTestCase
 
   test 'guest user can access resume form from top page' do
     visit root_path
+
+    assert_selector 'h1', text: 'トップページ'
+
     click_on 'ログインせずに履歴書を作成'
     assert_selector 'h1', text: '使用しているスキンケア製品'
   end
