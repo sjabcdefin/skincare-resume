@@ -7,8 +7,9 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:bob)
 
     visit confirmation_skincare_resume_url
-
+    assert_current_path confirmation_skincare_resume_path
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
+
     assert_blank_table('products', 12)
     assert_blank_table('medications', 4)
     assert_blank_table('allergies', 4)
@@ -19,7 +20,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit confirmation_skincare_resume_url
-
+    assert_current_path confirmation_skincare_resume_path
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     assert_table_row('products', 0, ['－', 'ニベアクリーム'])
@@ -49,6 +50,9 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit confirmation_skincare_resume_url
+    assert_current_path confirmation_skincare_resume_path
+    assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
+
     click_on 'トップページに戻る'
 
     assert_current_path root_path
@@ -59,7 +63,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:carol)
 
     visit confirmation_skincare_resume_url
-
+    assert_current_path confirmation_skincare_resume_path
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     row = all('#allergies-table tbody tr')[0]
@@ -75,8 +79,9 @@ class SkincareResumesTest < ApplicationSystemTestCase
 
   test 'guest user without resume sees resume summary' do
     visit confirmation_skincare_resume_url
-
+    assert_current_path confirmation_skincare_resume_path
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
+
     assert_blank_table('products', 12)
     assert_blank_table('medications', 4)
     assert_blank_table('allergies', 4)
@@ -87,7 +92,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     create_input_items
 
     visit confirmation_skincare_resume_url
-
+    assert_current_path confirmation_skincare_resume_path
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     assert_table_row('products', 0, ['2025/12/25', 'NAVISION TAホワイトローション'])
@@ -107,6 +112,8 @@ class SkincareResumesTest < ApplicationSystemTestCase
     create_input_items
 
     visit confirmation_skincare_resume_url
+    assert_current_path confirmation_skincare_resume_path
+    assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     click_on 'トップページに戻る'
 
@@ -119,6 +126,8 @@ class SkincareResumesTest < ApplicationSystemTestCase
     create_input_items
 
     visit confirmation_skincare_resume_url
+    assert_current_path confirmation_skincare_resume_path
+    assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     click_on '保存する'
 
