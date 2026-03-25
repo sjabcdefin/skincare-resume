@@ -9,6 +9,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   def login(user)
     mock_google_auth user
     visit root_path
+    assert_selector 'h1', text: 'トップページ'
+
     click_on 'Google アカウントでログイン'
+    assert_selector 'h1', text: 'トップページ'
   end
 end
