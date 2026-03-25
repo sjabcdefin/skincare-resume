@@ -25,7 +25,7 @@ class ResumeFormatter
 
   def allergy_rows
     allergies = @resume&.allergies || Allergy.none
-    format(allergies, ALLERGIES_MAX_SIZE) { Allergy.new }
+    format(sort_and_limit(allergies, ALLERGIES_MAX_SIZE), ALLERGIES_MAX_SIZE) { Allergy.new }
   end
 
   def treatment_rows
