@@ -17,7 +17,7 @@ class MedicationsTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit medications_url
-    find('#add-form-button').click
+    find('.plus-button').click
     assert_selector '#new_medication'
 
     create_medication(date: '2025-12-25', name: 'ベピオローション')
@@ -48,7 +48,7 @@ class MedicationsTest < ApplicationSystemTestCase
 
     within "##{dom_id(medication)}" do
       accept_confirm '本当に削除しますか？' do
-        find('#delete_button').click
+        find('.trash-button').click
       end
     end
     assert_no_selector "##{dom_id(medication)}"
@@ -105,7 +105,7 @@ class MedicationsTest < ApplicationSystemTestCase
 
     within "##{dom_id(medication)}" do
       accept_confirm '本当に削除しますか？' do
-        find('#delete_button').click
+        find('.trash-button').click
       end
     end
     assert_no_selector "##{dom_id(medication)}"
