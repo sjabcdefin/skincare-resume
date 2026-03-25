@@ -17,6 +17,7 @@ class ProductsTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit products_url
+    assert_selector '.plus-button'
     find('.plus-button').click
     assert_selector '#new_product'
 

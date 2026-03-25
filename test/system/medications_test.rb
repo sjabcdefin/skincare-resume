@@ -17,6 +17,7 @@ class MedicationsTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit medications_url
+    assert_selector '.plus-button'
     find('.plus-button').click
     assert_selector '#new_medication'
 
