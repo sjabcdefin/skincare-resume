@@ -2,7 +2,7 @@
   = button_to t('buttons.save'), '/auth/google_oauth2?button=save',
              data: { turbo: false },
              disabled:,
-             class: "inline-flex items-center justify-center h-12 w-40 rounded text-base font-normal #{save_button_class(disabled)}"
+             class: "action-button-base w-40 #{save_button_class(disabled)}"
   - if disabled
     p.leading-relaxed.text-center.text-xs.text-red-600
       | ※ 履歴書の情報を登録すると保存できるようになります。
