@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./tom-select-overrides.css";
+@import "./tom_select_overrides.css";
 @import "./google_sign_in.css";
 
 @layer components {
