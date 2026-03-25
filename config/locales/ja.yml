@@ -56,7 +56,7 @@ ja:
   skincare_resumes:
     confirmation:
       title: 入力したスキンケアの履歴書の確認
-    over_limit_badge:
+    resume:
       non_printable: 印刷対象外
   home:
     index:

@@ -18,6 +18,10 @@
     @apply inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal;
   }
 
+  .non-printable-badge {
+    @apply inline-flex items-center justify-center w-18 px-2 py-1 rounded-xl border border-red-600 bg-red-50 font-bold text-[10px];
+  }
+
   .gsi-material-button {
     -moz-user-select: none;
     -webkit-user-select: none;
