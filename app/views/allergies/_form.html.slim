@@ -33,7 +33,7 @@
 
     - if allergy.persisted?
       = form.button formmethod: :delete,
-                    data: { turbo_confirm: t('common.delete_confirmation') },
+                    data: { turbo_confirm: t('confirmation.entry_delete') },
                     class: 'trash-button top-3 right-3',
                     onclick: 'event.stopPropagation();'
         = render 'shared/icons/trash'
