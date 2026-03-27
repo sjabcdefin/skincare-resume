@@ -27,6 +27,9 @@ jobs:
         run: |
           echo "KAMAL_REGISTRY_PASSWORD=${{ secrets.KAMAL_REGISTRY_PASSWORD }}" > .kamal/secrets
           echo "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}" >> .kamal/secrets
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .kamal/secrets
+          echo "OMNIAUTH_CLIENT_ID=${{ secrets.OMNIAUTH_CLIENT_ID }}" >> .kamal/secrets
+          echo "OMNIAUTH_CLIENT_SECRET=${{ secrets.OMNIAUTH_CLIENT_SECRET }}" >> .kamal/secrets
 
       - name: Deploy with Kamal
         run: bin/kamal deploy
