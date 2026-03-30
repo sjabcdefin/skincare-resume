@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Medication < ApplicationRecord
-  belongs_to :skincare_resume
+  belongs_to :skincare_resume, touch: true
   validates :name, presence: true
 
   scope :order_for_display, -> {
