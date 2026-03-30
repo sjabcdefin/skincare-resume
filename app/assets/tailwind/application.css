@@ -4,7 +4,7 @@
 
 @layer components {
   .action-button-base {
-    @apply inline-flex items-center justify-center h-12 px-6 rounded text-base font-normal;
+    @apply inline-flex items-center justify-center h-12 rounded text-base font-normal;
   }
 
   .plus-button {
