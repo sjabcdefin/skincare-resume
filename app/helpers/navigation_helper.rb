@@ -10,7 +10,7 @@ module NavigationHelper
                 h-10 w-24
                 border border-[#5F7F67]
                 rounded shadow-sm
-                bg-white hover:bg-[#F3F7F4]
+                bg-white hover:bg-[#F3F7F4] active:bg-[#E3EAE5]
                 text-base text-[#5F7F67] font-medium
               ]
     else

@@ -1,6 +1,6 @@
 .my-8.text-center.print:hidden
   = link_to t('buttons.edit'), products_path,
-            class: 'action-button-base min-w-60 px-6 bg-[#5F7F67] hover:bg-[#4A6652] text-white'
+            class: 'action-button-base min-w-60 px-6 bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] text-white'
 
 .display-area.mb-8.print:hidden
   = render '/skincare_resumes/resume', resume: display_resume, update_date: resume.updated_at.to_date
