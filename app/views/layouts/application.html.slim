@@ -43,14 +43,14 @@ html lang="ja"
 
     footer.mt-4.py-4.border-t.border-gray-300.print:hidden
       nav.flex.flex-wrap.justify-center.gap-x-8.gap-y-2.text-sm.font-bold
-        = link_to t('footer.terms'), terms_path, class: 'hover:border-b'
-        = link_to t('footer.privacy'), privacy_path, class: 'hover:border-b'
+        = link_to t('footer.terms'), terms_path, class: 'hover:border-b active:border-b'
+        = link_to t('footer.privacy'), privacy_path, class: 'hover:border-b active:border-b'
         - if current_user
           = link_to t('footer.logout'),
                     logout_path,
                     data: { turbo_method: :post, turbo_confirm: t('confirmation.logout') },
-                    class: 'hover:border-b'
+                    class: 'hover:border-b active:border-b'
           = link_to t('footer.account_delete'),
                     account_path,
                     data: { turbo_method: :delete, turbo_confirm: t('confirmation.account_delete') },
-                    class: 'hover:border-b'
+                    class: 'hover:border-b active:border-b'

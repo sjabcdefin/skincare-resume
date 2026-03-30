@@ -8,19 +8,19 @@
   }
 
   .plus-button {
-    @apply mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] rounded-full text-white;
+    @apply mx-auto flex items-center justify-center w-10 h-10 bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] rounded-full text-white;
   }
 
   .trash-button {
-    @apply absolute inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-500 font-medium text-white cursor-pointer;
+    @apply absolute inline-flex items-center justify-center h-10 w-10 rounded bg-red-600 hover:bg-red-700 active:bg-red-800 font-medium text-white cursor-pointer;
   }
 
   .primary-button {
-    @apply inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] text-base font-normal text-white cursor-pointer;
+    @apply inline-flex items-center justify-center h-10 w-24 rounded bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] text-base font-normal text-white cursor-pointer;
   }
 
   .cancel-button {
-    @apply inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 text-base font-normal;
+    @apply inline-flex items-center justify-center h-10 w-24 rounded border border-gray-300 bg-gray-100 hover:bg-gray-50 active:bg-gray-200 text-base font-normal;
   }
 
   .non-printable-badge {
