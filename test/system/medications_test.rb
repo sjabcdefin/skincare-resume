@@ -31,9 +31,9 @@ class MedicationsTest < ApplicationSystemTestCase
 
     visit medications_url
     medication = Medication.find_by!(name: 'ベピオゲル')
-    find("##{dom_id(medication)}").click
 
     within "##{dom_id(medication)}" do
+      click_on '編集する'
       fill_in '薬名', with: 'ベピオウォッシュゲル'
       click_on '更新する'
       assert_text 'ベピオウォッシュゲル'
@@ -45,9 +45,9 @@ class MedicationsTest < ApplicationSystemTestCase
 
     visit medications_url
     medication = Medication.find_by!(name: 'ベピオゲル')
-    find("##{dom_id(medication)}").click
 
     within "##{dom_id(medication)}" do
+      click_on '編集する'
       accept_confirm '本当に削除しますか？' do
         find('.trash-button').click
       end
@@ -86,9 +86,9 @@ class MedicationsTest < ApplicationSystemTestCase
     assert_selector '#medications', text: 'ベピオローション'
 
     medication = Medication.find_by!(name: 'ベピオローション')
-    find("##{dom_id(medication)}").click
 
     within "##{dom_id(medication)}" do
+      click_on '編集する'
       fill_in '薬名', with: 'ベピオウォッシュゲル'
       click_on '更新する'
       assert_text 'ベピオウォッシュゲル'
@@ -102,9 +102,9 @@ class MedicationsTest < ApplicationSystemTestCase
     assert_selector '#medications', text: 'ベピオローション'
 
     medication = Medication.find_by!(name: 'ベピオローション')
-    find("##{dom_id(medication)}").click
 
     within "##{dom_id(medication)}" do
+      click_on '編集する'
       accept_confirm '本当に削除しますか？' do
         find('.trash-button').click
       end

@@ -31,9 +31,9 @@ class ProductsTest < ApplicationSystemTestCase
 
     visit products_url
     product = Product.find_by!(name: 'コラージュリペアミルク')
-    find("##{dom_id(product)}").click
 
     within "##{dom_id(product)}" do
+      click_on '編集する'
       fill_in 'スキンケア製品名', with: 'NAVISION TAホワイトエマルジョン'
       click_on '更新する'
       assert_text 'NAVISION TAホワイトエマルジョン'
@@ -48,6 +48,7 @@ class ProductsTest < ApplicationSystemTestCase
     find("##{dom_id(product)}").click
 
     within "##{dom_id(product)}" do
+      click_on '編集する'
       accept_confirm '本当に削除しますか？' do
         find('.trash-button').click
       end
@@ -86,9 +87,9 @@ class ProductsTest < ApplicationSystemTestCase
     assert_selector '#products', text: 'NAVISION TAホワイトローション'
 
     product = Product.find_by!(name: 'NAVISION TAホワイトローション')
-    find("##{dom_id(product)}").click
 
     within "##{dom_id(product)}" do
+      click_on '編集する'
       fill_in 'スキンケア製品名', with: 'NAVISION TAホワイトエマルジョン'
       click_on '更新する'
       assert_text 'NAVISION TAホワイトエマルジョン'
@@ -102,9 +103,9 @@ class ProductsTest < ApplicationSystemTestCase
     assert_selector '#products', text: 'NAVISION TAホワイトローション'
 
     product = Product.find_by!(name: 'NAVISION TAホワイトローション')
-    find("##{dom_id(product)}").click
 
     within "##{dom_id(product)}" do
+      click_on '編集する'
       accept_confirm '本当に削除しますか？' do
         find('.trash-button').click
       end
