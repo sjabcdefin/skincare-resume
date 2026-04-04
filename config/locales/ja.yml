@@ -75,7 +75,8 @@ ja:
       login: 履歴書を新規作成する
       guest: ログインせずに履歴書を作成
     save: 保存する
-    edit: 保存した履歴書を編集・更新する
+    edit: 編集する
+    edit_resume: 保存した履歴書を編集・更新する
     print: 印刷する
     back_to_home: トップページに戻る
     cancel: キャンセル

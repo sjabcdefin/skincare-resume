@@ -12,6 +12,6 @@
             = Treatment.human_attribute_name(:name)
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-base
             = treatment.name
-      = link_to '編集する',
+      = link_to t('buttons.edit'),
                 edit_treatment_path(treatment),
                 class: 'primary-button'
