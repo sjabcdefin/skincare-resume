@@ -41,9 +41,9 @@ class AllergiesTest < ApplicationSystemTestCase
 
     visit allergies_url
     allergy = Allergy.find_by!(name: '金属(亜鉛)')
-    find("##{dom_id(allergy)}").click
 
     within "##{dom_id(allergy)}" do
+      click_on '編集する'
       find('.ts-control').click
       find('.ts-dropdown-content .option', text: '花粉(ヒノキ)').click
       click_on '更新する'
@@ -56,9 +56,9 @@ class AllergiesTest < ApplicationSystemTestCase
 
     visit allergies_url
     allergy = Allergy.find_by!(name: '金属(亜鉛)')
-    find("##{dom_id(allergy)}").click
 
     within "##{dom_id(allergy)}" do
+      click_on '編集する'
       accept_confirm '本当に削除しますか？' do
         find('.trash-button').click
       end
@@ -103,9 +103,9 @@ class AllergiesTest < ApplicationSystemTestCase
     assert_selector '#allergies', text: '金属(金)'
 
     allergy = Allergy.find_by!(name: '金属(金)')
-    find("##{dom_id(allergy)}").click
 
     within "##{dom_id(allergy)}" do
+      click_on '編集する'
       find('.ts-control').click
       find('.ts-dropdown-content .option', text: '花粉(ヒノキ)').click
       click_on '更新する'
@@ -120,9 +120,9 @@ class AllergiesTest < ApplicationSystemTestCase
     assert_selector '#allergies', text: '金属(金)'
 
     allergy = Allergy.find_by!(name: '金属(金)')
-    find("##{dom_id(allergy)}").click
 
     within "##{dom_id(allergy)}" do
+      click_on '編集する'
       accept_confirm '本当に削除しますか？' do
         find('.trash-button').click
       end

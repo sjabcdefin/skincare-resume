@@ -1,7 +1,7 @@
 = turbo_frame_tag dom_id(medication) do
-  = link_to edit_medication_path(medication), class: 'cursor-pointer' do
-    .mx-auto.max-w-4xl.mb-3.px-6.pt-6.pb-6.bg-white.border.border-gray-200.shadow.sm:pb-14
-      .w-full.space-y-3
+  .mx-auto.max-w-4xl.bg-white.border.border-gray-200.shadow.mb-3.px-6.pt-6
+    .flex.flex-col.pb-6.gap-4.sm:flex-row.sm:items-end
+      .w-full.space-y-3.pb-2.sm:pb-8
         .max-w-md.space-y-2
           label.block.text-base.font-semibold
             = Medication.human_attribute_name(:started_on)
@@ -12,3 +12,6 @@
             = Medication.human_attribute_name(:name)
           .block.px-3.py-2.border.border-gray-400.rounded.shadow-sm.text-base
             = medication.name
+      = link_to t('buttons.edit'),
+                edit_medication_path(medication),
+                class: 'primary-button'
