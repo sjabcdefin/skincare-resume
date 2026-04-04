@@ -1,3 +1,3 @@
 .mt-4.flex.justify-between.print:hidden
-  = nav_button(t('buttons.navigation.previous'), previous_path)
-  = nav_button(t('buttons.navigation.next'), next_path)
+  = nav_button(t('buttons.navigation.previous'), previous_path, direction: :previous)
+  = nav_button(t('buttons.navigation.next'), next_path, direction: :next)
