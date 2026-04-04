@@ -82,7 +82,9 @@ ja:
     cancel: キャンセル
     navigation:
       previous: 前へ
+      previous_icon: ＜
       next: 次へ
+      next_icon: ＞
   progress_bar:
     steps:
       product: スキンケア
