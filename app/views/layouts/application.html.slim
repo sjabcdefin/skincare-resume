@@ -31,9 +31,9 @@ html lang="ja"
     #flash.fixed.top-5.right-5.z-50
       = render 'flash'
 
-    header.mt-8.px-2.print:hidden
-      .mx-auto.max-w-4xl
-        = link_to root_path, id: 'logo_title', class: 'inline-flex items-center gap-2' do
+    header.mt-8.print:hidden
+      .mx-auto.max-w-4xl.flex.justify-center.sm:justify-start
+        = link_to root_path, id: 'logo_title', class: 'flex items-center gap-2' do
           = image_tag '/Logo.png', alt: 'SkincareResume Logo', class: 'w-14 h-14'
           span.text-2xl.font-bold
             = SkincareResume.model_name.human
