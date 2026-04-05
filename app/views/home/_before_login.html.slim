@@ -1,31 +1,26 @@
-.text-center.mt-8
-  h2.text-xl.font-bold.sm:text-4xl
-    | 皮膚科での「何だっけ？」をなくす、
-    br.sm:hidden
-    | スキンケアの履歴書
+h2.mt-8.text-center.text-xl.font-bold.leading-normal.sm:text-4xl
+  | 皮膚科での「何だっけ？」をなくす、
+  br
+  | スキンケアの履歴書
 
-.mt-10.space-y-6.text-center.text-base.sm:text-xl
+.mt-10.space-y-6.text-base.leading-normal.sm:text-xl
   p
     | 皮膚科の問診や診察の場で、
-    br.sm:hidden
-    | 思い出す手間を減らし、
-    br.sm:hidden
-    | 正確な情報を伝えるためのアプリです。
+    | 使用しているスキンケアや薬、これまでの治療履歴を
+    | 思い出して説明する負担を減らし、
+    | 正確な情報を伝えられるようにするアプリです。
 
   p
-    | スキンケアや処方薬、美容施術の履歴を
-    br.sm:hidden
-    | 一つにまとめ、
-    br.sm:hidden
-    | 診察時に医師へそのまま見せられます。
+    | 日々のスキンケアや治療の記録を一つにまとめ、医師にそのまま見せられます。
 
-.max-w-2xl.mx-auto.my-10.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
-  p.mt-4.text-base.font-bold.sm:text-xl
-    = t('common.usage')
-  p.my-4.mx-4.text-sm.sm:text-base
-    | ログインなしでもすぐに使えます。
-    br.sm:hidden
-    | 保存したい場合はログインが必要です。
+.my-10.bg-gray-100.px-6.py-2.shadow.border.border-gray-200.rounded-md
+  p.my-4.mx-4.text-base.font-bold.border-b.border-gray-300.pb-2.sm:text-xl
+    | 登録なしですぐに使えます
+
+  p.my-4.mx-4.text-sm.leading-loose.sm:text-base
+    | ・ ログインせずに履歴書の作成を始められます。
+    br
+    | ・ 入力した履歴書を保存したい場合はログインが必要です。
 
 .flex.flex-col.items-center.gap-4
   = button_to '/auth/google_oauth2', data: { turbo: false }, class: 'gsi-material-button'
