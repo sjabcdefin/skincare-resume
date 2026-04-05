@@ -24,7 +24,7 @@ class HomeTest < ApplicationSystemTestCase
 
     assert_selector 'h1', text: 'トップページ'
     assert_selector 'h2', text: 'スキンケアの履歴書'
-    assert_text '保存した履歴書を編集・更新する'
+    assert_text '履歴書を編集する'
   end
 
   test 'guest user can access resume form from top page' do
