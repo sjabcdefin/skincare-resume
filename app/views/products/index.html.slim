@@ -18,7 +18,9 @@
       = render 'form', product: Product.new
 
   = link_to new_product_path,
-            data: { turbo_frame: 'new_form' },
+            data: { turbo_frame: 'new_form',
+                    controller: 'new-form',
+                    action: 'click->new-form#guard' },
             class: 'plus-button' do
     = render 'shared/icons/plus'
 
