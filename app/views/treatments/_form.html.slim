@@ -37,6 +37,5 @@
     - if treatment.persisted?
       = form.button formmethod: :delete,
                     data: { turbo_confirm: t('confirmation.entry_delete') },
-                    class: 'trash-button top-6 right-6',
-                    onclick: 'event.stopPropagation();'
+                    class: 'trash-button top-6 right-6'
         = render 'shared/icons/trash'
