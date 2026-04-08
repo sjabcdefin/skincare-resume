@@ -1,7 +1,7 @@
 = turbo_frame_tag dom_id(medication) do
   .mx-auto.max-w-4xl.bg-white.border.border-gray-200.shadow.mb-3.px-6.pt-6
-    .flex.flex-col.pb-6.gap-4.sm:flex-row.sm:items-end
-      .w-full.space-y-3.pb-2.sm:pb-8
+    .flex.flex-col.pb-6.gap-6.sm:flex-row.sm:items-end.sm:gap-4
+      .w-full.space-y-3.sm:pb-8
         .max-w-md.space-y-2
           label.block.text-base.font-semibold
             = Medication.human_attribute_name(:started_on)
