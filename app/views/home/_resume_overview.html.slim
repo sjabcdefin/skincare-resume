@@ -1,6 +1,6 @@
-.flex.flex-col.gap-4.my-8.items-center.justify-center.print:hidden.sm:flex-row.sm:items-start
+.flex.flex-col.gap-4.my-8.items-center.print:hidden.sm:flex-row.sm:items-start.sm:justify-center
   = link_to t('buttons.edit_resume'), products_path,
-            class: 'action-button-base min-w-40 h-12 bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] text-white'
+            class: 'action-button-base min-w-40 bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] text-white'
   = render 'shared/resume_print_button'
 
 .display-area.mb-8.print:hidden
@@ -9,7 +9,7 @@
 .print-area.hidden.print:block
   = render '/skincare_resumes/resume', resume: print_resume, update_date: resume.updated_at.to_date
 
-.flex.flex-col.gap-4.my-8.items-center.justify-center.print:hidden.sm:flex-row.sm:items-start
+.flex.flex-col.gap-4.my-8.items-center.print:hidden.sm:flex-row.sm:items-start.sm:justify-center
   = link_to t('buttons.edit_resume'), products_path,
-            class: 'action-button-base min-w-40 h-12 bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] text-white'
+            class: 'action-button-base min-w-40 bg-[#5F7F67] hover:bg-[#4A6652] active:bg-[#3F5746] text-white'
   = render 'shared/resume_print_button'
