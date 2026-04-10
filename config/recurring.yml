@@ -13,4 +13,4 @@ production:
   skincare_cleanup_job:
     class: SkincareResumesCleanupJob
     args: []
-    schedule: every day at 9am
+    schedule: every sunday at 3am
