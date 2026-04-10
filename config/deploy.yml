@@ -23,6 +23,9 @@ env:
     - POSTGRES_PASSWORD
     - OMNIAUTH_CLIENT_ID
     - OMNIAUTH_CLIENT_SECRET
+    - ALERT_EMAIL_ADDRESS
+    - MAIL_FROM_ADDRESS
+    - SMTP_PASSWORD
 ssh:
   user: tomoka
   port: 1201

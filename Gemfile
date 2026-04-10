@@ -63,6 +63,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'dotenv-rails', groups: %i[development test]
+
 gem 'kamal', '2.10.1'
 
 gem 'omniauth-google-oauth2'

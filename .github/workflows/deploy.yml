@@ -30,6 +30,9 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .kamal/secrets
           echo "OMNIAUTH_CLIENT_ID=${{ secrets.OMNIAUTH_CLIENT_ID }}" >> .kamal/secrets
           echo "OMNIAUTH_CLIENT_SECRET=${{ secrets.OMNIAUTH_CLIENT_SECRET }}" >> .kamal/secrets
+          echo "ALERT_EMAIL_ADDRESS=${{ secrets.ALERT_EMAIL_ADDRESS }}" >> .kamal/secrets
+          echo "MAIL_FROM_ADDRESS=${{ secrets.MAIL_FROM_ADDRESS }}" >> .kamal/secrets
+          echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .kamal/secrets
 
       - name: Deploy with Kamal
         run: bin/kamal deploy
