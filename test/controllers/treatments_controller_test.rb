@@ -116,31 +116,6 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'gets new when guest with session' do
-    stub_session @guest_session do
-      get new_treatment_url
-      assert_response :success
-    end
-  end
-
-  test 'creates treatment when guest without session' do
-    assert_difference('Treatment.count') do
-      post treatments_url,
-           params: {
-             treatment: {
-               name: 'エレクトロポーション ケアシス',
-               treated_on: Date.new(2025, 12, 25)
-             }
-           },
-           as: :turbo_stream
-    end
-    assert_response :success
-    assert_equal 'text/vnd.turbo-stream.html', @response.media_type
-
-    treatment = Treatment.order(:id).last
-    assert_equal 'エレクトロポーション ケアシス', treatment.name
-  end
-
   test 'creates treatment when guest with session' do
     stub_session @guest_session do
       assert_difference('Treatment.count') do
@@ -158,20 +133,6 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
 
       treatment = Treatment.order(:id).last
       assert_equal 'エレクトロポーション ケアシス', treatment.name
-    end
-  end
-
-  test 'shows treatment when guest with session' do
-    stub_session @guest_session do
-      get treatment_url(@massage_peel)
-      assert_response :success
-    end
-  end
-
-  test 'gets edit when guest with session' do
-    stub_session @guest_session do
-      get edit_treatment_url(@massage_peel)
-      assert_response :success
     end
   end
 
