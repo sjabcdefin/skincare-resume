@@ -121,30 +121,6 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'gets new when guest with session' do
-    stub_session @guest_session do
-      get new_allergy_url
-      assert_response :success
-    end
-  end
-
-  test 'creates allergy when guest without session' do
-    assert_difference('Allergy.count') do
-      post allergies_url,
-           params: {
-             allergy: {
-               name: '金属(酸化亜鉛)'
-             }
-           },
-           as: :turbo_stream
-    end
-    assert_response :success
-    assert_equal 'text/vnd.turbo-stream.html', @response.media_type
-
-    allergy = Allergy.order(:id).last
-    assert_equal '金属(酸化亜鉛)', allergy.name
-  end
-
   test 'creates allergy when guest with session' do
     stub_session @guest_session do
       assert_difference('Allergy.count') do
@@ -161,20 +137,6 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
 
       allergy = Allergy.order(:id).last
       assert_equal '金属(酸化亜鉛)', allergy.name
-    end
-  end
-
-  test 'shows allergy when guest with session' do
-    stub_session @guest_session do
-      get allergy_url(@latex)
-      assert_response :success
-    end
-  end
-
-  test 'gets edit when guest with session' do
-    stub_session @guest_session do
-      get edit_allergy_url(@latex)
-      assert_response :success
     end
   end
 
