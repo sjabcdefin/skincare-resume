@@ -5,26 +5,26 @@ require 'test_helper'
 class AllergiesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @alice = users(:alice)
-    @session = { 'resume_uuid' => skincare_resumes(:resume_without_user).uuid }
+    @guest_session = { 'resume_uuid' => skincare_resumes(:resume_without_user).uuid }
     @metal_zinc = allergies(:metal_zinc)
     @latex = allergies(:latex)
   end
 
-  test 'should get index when logged in' do
+  test 'gets index when logged in' do
     stub_current_user @alice do
       get allergies_url
       assert_response :success
     end
   end
 
-  test 'should get new when logged in' do
+  test 'gets new when logged in' do
     stub_current_user @alice do
       get new_allergy_url
       assert_response :success
     end
   end
 
-  test 'should create allergy when logged in' do
+  test 'creates allergy when logged in' do
     stub_current_user @alice do
       assert_difference('Allergy.count') do
         post allergies_url,
@@ -37,38 +37,44 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
       end
       assert_response :success
       assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+
+      allergy = Allergy.order(:id).last
+      assert_equal '金属(酸化亜鉛)', allergy.name
     end
   end
 
-  test 'should show allergy when logged in' do
+  test 'shows allergy when logged in' do
     stub_current_user @alice do
       get allergy_url(@metal_zinc)
       assert_response :success
     end
   end
 
-  test 'should get edit when logged in' do
+  test 'gets edit when logged in' do
     stub_current_user @alice do
       get edit_allergy_url(@metal_zinc)
       assert_response :success
     end
   end
 
-  test 'should update allergy when logged in' do
+  test 'updates allergy when logged in' do
     stub_current_user @alice do
       patch allergy_url(@metal_zinc),
             params: {
               allergy: {
-                name: '金属(亜鉛)'
+                name: '金属(酸化亜鉛)'
               }
             },
             as: :turbo_stream
       assert_response :success
       assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+
+      @metal_zinc.reload
+      assert_equal '金属(酸化亜鉛)', @metal_zinc.name
     end
   end
 
-  test 'should destroy allergy when logged in' do
+  test 'destroys allergy when logged in' do
     stub_current_user @alice do
       assert_difference('Allergy.count', -1) do
         delete allergy_url(@metal_zinc), as: :turbo_stream
@@ -78,21 +84,51 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should get index when not logged in' do
-    stub_session @session do
+  test 'does not create allergy with invalid params' do
+    stub_current_user @alice do
+      assert_no_difference('Allergy.count') do
+        post allergies_url,
+             params: { allergy: { name: '' } },
+             as: :turbo_stream
+      end
+      assert_response :unprocessable_entity
+    end
+  end
+
+  test 'does not update allergy with invalid params' do
+    stub_current_user @alice do
+      patch allergy_url(@metal_zinc),
+            params: { allergy: { name: '' } },
+            as: :turbo_stream
+      assert_response :unprocessable_entity
+    end
+
+    @metal_zinc.reload
+    assert_equal '金属(亜鉛)', @metal_zinc.name
+  end
+
+  test 'does not show other users allergy' do
+    stub_current_user users(:bob) do
+      get allergy_url(@metal_zinc)
+      assert_response :not_found
+    end
+  end
+
+  test 'gets index when guest with session' do
+    stub_session @guest_session do
       get allergies_url
       assert_response :success
     end
   end
 
-  test 'should get new when not logged in' do
-    stub_session @session do
+  test 'gets new when guest with session' do
+    stub_session @guest_session do
       get new_allergy_url
       assert_response :success
     end
   end
 
-  test 'should create allergy when not logged in without session' do
+  test 'creates allergy when guest without session' do
     assert_difference('Allergy.count') do
       post allergies_url,
            params: {
@@ -104,10 +140,13 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :success
     assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+
+    allergy = Allergy.order(:id).last
+    assert_equal '金属(酸化亜鉛)', allergy.name
   end
 
-  test 'should create allergy when not logged in' do
-    stub_session @session do
+  test 'creates allergy when guest with session' do
+    stub_session @guest_session do
       assert_difference('Allergy.count') do
         post allergies_url,
              params: {
@@ -119,25 +158,28 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
       end
       assert_response :success
       assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+
+      allergy = Allergy.order(:id).last
+      assert_equal '金属(酸化亜鉛)', allergy.name
     end
   end
 
-  test 'should show allergy when not logged in' do
-    stub_session @session do
+  test 'shows allergy when guest with session' do
+    stub_session @guest_session do
       get allergy_url(@latex)
       assert_response :success
     end
   end
 
-  test 'should get edit when not logged in' do
-    stub_session @session do
+  test 'gets edit when guest with session' do
+    stub_session @guest_session do
       get edit_allergy_url(@latex)
       assert_response :success
     end
   end
 
-  test 'should update allergy when not logged in' do
-    stub_session @session do
+  test 'updates allergy when guest with session' do
+    stub_session @guest_session do
       patch allergy_url(@latex),
             params: {
               allergy: {
@@ -147,11 +189,14 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
             as: :turbo_stream
       assert_response :success
       assert_equal 'text/vnd.turbo-stream.html', @response.media_type
+
+      @latex.reload
+      assert_equal 'ラテックス(ゴム)', @latex.name
     end
   end
 
-  test 'should destroy allergy when not logged in' do
-    stub_session @session do
+  test 'destroys allergy when guest with session' do
+    stub_session @guest_session do
       assert_difference('Allergy.count', -1) do
         delete allergy_url(@latex), as: :turbo_stream
       end
