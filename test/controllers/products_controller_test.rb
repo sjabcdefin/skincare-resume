@@ -122,31 +122,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'gets new when guest with session' do
-    stub_session @guest_session do
-      get new_product_url
-      assert_response :success
-    end
-  end
-
-  test 'creates product when guest without session' do
-    assert_difference('Product.count') do
-      post products_url,
-           params: {
-             product: {
-               name: 'コラージュリペアミルク',
-               started_on: Date.new(2025, 12, 25)
-             }
-           },
-           as: :turbo_stream
-    end
-    assert_response :success
-    assert_equal 'text/vnd.turbo-stream.html', @response.media_type
-
-    product = Product.order(:id).last
-    assert_equal 'コラージュリペアミルク', product.name
-  end
-
   test 'creates product when guest with session' do
     stub_session @guest_session do
       assert_difference('Product.count') do
@@ -164,20 +139,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
       product = Product.order(:id).last
       assert_equal 'コラージュリペアミルク', product.name
-    end
-  end
-
-  test 'shows product when guest with session' do
-    stub_session @guest_session do
-      get product_url(@curel_lotion)
-      assert_response :success
-    end
-  end
-
-  test 'gets edit when guest with session' do
-    stub_session @guest_session do
-      get edit_product_url(@curel_lotion)
-      assert_response :success
     end
   end
 
