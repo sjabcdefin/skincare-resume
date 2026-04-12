@@ -6,7 +6,7 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @alice = users(:alice)
     @session = { 'resume_uuid' => skincare_resumes(:resume_without_user).uuid }
-    @caresys1 = treatments(:caresys1)
+    @caresys_recent = treatments(:caresys_recent)
     @massage_peel = treatments(:massage_peel)
   end
 
@@ -43,21 +43,21 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show treatment when logged in' do
     stub_current_user @alice do
-      get treatment_url(@caresys1)
+      get treatment_url(@caresys_recent)
       assert_response :success
     end
   end
 
   test 'should get edit when logged in' do
     stub_current_user @alice do
-      get edit_treatment_url(@caresys1)
+      get edit_treatment_url(@caresys_recent)
       assert_response :success
     end
   end
 
   test 'should update treatment when logged in' do
     stub_current_user @alice do
-      patch treatment_url(@caresys1),
+      patch treatment_url(@caresys_recent),
             params: {
               treatment: {
                 started_on: Date.new(2025, 12, 24)
@@ -72,7 +72,7 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   test 'should destroy treatment when logged in' do
     stub_current_user @alice do
       assert_difference('Treatment.count', -1) do
-        delete treatment_url(@caresys1), as: :turbo_stream
+        delete treatment_url(@caresys_recent), as: :turbo_stream
       end
       assert_response :success
       assert_equal 'text/vnd.turbo-stream.html', @response.media_type

@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-caresys1:
+caresys_recent:
   id: 1
   skincare_resume: resume_with_user
   treated_on: 2025-12-25
@@ -12,7 +12,7 @@ milano_repeel:
   treated_on: nil
   name: ミラノリピール
 
-caresys2:
+caresys_old:
   id: 3
   skincare_resume: resume_with_user
   treated_on: 2024-12-25
