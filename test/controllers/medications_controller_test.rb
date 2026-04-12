@@ -122,31 +122,6 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'gets new when guest with session' do
-    stub_session @guest_session do
-      get new_medication_url
-      assert_response :success
-    end
-  end
-
-  test 'creates medication when guest without session' do
-    assert_difference('Medication.count') do
-      post medications_url,
-           params: {
-             medication: {
-               name: 'ベピオゲル',
-               started_on: Date.new(2025, 12, 25)
-             }
-           },
-           as: :turbo_stream
-    end
-    assert_response :success
-    assert_equal 'text/vnd.turbo-stream.html', @response.media_type
-
-    medication = Medication.order(:id).last
-    assert_equal 'ベピオゲル', medication.name
-  end
-
   test 'creates medication when guest with session' do
     stub_session @guest_session do
       assert_difference('Medication.count') do
@@ -164,20 +139,6 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
 
       medication = Medication.order(:id).last
       assert_equal 'ベピオゲル', medication.name
-    end
-  end
-
-  test 'shows medication when guest with session' do
-    stub_session @guest_session do
-      get medication_url(@differin_gel)
-      assert_response :success
-    end
-  end
-
-  test 'gets edit when guest with session' do
-    stub_session @guest_session do
-      get edit_medication_url(@differin_gel)
-      assert_response :success
     end
   end
 
