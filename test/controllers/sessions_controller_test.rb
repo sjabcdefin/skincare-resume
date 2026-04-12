@@ -5,7 +5,7 @@ require 'test_helper'
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @alice = users(:alice)
-    @resume = skincare_resumes(:without_user)
+    @resume = skincare_resumes(:resume_without_user)
   end
 
   test 'creates user on first login' do

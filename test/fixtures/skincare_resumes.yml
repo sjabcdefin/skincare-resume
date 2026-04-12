@@ -1,12 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-with_user:
+resume_with_user:
   user: alice
   uuid: <%= SecureRandom.uuid %>
 
-without_user:
+resume_without_user:
   uuid: <%= SecureRandom.uuid %>
 
-over_limit_user:
+resume_over_limit:
   user: carol
   uuid: <%= SecureRandom.uuid %>

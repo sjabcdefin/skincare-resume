@@ -5,7 +5,7 @@ require 'test_helper'
 class SkincareResumesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @alice = users(:alice)
-    @session = { 'resume_uuid' => skincare_resumes(:without_user).uuid }
+    @session = { 'resume_uuid' => skincare_resumes(:resume_without_user).uuid }
   end
 
   test 'should get confirmation when logged in' do

@@ -5,7 +5,7 @@ require 'test_helper'
 class TreatmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @alice = users(:alice)
-    @session = { 'resume_uuid' => skincare_resumes(:without_user).uuid }
+    @session = { 'resume_uuid' => skincare_resumes(:resume_without_user).uuid }
     @caresys1 = treatments(:caresys1)
     @massage_peel = treatments(:massage_peel)
   end

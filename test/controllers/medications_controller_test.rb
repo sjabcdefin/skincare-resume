@@ -5,7 +5,7 @@ require 'test_helper'
 class MedicationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @alice = users(:alice)
-    @session = { 'resume_uuid' => skincare_resumes(:without_user).uuid }
+    @session = { 'resume_uuid' => skincare_resumes(:resume_without_user).uuid }
     @bepio_gel = medications(:bepio_gel)
     @differin_gel = medications(:differin_gel)
   end

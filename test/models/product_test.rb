@@ -4,7 +4,7 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   setup do
-    @resume = skincare_resumes(:with_user)
+    @resume = skincare_resumes(:resume_with_user)
   end
 
   test 'should not save product without name' do
