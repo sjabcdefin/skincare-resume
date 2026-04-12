@@ -12,6 +12,11 @@ class AllergyTest < ActiveSupport::TestCase
     assert_not allergy.save
   end
 
+  test 'should not save allergy with blank name' do
+    allergy = @resume.allergies.new(name: '')
+    assert_not allergy.save
+  end
+
   test 'should save allergy with name' do
     allergy = @resume.allergies.new(name: '金属(酸化亜鉛)')
     assert allergy.save
