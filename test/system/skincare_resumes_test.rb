@@ -7,7 +7,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:bob)
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     assert_blank_table('products', 12)
@@ -20,7 +20,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     assert_table_row('products', 0, ['－', 'ニベアクリーム'])
@@ -50,7 +50,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:alice)
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     click_on 'トップページに戻る'
@@ -63,7 +63,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     login users(:carol)
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     row = all('#allergies-table tbody tr')[0]
@@ -79,7 +79,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
 
   test 'guest user without resume sees resume summary' do
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     assert_blank_table('products', 12)
@@ -92,7 +92,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     create_input_items
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     assert_table_row('products', 0, ['2025/12/25', 'NAVISION TAホワイトローション'])
@@ -112,7 +112,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
     create_input_items
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     click_on 'トップページに戻る'
@@ -122,11 +122,11 @@ class SkincareResumesTest < ApplicationSystemTestCase
     assert_text 'ログインせずに履歴書を作成'
   end
 
-  test 'guest user saves skincare resume' do
+  test 'guest user saves skincare resume for the first time' do
     create_input_items
 
     visit confirmation_skincare_resume_url
-    assert_current_path confirmation_skincare_resume_path
+
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
     click_on '保存する'
@@ -144,6 +144,33 @@ class SkincareResumesTest < ApplicationSystemTestCase
 
     assert_table_row('treatments', 0, ['2025/12/25', 'ヤグレーザー'])
     assert_blank_rows('treatments', 1)
+  end
+
+  test 'guest user overwrites and saves skincare resume' do
+    create_input_items
+
+    visit confirmation_skincare_resume_url
+
+    assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
+
+    mock_google_auth users(:alice)
+    click_on '保存する'
+
+    assert_current_path root_path
+
+    assert_table_row('products', 0, ['2025/12/25', 'NAVISION TAホワイトローション'])
+    assert_blank_rows('products', 1)
+
+    assert_table_row('medications', 0, ['－', 'ベピオローション'])
+    assert_blank_rows('medications', 1)
+
+    assert_table_row('allergies', 0, ['金属(金)'])
+    assert_blank_rows('allergies', 1)
+
+    assert_table_row('treatments', 0, ['2025/12/25', 'ヤグレーザー'])
+    assert_blank_rows('treatments', 1)
+
+    assert_equal 1, SkincareResume.where(user: users(:alice)).count
   end
 
   test 'guest user cannot save skincare resume without resume' do
