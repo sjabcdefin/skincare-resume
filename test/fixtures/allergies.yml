@@ -2,45 +2,45 @@
 
 metal_zinc:
   id: 1
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   name: 金属(亜鉛)
 
 metal_silver:
   id: 2
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   name: 金属(銀)
 
 cedar_pollen:
   id: 3
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   name: 花粉(スギ)
 
 latex:
   id: 4
-  skincare_resume: without_user
+  skincare_resume: resume_without_user
   name: ラテックス
 
 metal_nickel:
   id: 5
-  skincare_resume: over_limit_user
+  skincare_resume: resume_over_limit
   name: 金属(ニッケル)
 
 metal_cobalt:
   id: 6
-  skincare_resume: over_limit_user
+  skincare_resume: resume_over_limit
   name: 金属(コバルト)
 
 rice_pollen:
   id: 7
-  skincare_resume: over_limit_user
+  skincare_resume: resume_over_limit
   name: 花粉(イネ)
 
 mugwort_pollen:
   id: 8
-  skincare_resume: over_limit_user
+  skincare_resume: resume_over_limit
   name: 花粉(ヨモギ)
 
 peanuts:
   id: 9
-  skincare_resume: over_limit_user
+  skincare_resume: resume_over_limit
   name: ピーナッツ

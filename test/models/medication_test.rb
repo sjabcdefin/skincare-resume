@@ -4,11 +4,16 @@ require 'test_helper'
 
 class MedicationTest < ActiveSupport::TestCase
   setup do
-    @resume = skincare_resumes(:with_user)
+    @resume = skincare_resumes(:resume_with_user)
   end
 
   test 'should not save medication without name' do
     medication = @resume.medications.new
+    assert_not medication.save
+  end
+
+  test 'should not save medication with blank name' do
+    medication = @resume.medications.new(name: '')
     assert_not medication.save
   end
 
@@ -17,29 +22,63 @@ class MedicationTest < ActiveSupport::TestCase
     assert medication.save
   end
 
-  test 'order_for_display sorts correctly' do
-    medication1 = medications(:bepio_gel)
-    medication2 = medications(:hirudoid_lotion)
-    medication3 = medications(:vitamin_c_pill)
-    medication4 = medications(:vitamin_d_pill)
+  test 'order_for_display sorts by started_on asc with nulls first' do
     result = @resume.medications.order_for_display.to_a
 
-    assert_equal [medication2, medication4, medication3, medication1], result
+    assert_nil result.first.started_on
+  end
+
+  test 'order_for_display sorts by id when started_on is same' do
+    hirudoid = medications(:hirudoid_lotion)
+    vitamin_d = medications(:vitamin_d_pill)
+    result = @resume.medications.order_for_display.to_a
+
+    assert_equal([hirudoid, vitamin_d], result.select { |p| p.started_on.nil? })
+  end
+
+  test 'order_for_display sorts correctly' do
+    bepio_gel = medications(:bepio_gel)
+    hirudoid = medications(:hirudoid_lotion)
+    vitamin_c = medications(:vitamin_c_pill)
+    vitamin_d = medications(:vitamin_d_pill)
+    result = @resume.medications.order_for_display.to_a
+
+    assert_equal [hirudoid, vitamin_d, vitamin_c, bepio_gel], result
+  end
+
+  test 'order_for_print sorts by started_on asc with nulls last' do
+    result = @resume.medications.order_for_print.to_a
+
+    assert_nil result.last.started_on
+  end
+
+  test 'order_for_print sorts by id when started_on is same' do
+    hirudoid = medications(:hirudoid_lotion)
+    vitamin_d = medications(:vitamin_d_pill)
+    result = @resume.medications.order_for_print.to_a
+
+    assert_equal([vitamin_d, hirudoid], result.select { |p| p.started_on.nil? })
   end
 
   test 'order_for_print sorts correctly' do
-    medication1 = medications(:bepio_gel)
-    medication2 = medications(:hirudoid_lotion)
-    medication3 = medications(:vitamin_c_pill)
-    medication4 = medications(:vitamin_d_pill)
+    bepio_gel = medications(:bepio_gel)
+    hirudoid = medications(:hirudoid_lotion)
+    vitamin_c = medications(:vitamin_c_pill)
+    vitamin_d = medications(:vitamin_d_pill)
     result = @resume.medications.order_for_print.to_a
 
-    assert_equal [medication1, medication3, medication4, medication2], result
+    assert_equal [bepio_gel, vitamin_c, vitamin_d, hirudoid], result
   end
 
-  test 'display_date returns started_on' do
+  test 'display_date returns started_on when present' do
     medication = medications(:bepio_gel)
 
     assert_equal Date.new(2025, 12, 25), medication.display_date
+  end
+
+  test 'display_date returns nil when started_on is nil' do
+    medication = medications(:hirudoid_lotion)
+
+    assert_nil medication.display_date
   end
 end

@@ -6,6 +6,8 @@ class AllergiesRepository < ResumeBasedRepository
   end
 
   def find(id)
+    raise ActiveRecord::RecordNotFound unless current_resume
+
     current_resume.allergies.find(id)
   end
 

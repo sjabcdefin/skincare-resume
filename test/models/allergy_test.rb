@@ -4,11 +4,16 @@ require 'test_helper'
 
 class AllergyTest < ActiveSupport::TestCase
   setup do
-    @resume = skincare_resumes(:with_user)
+    @resume = skincare_resumes(:resume_with_user)
   end
 
   test 'should not save allergy without name' do
     allergy = @resume.allergies.new
+    assert_not allergy.save
+  end
+
+  test 'should not save allergy with blank name' do
+    allergy = @resume.allergies.new(name: '')
     assert_not allergy.save
   end
 

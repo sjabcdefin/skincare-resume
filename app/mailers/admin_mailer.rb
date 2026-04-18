@@ -5,6 +5,7 @@ class AdminMailer < ApplicationMailer
     @error = error
     @time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
     mail(
+      from: ENV['MAIL_FROM_ADDRESS'],
       to: ENV['ALERT_EMAIL_ADDRESS'],
       subject: '[Alert] Cleanup Job Failed'
     )

@@ -2,30 +2,30 @@
 
 bepio_gel:
   id: 1
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   started_on: 2025-12-25
   name: ベピオゲル
 
 hirudoid_lotion:
   id: 2
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   started_on: nil
   name: ヒルドイドローション
 
 vitamin_c_pill:
   id: 3
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   started_on: 2024-12-25
   name: ビタミンC錠剤
 
 vitamin_d_pill:
   id: 4
-  skincare_resume: with_user
+  skincare_resume: resume_with_user
   started_on: nil
   name: ビタミンD錠剤
 
 differin_gel:
   id: 5
-  skincare_resume: without_user
+  skincare_resume: resume_without_user
   started_on: nil
   name: ディフェリンゲル
