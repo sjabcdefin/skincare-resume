@@ -44,13 +44,6 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'shows medication when logged in' do
-    stub_current_user @alice do
-      get medication_url(@bepio_gel)
-      assert_response :success
-    end
-  end
-
   test 'gets edit when logged in' do
     stub_current_user @alice do
       get edit_medication_url(@bepio_gel)
@@ -106,13 +99,6 @@ class MedicationsControllerTest < ActionDispatch::IntegrationTest
 
     @bepio_gel.reload
     assert_equal 'ベピオゲル', @bepio_gel.name
-  end
-
-  test 'does not show other users medication' do
-    stub_current_user users(:bob) do
-      get medication_url(@bepio_gel)
-      assert_response :not_found
-    end
   end
 
   test 'gets index when guest with session' do

@@ -41,13 +41,6 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'shows treatment when logged in' do
-    stub_current_user @alice do
-      get treatment_url(@caresys_recent)
-      assert_response :success
-    end
-  end
-
   test 'gets edit when logged in' do
     stub_current_user @alice do
       get edit_treatment_url(@caresys_recent)
@@ -100,13 +93,6 @@ class TreatmentsControllerTest < ActionDispatch::IntegrationTest
 
     @caresys_recent.reload
     assert_equal 'エレクトロポーション ケアシス', @caresys_recent.name
-  end
-
-  test 'does not show other users treatment' do
-    stub_current_user users(:bob) do
-      get treatment_url(@caresys_recent)
-      assert_response :not_found
-    end
   end
 
   test 'gets index when guest with session' do

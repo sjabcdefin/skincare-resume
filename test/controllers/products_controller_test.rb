@@ -44,13 +44,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'shows product when logged in' do
-    stub_current_user @alice do
-      get product_url(@zoskin_cleanser)
-      assert_response :success
-    end
-  end
-
   test 'gets edit when logged in' do
     stub_current_user @alice do
       get edit_product_url(@zoskin_cleanser)
@@ -106,13 +99,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     @zoskin_cleanser.reload
     assert_equal 'ゼオスキン ハイドレーティングクレンザー', @zoskin_cleanser.name
-  end
-
-  test 'does not show other users product' do
-    stub_current_user users(:bob) do
-      get product_url(@zoskin_cleanser)
-      assert_response :not_found
-    end
   end
 
   test 'gets index when guest with session' do

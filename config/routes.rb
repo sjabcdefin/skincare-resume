@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   post 'logout', to: 'sessions#destroy', as: 'logout'
   delete 'account', to: 'users#destroy'
 
-  resources :treatments
-  resources :allergies
-  resources :medications
-  resources :products
+  resources :treatments, except: :show
+  resources :allergies, except: :show
+  resources :medications, except: :show
+  resources :products, except: :show
 
   resource :skincare_resume do
     resource :confirmation, only: :show, module: :skincare_resume
