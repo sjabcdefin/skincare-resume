@@ -4,10 +4,10 @@
   = render 'shared/resume_print_button'
 
 .display-area.mb-8.print:hidden
-  = render '/skincare_resumes/resume', resume: display_resume, update_date: resume.updated_at.to_date
+  = render '/skincare_resume/confirmations/resume', resume: display_resume, update_date: resume.updated_at.to_date
 
 .print-area.hidden.print:block
-  = render '/skincare_resumes/resume', resume: print_resume, update_date: resume.updated_at.to_date
+  = render '/skincare_resume/confirmations/resume', resume: print_resume, update_date: resume.updated_at.to_date
 
 .flex.flex-col.gap-4.my-8.items-center.print:hidden.sm:flex-row.sm:items-start.sm:justify-center
   = link_to t('buttons.edit_resume'), products_path,

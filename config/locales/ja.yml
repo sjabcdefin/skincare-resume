@@ -58,6 +58,12 @@ ja:
       title: 入力したスキンケアの履歴書の確認
     resume:
       non_printable: 印刷対象外
+  skincare_resume:
+    confirmations:
+      show:
+        title: 入力したスキンケアの履歴書の確認
+      resume:
+        non_printable: 印刷対象外
   home:
     index:
       title: トップページ
