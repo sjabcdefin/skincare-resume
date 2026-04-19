@@ -6,7 +6,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'logged in user without resume sees resume summary' do
     login users(:bob)
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -19,7 +19,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'logged in user sees resume summary' do
     login users(:alice)
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -49,7 +49,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'logged in user returns to top page' do
     login users(:alice)
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -62,7 +62,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'shows overflow label when allergy rows exceed print limit' do
     login users(:carol)
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -78,7 +78,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   end
 
   test 'guest user without resume sees resume summary' do
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -91,7 +91,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'guest user sees resume summary' do
     create_input_items
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -111,7 +111,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'guest user returns to top page' do
     create_input_items
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -125,7 +125,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'guest user saves skincare resume for the first time' do
     create_input_items
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -149,7 +149,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
   test 'guest user overwrites and saves skincare resume' do
     create_input_items
 
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
@@ -174,23 +174,23 @@ class SkincareResumesTest < ApplicationSystemTestCase
   end
 
   test 'guest user cannot save skincare resume without resume' do
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
 
     assert_selector 'button[disabled]', text: '保存する'
     assert_text '※ 履歴書の情報を登録すると保存できるようになります。'
   end
 
   test 'user can navigate between input steps' do
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
     click_on '前へ'
     assert_current_path treatments_path
 
     click_on '次へ'
-    assert_current_path confirmation_skincare_resume_url
+    assert_current_path skincare_resume_confirmation_path
   end
 
   test 'clicking logo returns to top page' do
-    visit confirmation_skincare_resume_url
+    visit skincare_resume_confirmation_path
     find('#logo_title').click
     assert_current_path root_path
   end

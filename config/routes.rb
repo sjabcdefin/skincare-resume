@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :products
 
   resource :skincare_resume do
-    get :confirmation
+    resource :confirmation, only: :show, module: :skincare_resume
   end
 
   get '/terms', to: 'static_pages#terms'
