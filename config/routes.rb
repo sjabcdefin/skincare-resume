@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :skincare_resume do
+    get "confirmations/show"
+  end
   root 'home#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'

@@ -1,0 +1,2 @@
+module SkincareResume::ConfirmationsHelper
+end
