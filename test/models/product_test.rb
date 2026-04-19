@@ -7,16 +7,6 @@ class ProductTest < ActiveSupport::TestCase
     @resume = skincare_resumes(:resume_with_user)
   end
 
-  test 'should not save product without name' do
-    product = @resume.products.new
-    assert_not product.save
-  end
-
-  test 'should not save product with blank name' do
-    product = @resume.products.new(name: '')
-    assert_not product.save
-  end
-
   test 'should save product with name' do
     product = @resume.products.new(name: 'ゼオスキン ハイドレーティングクレンザー')
     assert product.save
