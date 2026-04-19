@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
+  before_action :set_resume, only: %i[index create edit update destroy]
   before_action :set_product, only: %i[edit update destroy]
 
   def index
-    @resume = repository.resume
-    @products = repository.all.order_for_display
+    @products = @resume&.products&.order_for_display || Product.none
   end
 
   def new
@@ -15,7 +15,8 @@ class ProductsController < ApplicationController
   def edit; end
 
   def create
-    @product = repository.build(product_params)
+    @resume ||= build_resume
+    @product = @resume.products.build(product_params)
 
     if @product.save
       render :create
@@ -39,15 +40,14 @@ class ProductsController < ApplicationController
 
   private
 
-  def repository
-    @repository ||= ProductsRepository.new(
-      user: current_user,
-      session: session
-    )
+  def set_resume
+    @resume = ResumeResolver.new(user: current_user, session: session).call
   end
 
   def set_product
-    @product = repository.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless @resume
+
+    @product = @resume.products.find(params[:id])
   end
 
   def product_params

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class TreatmentsController < ApplicationController
+  before_action :set_resume, only: %i[index create edit update destroy]
   before_action :set_treatment, only: %i[edit update destroy]
 
   def index
-    @resume = repository.resume
-    @treatments = repository.all.order_for_display
+    @treatments = @resume&.treatments&.order_for_display || Treatment.none
   end
 
   def new
@@ -15,7 +15,8 @@ class TreatmentsController < ApplicationController
   def edit; end
 
   def create
-    @treatment = repository.build(treatment_params)
+    @resume ||= build_resume
+    @treatment = @resume.treatments.build(treatment_params)
 
     if @treatment.save
       render :create
@@ -39,15 +40,14 @@ class TreatmentsController < ApplicationController
 
   private
 
-  def repository
-    @repository ||= TreatmentsRepository.new(
-      user: current_user,
-      session: session
-    )
+  def set_resume
+    @resume = ResumeResolver.new(user: current_user, session: session).call
   end
 
   def set_treatment
-    @treatment = repository.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless @resume
+
+    @treatment = @resume.treatments.find(params[:id])
   end
 
   def treatment_params

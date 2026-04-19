@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class AllergiesController < ApplicationController
+  before_action :set_resume, only: %i[index create edit update destroy]
   before_action :set_allergy, only: %i[edit update destroy]
 
   def index
-    @resume = repository.resume
-    @allergies = repository.all
+    @allergies = @resume&.allergies || Allergy.none
   end
 
   def new
@@ -15,7 +15,8 @@ class AllergiesController < ApplicationController
   def edit; end
 
   def create
-    @allergy = repository.build(allergy_params)
+    @resume ||= build_resume
+    @allergy = @resume.allergies.build(allergy_params)
 
     if @allergy.save
       render :create
@@ -39,15 +40,14 @@ class AllergiesController < ApplicationController
 
   private
 
-  def repository
-    @repository ||= AllergiesRepository.new(
-      user: current_user,
-      session: session
-    )
+  def set_resume
+    @resume = ResumeResolver.new(user: current_user, session: session).call
   end
 
   def set_allergy
-    @allergy = repository.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless @resume
+
+    @allergy = @resume.allergies.find(params[:id])
   end
 
   def allergy_params
