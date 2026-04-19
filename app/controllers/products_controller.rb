@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_product, only: %i[edit update destroy]
 
   def index
     @resume = repository.resume
     @products = repository.all.order_for_display
   end
-
-  def show; end
 
   def new
     @product = Product.new

@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class AllergiesController < ApplicationController
-  before_action :set_allergy, only: %i[show edit update destroy]
+  before_action :set_allergy, only: %i[edit update destroy]
 
   def index
     @resume = repository.resume
     @allergies = repository.all
   end
-
-  def show; end
 
   def new
     @allergy = Allergy.new

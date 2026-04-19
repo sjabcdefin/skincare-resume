@@ -43,13 +43,6 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'shows allergy when logged in' do
-    stub_current_user @alice do
-      get allergy_url(@metal_zinc)
-      assert_response :success
-    end
-  end
-
   test 'gets edit when logged in' do
     stub_current_user @alice do
       get edit_allergy_url(@metal_zinc)
@@ -105,13 +98,6 @@ class AllergiesControllerTest < ActionDispatch::IntegrationTest
 
     @metal_zinc.reload
     assert_equal '金属(亜鉛)', @metal_zinc.name
-  end
-
-  test 'does not show other users allergy' do
-    stub_current_user users(:bob) do
-      get allergy_url(@metal_zinc)
-      assert_response :not_found
-    end
   end
 
   test 'gets index when guest with session' do

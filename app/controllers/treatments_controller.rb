@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class TreatmentsController < ApplicationController
-  before_action :set_treatment, only: %i[show edit update destroy]
+  before_action :set_treatment, only: %i[edit update destroy]
 
   def index
     @resume = repository.resume
     @treatments = repository.all.order_for_display
   end
-
-  def show; end
 
   def new
     @treatment = Treatment.new
