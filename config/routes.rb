@@ -15,10 +15,6 @@ Rails.application.routes.draw do
     resource :confirmation, only: :show, module: :skincare_resume
   end
 
-  resource :skincare_resume do
-    get :confirmation
-  end
-
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'
 

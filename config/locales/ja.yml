@@ -53,11 +53,6 @@ ja:
   treatments:
     form:
       placeholder: 例）マッサージピール
-  skincare_resumes:
-    confirmation:
-      title: 入力したスキンケアの履歴書の確認
-    resume:
-      non_printable: 印刷対象外
   skincare_resume:
     confirmations:
       show:
