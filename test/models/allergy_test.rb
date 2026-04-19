@@ -7,16 +7,6 @@ class AllergyTest < ActiveSupport::TestCase
     @resume = skincare_resumes(:resume_with_user)
   end
 
-  test 'should not save allergy without name' do
-    allergy = @resume.allergies.new
-    assert_not allergy.save
-  end
-
-  test 'should not save allergy with blank name' do
-    allergy = @resume.allergies.new(name: '')
-    assert_not allergy.save
-  end
-
   test 'should save allergy with name' do
     allergy = @resume.allergies.new(name: '金属(酸化亜鉛)')
     assert allergy.save

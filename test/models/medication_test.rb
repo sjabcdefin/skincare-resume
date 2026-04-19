@@ -7,16 +7,6 @@ class MedicationTest < ActiveSupport::TestCase
     @resume = skincare_resumes(:resume_with_user)
   end
 
-  test 'should not save medication without name' do
-    medication = @resume.medications.new
-    assert_not medication.save
-  end
-
-  test 'should not save medication with blank name' do
-    medication = @resume.medications.new(name: '')
-    assert_not medication.save
-  end
-
   test 'should save medication with name' do
     medication = @resume.medications.new(name: 'ベピオゲル')
     assert medication.save

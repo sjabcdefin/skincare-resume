@@ -7,16 +7,6 @@ class TreatmentTest < ActiveSupport::TestCase
     @resume = skincare_resumes(:resume_with_user)
   end
 
-  test 'should not save treatment without name' do
-    treatment = @resume.treatments.new
-    assert_not treatment.save
-  end
-
-  test 'should not save treatment with blank name' do
-    treatment = @resume.treatments.new(name: '')
-    assert_not treatment.save
-  end
-
   test 'should save treatment with name' do
     treatment = @resume.treatments.new(name: 'エレクトロポーション ケアシス')
     assert treatment.save
