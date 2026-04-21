@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class MedicationsController < ApplicationController
+  before_action :set_resume, only: %i[index create edit update destroy]
   before_action :set_medication, only: %i[edit update destroy]
 
   def index
-    @resume = repository.resume
-    @medications = repository.all.order_for_display
+    @medications = @resume&.medications&.order_for_display || Medication.none
   end
 
   def new
@@ -15,7 +15,8 @@ class MedicationsController < ApplicationController
   def edit; end
 
   def create
-    @medication = repository.build(medication_params)
+    @resume ||= build_resume
+    @medication = @resume.medications.build(medication_params)
 
     if @medication.save
       render :create
@@ -39,15 +40,14 @@ class MedicationsController < ApplicationController
 
   private
 
-  def repository
-    @repository ||= MedicationsRepository.new(
-      user: current_user,
-      session: session
-    )
+  def set_resume
+    @resume = ResumeResolver.new(user: current_user, session: session).call
   end
 
   def set_medication
-    @medication = repository.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless @resume
+
+    @medication = @resume.medications.find(params[:id])
   end
 
   def medication_params
