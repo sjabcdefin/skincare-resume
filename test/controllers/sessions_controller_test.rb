@@ -11,7 +11,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'creates user on first login' do
     david = User.new(name: 'David', email: 'david@gmail.com')
 
-    assert_difference 'User.count', 1 do
+    assert_difference('User.count') do
       mock_google_auth david
       post '/auth/google_oauth2'
       follow_redirect!
@@ -47,7 +47,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'assigns resume to user when save button clicked on subsequent login' do
     stub_session('resume_uuid' => @resume.uuid) do
-      assert_difference 'SkincareResume.count', -1 do
+      assert_difference('SkincareResume.count', -1) do
         mock_google_auth @alice
         post '/auth/google_oauth2?button=save'
         follow_redirect!
