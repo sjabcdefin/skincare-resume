@@ -60,3 +60,15 @@ MAIL_FROM_ADDRESS=送信元メールアドレス
 ```
 bin/rails server
 ```
+
+## テスト
+
+```
+bin/rails test:all
+```
+
+## Lint
+
+```
+bin/lint
+```
