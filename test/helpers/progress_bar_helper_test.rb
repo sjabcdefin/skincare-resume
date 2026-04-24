@@ -13,7 +13,7 @@ class ProgressBarHelperTest < ActionView::TestCase
     assert_equal '薬', steps['medications']
     assert_equal 'アレルギー', steps['allergies']
     assert_equal '治療', steps['treatments']
-    assert_equal '確認', steps['skincare_resumes']
+    assert_equal '確認', steps['confirmations']
   end
 
   test 'step_circle_class returns active class when step is current' do
