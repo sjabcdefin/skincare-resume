@@ -7,7 +7,7 @@ module ProgressBarHelper
       'medications' => t('progress_bar.steps.medication'),
       'allergies' => t('progress_bar.steps.allergy'),
       'treatments' => t('progress_bar.steps.treatment'),
-      'skincare_resumes' => t('progress_bar.steps.confirmation')
+      'confirmations' => t('progress_bar.steps.confirmation')
     }
   end
 
