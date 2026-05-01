@@ -49,6 +49,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'i18n_generators'
   gem 'rubocop-fjord', require: false
   gem 'rubocop-rails', require: false
   gem 'slim_lint', require: false
@@ -75,7 +76,5 @@ gem 'pg'
 gem 'slim-rails'
 
 gem 'tailwindcss-rails', '~> 4.4'
-
-gem 'i18n_generators'
 
 gem 'solid_queue', '~> 1.3'
