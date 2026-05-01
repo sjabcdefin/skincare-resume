@@ -35,7 +35,7 @@
 
 ## 技術スタック
 
-- Ruby 3.3.0 Ruby on Rails 8.0.4 Hotwire
+- Ruby 3.3.11 Ruby on Rails 8.0.4 Hotwire
 - PostgreSQL 16.9
 
 ## 環境構築
