@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :medications, except: :show
   resources :products, except: :show
 
-  resource :skincare_resume do
-    resource :confirmation, only: :show, module: :skincare_resume
+  namespace :skincare_resume do
+    resource :confirmation, only: :show
   end
 
   get '/terms', to: 'static_pages#terms'
