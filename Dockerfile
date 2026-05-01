@@ -15,7 +15,12 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips && \
+    apt-get install --no-install-recommends -y \
+      curl \
+      libjemalloc2 \
+      libvips \
+      libyaml-dev \
+      build-essential && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
