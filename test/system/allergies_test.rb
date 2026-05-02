@@ -149,6 +149,7 @@ class AllergiesTest < ApplicationSystemTestCase
     select_and_create_allergy(name: '金属(金)')
     assert_selector '#allergies', text: '金属(金)'
 
+    mock_google_auth
     click_on '保存する'
 
     assert_current_path root_path

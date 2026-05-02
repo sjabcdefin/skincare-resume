@@ -131,6 +131,7 @@ class TreatmentsTest < ApplicationSystemTestCase
     create_treatment(date: '2025-12-25', name: 'ヤグレーザー')
     assert_selector '#treatments', text: 'ヤグレーザー'
 
+    mock_google_auth
     click_on '保存する'
 
     assert_current_path root_path

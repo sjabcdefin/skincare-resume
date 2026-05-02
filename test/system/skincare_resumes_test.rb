@@ -129,6 +129,7 @@ class SkincareResumesTest < ApplicationSystemTestCase
 
     assert_selector 'h1', text: '入力したスキンケアの履歴書の確認'
 
+    mock_google_auth
     click_on '保存する'
 
     assert_current_path root_path

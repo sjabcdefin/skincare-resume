@@ -25,12 +25,12 @@ module ActiveSupport
 
     OmniAuth.config.test_mode = true
 
-    def mock_google_auth(user)
+    def mock_google_auth(user = nil)
       OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
         provider: 'google_oauth2',
         info: {
-          name: user.name,
-          email: user.email
+          name: user ? user.name : 'Test User',
+          email: user ? user.email : 'test@example.com'
         }
       )
     end
