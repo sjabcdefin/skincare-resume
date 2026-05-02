@@ -40,10 +40,6 @@ class MedicationsController < ApplicationController
 
   private
 
-  def set_resume
-    @resume = ResumeResolver.new(user: current_user, session: session).call
-  end
-
   def set_medication
     raise ActiveRecord::RecordNotFound unless @resume
 

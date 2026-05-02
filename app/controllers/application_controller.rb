@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
+  def set_resume
+    @resume = ResumeResolver.new(user: current_user, session: session).call
+  end
+
   def build_resume
     if current_user
       current_user.skincare_resume || current_user.create_skincare_resume!
