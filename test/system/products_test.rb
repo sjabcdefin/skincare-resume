@@ -132,6 +132,7 @@ class ProductsTest < ApplicationSystemTestCase
     create_product(name: 'NAVISION TAホワイトローション', date: '2025-12-25')
     assert_selector '#products', text: 'NAVISION TAホワイトローション'
 
+    mock_google_auth
     click_on '保存する'
 
     assert_current_path root_path
