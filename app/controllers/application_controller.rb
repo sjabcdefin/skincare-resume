@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   helper_method :current_user
 
+  private
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
@@ -18,7 +20,9 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  private
+  def set_resume
+    @resume = ResumeResolver.new(user: current_user, session: session).call
+  end
 
   def build_resume
     if current_user
