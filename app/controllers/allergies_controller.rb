@@ -5,7 +5,7 @@ class AllergiesController < ApplicationController
   before_action :set_allergy, only: %i[edit update destroy]
 
   def index
-    @allergies = @resume&.allergies || Allergy.none
+    @allergies = @resume&.allergies&.order_for_display || Allergy.none
   end
 
   def new
