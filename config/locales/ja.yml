@@ -88,11 +88,11 @@ ja:
       next_icon: ＞
   progress_bar:
     steps:
-      product: スキンケア
-      medication: 薬
-      allergy: アレルギー
-      treatment: 治療
-      confirmation: 確認
+      products: スキンケア
+      medications: 薬
+      allergies: アレルギー
+      treatments: 治療
+      confirmations: 確認
   footer:
     terms: 利用規約
     privacy: プライバシーポリシー
