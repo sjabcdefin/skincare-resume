@@ -36,4 +36,10 @@ export default class extends Controller {
       wrapper.classList.add("error");
     }
   }
+
+  disconnect() {
+    if (this.ts) {
+      this.ts.destroy();
+    }
+  }
 }
