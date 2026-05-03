@@ -30,4 +30,29 @@ class SkincareResumeTest < ActiveSupport::TestCase
       @resume.destroy!
     end
   end
+
+  test 'filters resumes older than 3 days without user' do
+    stale_guest_resume = SkincareResume.create!(
+      user: nil,
+      uuid: SecureRandom.uuid,
+      created_at: 4.days.ago
+    )
+
+    SkincareResume.create!(
+      user: nil,
+      uuid: SecureRandom.uuid,
+      created_at: 2.days.ago
+    )
+
+    SkincareResume.create!(
+      uuid: SecureRandom.uuid,
+      user: users(:alice),
+      created_at: 10.days.ago
+    )
+
+    results = SkincareResume.stale_guest
+
+    assert_includes results, stale_guest_resume
+    assert_equal 1, results.count
+  end
 end

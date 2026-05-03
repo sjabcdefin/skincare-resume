@@ -31,17 +31,17 @@ class SkincareResumesCleanupJobTest < ActiveJob::TestCase
 
   test 'calls AdminMailer when cleanup job raises error' do
     error = StandardError.new('test error')
+    guest_mock = build_stale_guest_mock(error)
 
-    mail_mock = Minitest::Mock.new
-    mail_mock.expect(:deliver_now, true)
+    mail_mock = build_mail_mock
 
-    SkincareResume.stub :where, ->(*) { raise error } do
+    SkincareResume.stub :stale_guest, guest_mock do
       AdminMailer.stub :job_failed, mail_mock do
-        raised = assert_raises(StandardError) do
+        raised_error = assert_raises(StandardError) do
           SkincareResumesCleanupJob.perform_now
         end
 
-        assert_equal error, raised
+        assert_equal error, raised_error
       end
     end
 
@@ -50,25 +50,44 @@ class SkincareResumesCleanupJobTest < ActiveJob::TestCase
 
   test 'logs error when mail delivery fails' do
     error = StandardError.new('test error')
-    mail_error = StandardError.new('mail error')
+    guest_mock = build_stale_guest_mock(error)
 
-    mailer = Object.new
-    mailer.define_singleton_method(:deliver_now) { raise mail_error }
+    mail_error = StandardError.new('mail error')
+    mail_mock = build_mail_mock(mail_error)
 
     logs = []
 
     Rails.logger.stub :error, ->(msg) { logs << msg } do
-      SkincareResume.stub :where, ->(*) { raise error } do
-        AdminMailer.stub :job_failed, ->(*) { mailer } do
-          raised = assert_raises(StandardError) do
+      SkincareResume.stub :stale_guest, guest_mock do
+        AdminMailer.stub :job_failed, mail_mock do
+          raised_error = assert_raises(StandardError) do
             SkincareResumesCleanupJob.perform_now
           end
 
-          assert_equal error, raised
+          assert_equal error, raised_error
         end
       end
     end
 
     assert(logs.any? { |msg| msg.include?('mail_error') })
+  end
+
+  private
+
+  def build_stale_guest_mock(error)
+    mock = Minitest::Mock.new
+    mock.expect(:count, 1)
+    mock.expect(:destroy_all, nil) { raise error }
+    mock
+  end
+
+  def build_mail_mock(error = nil)
+    mock = Minitest::Mock.new
+    if error
+      mock.expect(:deliver_now, nil) { raise error }
+    else
+      mock.expect(:deliver_now, true)
+    end
+    mock
   end
 end
