@@ -149,7 +149,7 @@ GEM
     json (2.19.4)
     jwt (3.1.2)
       base64
-    kamal (2.10.1)
+    kamal (2.11.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
       bcrypt_pbkdf (~> 1.0)
@@ -447,7 +447,7 @@ DEPENDENCIES
   i18n_generators
   importmap-rails
   jbuilder
-  kamal (= 2.10.1)
+  kamal (= 2.11.0)
   minitest (~> 5.20)
   minitest-stub_any_instance
   omniauth-google-oauth2
