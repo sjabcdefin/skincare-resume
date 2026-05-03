@@ -6,4 +6,8 @@ class SkincareResume < ApplicationRecord
   has_many :allergies, dependent: :destroy
   has_many :medications, dependent: :destroy
   has_many :treatments, dependent: :destroy
+
+  scope :stale_guest, -> {
+    where(user_id: nil).where('created_at < ?', 3.days.ago)
+  }
 end

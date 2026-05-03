@@ -6,7 +6,7 @@ class SkincareResumesCleanupJob < ApplicationJob
   def perform
     Rails.logger.info '[SkincareResumesCleanupJob] start'
 
-    targets = SkincareResume.where(user_id: nil).where('created_at < ?', 3.days.ago)
+    targets = SkincareResume.stale_guest
 
     target_count = targets.count
     Rails.logger.info "[SkincareResumesCleanupJob] target_count=#{target_count}"
