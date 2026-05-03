@@ -75,6 +75,6 @@ gem 'slim-rails'
 
 gem 'tailwindcss-rails', '~> 4.4'
 
-gem 'solid_queue', '~> 1.3'
+gem 'solid_queue', '~> 1.4'
 
 gem 'propshaft', '~> 1.3'
