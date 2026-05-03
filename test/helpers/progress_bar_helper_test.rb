@@ -9,11 +9,11 @@ class ProgressBarHelperTest < ActionView::TestCase
     steps = skincare_steps
 
     assert_equal 5, steps.size
-    assert_equal 'スキンケア', steps['products']
-    assert_equal '薬', steps['medications']
-    assert_equal 'アレルギー', steps['allergies']
-    assert_equal '治療', steps['treatments']
-    assert_equal '確認', steps['confirmations']
+    assert_equal products_path, steps['products']
+    assert_equal medications_path, steps['medications']
+    assert_equal allergies_path, steps['allergies']
+    assert_equal treatments_path, steps['treatments']
+    assert_equal skincare_resume_confirmation_path, steps['confirmations']
   end
 
   test 'step_circle_class returns active class when step is current' do

@@ -1,7 +1,7 @@
 .relative.w-full.max-w-2xl.mx-auto.mt-8
-  div class='absolute top-1/4 left-7 right-3.5 h-1 bg-[#5F7F67] -translate-y-1/2'
+  div class='absolute top-7/20 left-8 right-8 h-1 bg-[#5F7F67] -translate-y-1/2'
   .flex.justify-between.items-center
-    - skincare_steps.each do |key, label|
-      .flex.flex-col.items-center
+    - skincare_steps.each do |key, path|
+      = link_to path, class: 'flex flex-col items-center w-20 hover:bg-gray-100 active:bg-gray-200' do
         div class=step_circle_class(key, controller_name)
-        .text-sm.text-center.font-semibold.pt-1 = label
+        .text-sm.text-center.font-semibold.pt-1 = t("progress_bar.steps.#{key}")
