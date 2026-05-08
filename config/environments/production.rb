@@ -60,7 +60,7 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "skincare-resume.com" }
 
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
+  # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
