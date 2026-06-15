@@ -74,7 +74,7 @@ gem 'pg'
 
 gem 'slim-rails'
 
-gem 'tailwindcss-rails', '~> 4.4'
+gem 'tailwindcss-rails', '~> 4.5'
 
 gem 'solid_queue', '~> 1.4'
 
