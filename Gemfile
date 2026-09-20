@@ -65,6 +65,8 @@ end
 
 gem 'dotenv-rails', groups: %i[development test]
 
+gem 'json', '< 3'
+
 gem 'kamal', '2.12.0'
 
 gem 'omniauth-google-oauth2'
