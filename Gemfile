@@ -65,7 +65,7 @@ end
 
 gem 'dotenv-rails', groups: %i[development test]
 
-gem 'json', '< 3'
+gem 'json', '< 4'
 
 gem 'kamal', '2.12.0'
 
